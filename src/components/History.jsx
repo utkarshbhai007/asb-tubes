@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import BrochureDownloadButton from "./BrochureDownloadButton";
 
 export default function History() {
   const sectionRef = useRef(null);
@@ -42,12 +43,15 @@ export default function History() {
               requirements.
             </p>
             
-            <a href="https://asbtubes.com/pdf/Asbtubes-Brochure.pdf" target="_blank" rel="noopener noreferrer" className="btn-outline-glow mt-4">
+            <BrochureDownloadButton 
+              pdfUrl="https://asbtubes.com/pdf/Asbtubes-Brochure.pdf" 
+              className="btn-outline-glow mt-4"
+            >
               <span>DOWNLOAD BROCHURE</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 15V3M12 15L8 11M12 15L16 11M2 17L2.621 19.485C2.729 19.917 3.118 20.219 3.563 20.219H20.437C20.882 20.219 21.271 19.917 21.379 19.485L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </a>
+            </BrochureDownloadButton>
           </div>
 
           <div className="history-banner animate-on-scroll slide-left">

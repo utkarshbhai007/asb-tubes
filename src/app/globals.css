@@ -2,8 +2,8 @@
    GLOBAL VARIABLES & RESET
    ========================================================================== */
 :root {
-  --primary-blue: #0a58ca;
-  --primary-blue-hover: #084298;
+  --primary-blue: #004985;
+  --primary-blue-hover: #00335e;
   --dark-bg: #0f172a;
   /* For products and footer */
   --light-bg: #f8f9fa;
@@ -317,14 +317,14 @@ h6 {
   font-size: 0.9rem;
   border-radius: 30px;
   /* Pill shape */
-  background: linear-gradient(135deg, #0a58ca 0%, #ff4b4b 100%);
+  background: linear-gradient(135deg, #004985 0%, #ff4b4b 100%);
   box-shadow: 0 4px 15px rgba(227, 30, 36, 0.4);
   letter-spacing: 1px;
   margin-left: 10px;
 }
 
 .nav-links .btn-solid-blue:hover {
-  background: linear-gradient(135deg, #ff4b4b 0%, #0a58ca 100%);
+  background: linear-gradient(135deg, #ff4b4b 0%, #004985 100%);
   box-shadow: 0 6px 20px rgba(227, 30, 36, 0.6);
   transform: translateY(-2px);
 }
@@ -1400,7 +1400,7 @@ h6 {
   position: relative;
   height: 45vh;
   min-height: 350px;
-  background: linear-gradient(135deg, #173f61 0%, #0a58ca 100%);
+  background: linear-gradient(135deg, rgba(23, 63, 97, 0.85) 0%, rgba(10, 88, 202, 0.85) 100%), url('/images/tubes.png') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1464,7 +1464,7 @@ h6 {
   position: relative;
   height: 45vh;
   min-height: 350px;
-  background: linear-gradient(135deg, #173f61 0%, #0a58ca 100%);
+  background: linear-gradient(135deg, rgba(23, 63, 97, 0.85) 0%, rgba(10, 88, 202, 0.85) 100%), url('/images/heat-exchanger.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1524,4 +1524,49 @@ h6 {
   .applications-hero {
     height: 35vh;
   }
+}
+
+/* Floating WhatsApp Button */
+.floating-whatsapp {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.floating-whatsapp:hover {
+  background-color: #1ebd5a;
+  transform: scale(1.1);
+}
+.whatsapp-icon {
+  width: 35px;
+  height: 35px;
+  color: white;
+}
+.whatsapp-tooltip {
+  position: absolute;
+  left: 75px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background-color: #111;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.floating-whatsapp:hover .whatsapp-tooltip {
+  opacity: 1;
 }

@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Vmv from "./Vmv";
+import BrochureDownloadButton from "./BrochureDownloadButton";
 
 const AnimatedNumber = ({ value, suffix = "", duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -237,9 +238,12 @@ export default function HomeContent() {
         <div className="cta-circle-2"></div>
         <div className="container">
           <div className="cta-content">
-            <a href="https://asbtubes.com/wp-content/uploads/2021/07/Brochure.pdf" target="_blank" rel="noreferrer" className="btn-cta-white">
+            <BrochureDownloadButton 
+              pdfUrl="https://asbtubes.com/wp-content/uploads/2021/07/Brochure.pdf" 
+              className="btn-cta-white"
+            >
               DOWNLOAD BROCHURE
-            </a>
+            </BrochureDownloadButton>
           </div>
         </div>
       </section>

@@ -239,8 +239,8 @@ export default function Process() {
         }
         
         .glass-card-light-blue {
-          background-color: var(--primary-blue, #0a58ca);
-          box-shadow: 0 10px 20px rgba(10, 88, 202, 0.15);
+          background-color: var(--primary-blue, #004985);
+          box-shadow: 0 10px 20px rgba(0, 73, 133, 0.15);
         }
 
         .process-text-col h3 {

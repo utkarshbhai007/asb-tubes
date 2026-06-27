@@ -151,7 +151,7 @@ export default function Certifications() {
 
         .quality-card-blue {
           background-color: var(--primary-blue);
-          box-shadow: 0 15px 30px rgba(10, 88, 202, 0.2);
+          box-shadow: 0 15px 30px rgba(0, 73, 133, 0.2);
           padding: 40px;
           border-radius: 16px;
         }
