@@ -151,15 +151,21 @@ export default function Products() {
 
         .product-image-col {
           flex: 1;
-          height: 400px;
+          height: auto;
+          min-height: 300px;
           overflow: hidden;
           position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f8f9fa; /* Slight background to make contained images look grounded */
         }
 
         .product-main-img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          max-height: 400px;
+          object-fit: contain;
           transition: transform 0.6s ease;
         }
 

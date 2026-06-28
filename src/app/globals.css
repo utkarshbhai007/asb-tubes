@@ -1570,3 +1570,136 @@ h6 {
 .floating-whatsapp:hover .whatsapp-tooltip {
   opacity: 1;
 }
+
+/* ==========================================================================
+     EVENTS & INSIGHT SECTION
+     ========================================================================== */
+.events-section {
+  padding: 80px 0;
+  background-color: var(--white);
+  text-align: center;
+}
+
+.events-header {
+  margin-bottom: 50px;
+}
+
+.events-subtitle {
+  font-family: var(--font-heading);
+  color: var(--primary-blue);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.events-title {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  color: var(--black);
+  text-transform: capitalize;
+}
+
+.events-grid-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.event-card {
+  text-align: left;
+}
+
+.event-image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.event-img {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover .event-img {
+  transform: scale(1.05);
+}
+
+.event-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-top: 15px;
+}
+
+.event-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--primary-blue);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.event-nav-btn:hover {
+  background-color: var(--primary-blue-hover);
+}
+
+.event-nav-btn.prev {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.event-nav-btn.next {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.events-footer {
+  margin-top: 40px;
+}
+
+@media (max-width: 992px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .event-nav-btn.prev {
+    left: 10px;
+    transform: translateY(-50%);
+  }
+
+  .event-nav-btn.next {
+    right: 10px;
+    transform: translateY(-50%);
+  }
+}

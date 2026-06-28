@@ -3,7 +3,7 @@ import React from 'react';
 export default function FloatingWhatsApp() {
   return (
     <a
-      href="https://wa.me/" // Add your WhatsApp number here, e.g., https://wa.me/1234567890
+      href="https://wa.me/917600384545" // Link updated with phone number +91 76003 84545
       target="_blank"
       rel="noopener noreferrer"
       className="floating-whatsapp"

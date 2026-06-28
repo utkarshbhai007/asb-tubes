@@ -166,7 +166,18 @@ export default function HomeContent() {
               International standards and also customization to cater each and every customer’s requirements.
             </p>
             <div className="global-presence-map">
-              <img src="/images/global-map.png" alt="Global Presence Map" className="map-img" />
+              <div className="countries-grid">
+                <div className="country-card"><span className="country-dot"></span>INDIA (HQ)</div>
+                <div className="country-card"><span className="country-dot"></span>CHINA</div>
+                <div className="country-card"><span className="country-dot"></span>DUBAI</div>
+                <div className="country-card"><span className="country-dot"></span>TOKYO</div>
+                <div className="country-card"><span className="country-dot"></span>LONDON</div>
+                <div className="country-card"><span className="country-dot"></span>FRANKFURT</div>
+                <div className="country-card"><span className="country-dot"></span>NEW YORK</div>
+                <div className="country-card"><span className="country-dot"></span>WASHINGTON D.C.</div>
+                <div className="country-card"><span className="country-dot"></span>SINGAPORE</div>
+                <div className="country-card"><span className="country-dot"></span>SOUTH AFRICA</div>
+              </div>
             </div>
           </div>
         </div>
@@ -232,21 +243,6 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* New CTA Section */}
-      <section className="new-cta-section animate-on-scroll slide-up">
-        <div className="cta-circle-1"></div>
-        <div className="cta-circle-2"></div>
-        <div className="container">
-          <div className="cta-content">
-            <BrochureDownloadButton 
-              pdfUrl="https://asbtubes.com/wp-content/uploads/2021/07/Brochure.pdf" 
-              className="btn-cta-white"
-            >
-              DOWNLOAD BROCHURE
-            </BrochureDownloadButton>
-          </div>
-        </div>
-      </section>
 
       <style jsx>{`
         .home-content {
@@ -524,15 +520,53 @@ export default function HomeContent() {
         }
 
         .global-presence-map {
-          width: 100%;
-          max-width: 800px;
+          margin-top: 40px;
+          text-align: center;
+        }
+        
+        .countries-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 15px;
+          max-width: 1000px;
           margin: 0 auto;
         }
 
+        .country-card {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background-color: white;
+          padding: 12px 25px;
+          border-radius: 50px;
+          font-family: var(--font-heading);
+          font-size: 1.1rem;
+          color: var(--black);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .country-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(0, 73, 133, 0.15);
+          color: var(--primary-blue);
+        }
+
+        .country-dot {
+          width: 12px;
+          height: 12px;
+          background-color: var(--primary-blue);
+          border-radius: 50%;
+          display: inline-block;
+          box-shadow: 0 0 0 4px rgba(0, 73, 133, 0.2);
+        }
+
         .map-img {
-          width: 100%;
+          max-width: 100%;
           height: auto;
-          display: block;
+          opacity: 0.9;
         }
 
         /* --- Why Trust Section (New Design) --- */
