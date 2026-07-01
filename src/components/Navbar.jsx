@@ -43,6 +43,13 @@ export default function Navbar() {
           <li><Link href="/quality" onClick={() => setIsOpen(false)}>QUALITY</Link></li>
           <li><Link href="/applications" onClick={() => setIsOpen(false)}>APPLICATIONS</Link></li>
           <li><Link href="/blog" onClick={() => setIsOpen(false)}>BLOG</Link></li>
+          <li className="dropdown" style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{cursor: "pointer", color: "var(--dark-bg)", fontSize: "0.95rem", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase"}}>RESOURCES <span style={{fontSize: "0.7rem"}}>▼</span></span>
+            <ul className="dropdown-menu">
+              <li><Link href="/events" onClick={() => setIsOpen(false)}>EVENTS</Link></li>
+              <li><Link href="/gallery" onClick={() => setIsOpen(false)}>GALLERY</Link></li>
+            </ul>
+          </li>
           <li><Link href="/contact-us" className="btn-solid-blue" onClick={() => setIsOpen(false)}>CONTACT</Link></li>
         </ul>
         <button
@@ -66,24 +73,30 @@ export default function Navbar() {
           position: absolute;
           top: 100%;
           left: 0;
-          background-color: rgba(15, 15, 15, 0.95);
+          background-color: #ffffff;
           min-width: 200px;
           list-style: none;
           padding: 10px 0;
-          box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
           z-index: 1000;
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
         }
         .dropdown-menu li {
-          padding: 8px 20px;
+          padding: 0;
         }
         .dropdown-menu li a {
-          color: var(--white);
-          font-size: 0.85rem;
+          color: var(--dark-bg) !important;
+          font-size: 0.95rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
           display: block;
+          padding: 10px 20px;
         }
         .dropdown-menu li a:hover {
-          color: var(--primary-blue);
+          color: var(--primary-blue) !important;
+          background-color: #f8fafc;
         }
         .dropdown:hover .dropdown-menu {
           display: block;

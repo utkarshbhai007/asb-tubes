@@ -165,18 +165,93 @@ export default function HomeContent() {
               Serving pan India since the beginning, we today deliver all across the Globe in 7+ Countries. Our Products comply with different<br />
               International standards and also customization to cater each and every customer’s requirements.
             </p>
-            <div className="global-presence-map">
-              <div className="countries-grid">
-                <div className="country-card"><span className="country-dot"></span>INDIA (HQ)</div>
-                <div className="country-card"><span className="country-dot"></span>CHINA</div>
-                <div className="country-card"><span className="country-dot"></span>DUBAI</div>
-                <div className="country-card"><span className="country-dot"></span>TOKYO</div>
-                <div className="country-card"><span className="country-dot"></span>LONDON</div>
-                <div className="country-card"><span className="country-dot"></span>FRANKFURT</div>
-                <div className="country-card"><span className="country-dot"></span>NEW YORK</div>
-                <div className="country-card"><span className="country-dot"></span>WASHINGTON D.C.</div>
-                <div className="country-card"><span className="country-dot"></span>SINGAPORE</div>
-                <div className="country-card"><span className="country-dot"></span>SOUTH AFRICA</div>
+            <div className="global-presence-map-container">
+              <img src="/images/global_presence_map.png" alt="Global Presence Map" className="world-map-img" />
+
+              <svg 
+                className="map-connections" 
+                viewBox="0 0 100 100" 
+                preserveAspectRatio="none" 
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 5, pointerEvents: 'none' }}
+              >
+                <defs>
+                  <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="var(--primary-blue)" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="var(--primary-blue)" stopOpacity="0.2" />
+                  </linearGradient>
+                </defs>
+                {/* China */}
+                <path d="M 70 53 Q 75 35 80 39" className="connection-line" />
+                {/* Tokyo */}
+                <path d="M 70 53 Q 79 30 88 42" className="connection-line" />
+                {/* Singapore */}
+                <path d="M 70 53 Q 77 50 78 63" className="connection-line" />
+                {/* Dubai */}
+                <path d="M 70 53 Q 67 45 64 50" className="connection-line" />
+                {/* Frankfurt */}
+                <path d="M 70 53 Q 61 25 52 35" className="connection-line" />
+                {/* London */}
+                <path d="M 70 53 Q 59 20 48 31" className="connection-line" />
+                {/* New York */}
+                <path d="M 70 53 Q 49 15 29 43" className="connection-line" />
+                {/* Washington D.C. */}
+                <path d="M 70 53 Q 47 20 25 47" className="connection-line" />
+                {/* South Africa */}
+                <path d="M 70 53 Q 55 60 55 75" className="connection-line" />
+              </svg>
+
+              {/* Center / India */}
+              <div className="map-pin" style={{ top: '53%', left: '70%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">INDIA (HQ)</div>
+              </div>
+              
+              {/* East Asia */}
+              <div className="map-pin" style={{ top: '39%', left: '80%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">CHINA</div>
+              </div>
+              <div className="map-pin" style={{ top: '42%', left: '88%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">TOKYO</div>
+              </div>
+              
+              {/* SE Asia */}
+              <div className="map-pin" style={{ top: '63%', left: '78%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">SINGAPORE</div>
+              </div>
+              
+              {/* Middle East */}
+              <div className="map-pin" style={{ top: '50%', left: '64%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">DUBAI</div>
+              </div>
+              
+              {/* Europe */}
+              <div className="map-pin" style={{ top: '35%', left: '52%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">FRANKFURT</div>
+              </div>
+              <div className="map-pin" style={{ top: '31%', left: '48%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">LONDON</div>
+              </div>
+              
+              {/* North America */}
+              <div className="map-pin" style={{ top: '43%', left: '29%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">NEW YORK</div>
+              </div>
+              <div className="map-pin" style={{ top: '47%', left: '25%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">WASHINGTON D.C.</div>
+              </div>
+              
+              {/* Africa */}
+              <div className="map-pin" style={{ top: '75%', left: '55%' }}>
+                <div className="pin-dot"></div>
+                <div className="pin-label">SOUTH AFRICA</div>
               </div>
             </div>
           </div>
@@ -519,48 +594,89 @@ export default function HomeContent() {
           margin-right: auto;
         }
 
-        .global-presence-map {
-          margin-top: 40px;
-          text-align: center;
-        }
-        
-        .countries-grid {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 15px;
-          max-width: 1000px;
-          margin: 0 auto;
+        .global-presence-map-container {
+          position: relative;
+          width: 100%;
+          max-width: 1100px;
+          margin: 40px auto 0;
         }
 
-        .country-card {
+        .world-map-img {
+          width: 100%;
+          height: auto;
+          display: block;
+          opacity: 0.9;
+          filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+          border-radius: 20px;
+        }
+
+        .map-connections {
+          pointer-events: none;
+        }
+
+        .connection-line {
+          fill: none;
+          stroke: url(#line-gradient);
+          stroke-width: 0.3;
+          stroke-linecap: round;
+          stroke-dasharray: 100;
+          stroke-dashoffset: 100;
+          animation: drawLine 3s ease forwards;
+        }
+
+        @keyframes drawLine {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+
+        .map-pin {
+          position: absolute;
+          transform: translate(-50%, -50%);
           display: flex;
+          flex-direction: column;
           align-items: center;
-          gap: 10px;
-          background-color: white;
-          padding: 12px 25px;
-          border-radius: 50px;
-          font-family: var(--font-heading);
-          font-size: 1.1rem;
-          color: var(--black);
-          box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          border: 1px solid rgba(0,0,0,0.03);
+          cursor: pointer;
+          z-index: 10;
         }
 
-        .country-card:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(0, 73, 133, 0.15);
-          color: var(--primary-blue);
-        }
-
-        .country-dot {
-          width: 12px;
-          height: 12px;
+        .pin-dot {
+          width: 14px;
+          height: 14px;
           background-color: var(--primary-blue);
           border-radius: 50%;
-          display: inline-block;
-          box-shadow: 0 0 0 4px rgba(0, 73, 133, 0.2);
+          box-shadow: 0 0 0 4px rgba(0, 73, 133, 0.3), 0 0 15px rgba(0, 73, 133, 0.8);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .map-pin:hover .pin-dot {
+          transform: scale(1.3);
+          box-shadow: 0 0 0 6px rgba(0, 73, 133, 0.4), 0 0 20px rgba(0, 73, 133, 1);
+        }
+
+        .pin-label {
+          position: absolute;
+          top: 18px;
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(4px);
+          color: var(--dark-bg);
+          font-family: var(--font-heading);
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 2px 6px;
+          border-radius: 4px;
+          white-space: nowrap;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          pointer-events: none;
+          transition: all 0.3s ease;
+        }
+
+        .map-pin:hover .pin-label {
+          background: white;
+          color: var(--primary-blue);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          transform: scale(1.1);
+          z-index: 20;
         }
 
         .map-img {

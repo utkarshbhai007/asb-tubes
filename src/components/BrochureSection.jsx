@@ -1,11 +1,29 @@
 'use client';
 import React from 'react';
 import BrochureDownloadButton from './BrochureDownloadButton';
+import GradientBlinds from './GradientBlinds';
 
 export default function BrochureSection() {
   return (
     <section className="brochure-cta-section">
-      <div className="container text-center">
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+        <GradientBlinds
+          gradientColors={['#004985', '#e2e8f0', '#94a3b8']}
+          angle={20}
+          noise={0.5}
+          blindCount={16}
+          blindMinWidth={60}
+          spotlightRadius={0.5}
+          spotlightSoftness={1}
+          spotlightOpacity={1}
+          mouseDampening={0.15}
+          distortAmount={0}
+          shineDirection="left"
+          mixBlendMode="normal"
+        />
+      </div>
+
+      <div className="container text-center" style={{ position: 'relative', zIndex: 10 }}>
         <h2 className="brochure-title">Ready to Learn More?</h2>
         <p className="brochure-subtitle">Download our comprehensive brochure to explore our full range of stainless steel pipes, tubes, and manufacturing capabilities.</p>
         
@@ -26,41 +44,17 @@ export default function BrochureSection() {
       <style jsx>{`
         .brochure-cta-section {
           padding: 100px 0;
-          background: linear-gradient(135deg, #0f172a 0%, var(--primary-blue, #004985) 100%);
+          background-color: #0f172a; /* Fallback */
           color: white;
           position: relative;
           overflow: hidden;
-        }
-        
-        .brochure-cta-section::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -10%;
-          width: 50%;
-          height: 200%;
-          background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-          transform: rotate(30deg);
-          pointer-events: none;
-        }
-
-        .brochure-cta-section::after {
-          content: '';
-          position: absolute;
-          bottom: -50%;
-          right: -10%;
-          width: 50%;
-          height: 200%;
-          background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-          transform: rotate(-30deg);
-          pointer-events: none;
         }
 
         .brochure-title {
           font-family: var(--font-heading);
           font-size: 3rem;
           margin-bottom: 20px;
-          text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
           position: relative;
           z-index: 2;
         }
@@ -69,10 +63,11 @@ export default function BrochureSection() {
           font-size: 1.2rem;
           max-width: 600px;
           margin: 0 auto 40px auto;
-          color: rgba(255,255,255,0.85);
+          color: rgba(255,255,255,0.9);
           line-height: 1.6;
           position: relative;
           z-index: 2;
+          text-shadow: 0 1px 5px rgba(0,0,0,0.5);
         }
 
         /* Target the button rendered by BrochureDownloadButton */

@@ -60,6 +60,7 @@ export default function OfficeGallery() {
           border-radius: 12px;
           overflow: hidden;
           box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+          border: 5px solid white;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .office-card:hover {

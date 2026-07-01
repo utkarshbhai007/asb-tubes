@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const events = [
   {
@@ -38,8 +39,8 @@ export default function EventsInsight() {
     <section className="events-section">
       <div className="container">
         <div className="events-header">
-          <h4 className="events-subtitle">UPDATE @ASB TUBES</h4>
-          <h2 className="events-title">Events & Insight</h2>
+          <h4 className="events-subtitle">Update @ASB Tubes</h4>
+          <h2 className="events-title">EVENTS & INSIGHT</h2>
         </div>
 
         <div className="events-grid-wrapper">
@@ -69,7 +70,7 @@ export default function EventsInsight() {
         </div>
 
         <div className="events-footer">
-          <a href="#" className="btn-solid-blue">VIEW ALL</a>
+          <Link href="/events" className="btn-solid-blue">VIEW ALL</Link>
         </div>
       </div>
     </section>
