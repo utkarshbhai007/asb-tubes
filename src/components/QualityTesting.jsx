@@ -23,15 +23,15 @@ export default function QualityTesting() {
   }, []);
 
   const testingImages = [
-    { title: "VISUAL INSPECTION", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_223413_.jpeg" },
-    { title: "FLATTENING TEST", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_223459_.jpeg" },
-    { title: "HARDNESS TEST", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_223550_.jpeg" },
-    { title: "TENSILE TEST (UTM)", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_223632_.jpeg" },
-    { title: "HYDRO TEST", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_223719_.jpeg" },
-    { title: "EDDY CURRENT TEST", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_22389_.jpeg" },
-    { title: "ANTI-CORROSION TEST", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_223852_.jpeg" },
-    { title: "PMI TEST", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_223935_.jpeg" },
-    { title: "FLARE TEST", src: "https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_9-4-2024_224021_.jpeg" },
+    { title: "VISUAL INSPECTION", src: "/Testing%20Images/Visual-inspection.png" },
+    { title: "FLATTENING TEST", src: "/Testing%20Images/Flattening-Test.png" },
+    { title: "HARDNESS TEST", src: "/Testing%20Images/Hardness-Test.png" },
+    { title: "TENSILE TEST (UTM)", src: "/Testing%20Images/Tensile-Test-(UTM).png" },
+    { title: "HYDRO TEST", src: "/Testing%20Images/Hydro-Text.png" },
+    { title: "EDDY CURRENT TEST", src: "/Testing%20Images/Eddy-Current-Test.png" },
+    { title: "PMI TEST", src: "/Testing%20Images/PMI-Text.png" },
+    { title: "ROUGHNESS TEST", src: "/Testing%20Images/roughness-Text.png" },
+    { title: "REFERENCE IMAGE", src: "/Testing%20Images/Refence Image.png" },
   ];
 
   return (
@@ -49,7 +49,7 @@ export default function QualityTesting() {
           {testingImages.map((img, idx) => (
             <div key={idx} className="testing-card animate-scale" style={{ transitionDelay: `${idx * 0.1}s` }}>
               <div className="testing-img-wrapper">
-                <img src={img.src} alt={img.title} onError={(e)=>{e.target.onerror = null; e.target.src="https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg"}} className="t-img" />
+                <img src={img.src} alt={img.title} className="t-img" />
               </div>
               <div className="testing-info">
                 <h4>{img.title}</h4>

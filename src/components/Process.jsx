@@ -71,7 +71,7 @@ export default function Process() {
           {/* Step 1 */}
           <div className="process-row">
             <div className="process-img-col">
-              <img src="https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_11-4-2024_205519_mail.google.com_.jpeg" alt="Our Process" className="step-full-img" />
+              <img src="/Flow-Chart.png" alt="Our Process Flow Chart" className="step-full-img flowchart-step-img" />
             </div>
             <div className="process-text-col glass-card-blue">
               <h3>OUR PROCESS</h3>
@@ -88,7 +88,7 @@ export default function Process() {
               <p>Stainless steel pipe annealing is a heat treatment production process carried out under controlled conditions to avoid carburization, decarburization and scaling on the metal surface and removes stresses occurred during forming, moulding. Hence, annealing helps to improve the quality of stainless steel pipes.</p>
             </div>
             <div className="process-img-col">
-              <img src="https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_11-4-2024_21354_.jpeg" alt="Bright Annealing" className="step-full-img" />
+              <img src="/BRIGHT-ANNEALING-Image-(Quailty).png" alt="Bright Annealing" className="step-full-img" />
             </div>
           </div>
 
@@ -225,6 +225,13 @@ export default function Process() {
           box-shadow: 0 10px 25px rgba(0,0,0,0.1);
           object-fit: cover;
           height: 250px;
+        }
+
+        .flowchart-step-img {
+          object-fit: contain;
+          height: auto;
+          background: #fff;
+          padding: 16px;
         }
 
         .process-text-col {

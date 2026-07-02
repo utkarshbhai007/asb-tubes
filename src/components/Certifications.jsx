@@ -27,7 +27,24 @@ export default function Certifications() {
     { title: "ISO 45001:2018", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso45001.jpg" },
     { title: "ISO 14001:2015", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso14001.jpg" },
     { title: "AD-2000-W0", src: "https://asbtubes.com/wp-content/uploads/2024/06/AD-2000-W0.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" },
-    { title: "PED Certificate", src: "https://asbtubes.com/wp-content/uploads/2024/06/PED-Certificate.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" }
+    { title: "PED Certificate", src: "https://asbtubes.com/wp-content/uploads/2024/06/PED-Certificate.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" },
+    {
+      title: "NFCSF – Approved Manufacturer",
+      subtitle: "Stainless Steel Tubes for Sugar & Distillery Plant",
+      isPdf: true,
+      issuer: "National Federation of Cooperative Sugar Factories Ltd.",
+      date: "20.05.2024",
+      validUpto: "19th May, 2027",
+    },
+    {
+      title: "BIS Certificate",
+      subtitle: "IS 17876 – Stainless Steel Welded Pipes & Tubes",
+      isPdf: true,
+      issuer: "Bureau of Indian Standards",
+      licenceNo: "CM/L-7200271004",
+      date: "6th January, 2025",
+      validUpto: "5th January, 2026",
+    },
   ];
 
   return (
@@ -57,14 +74,40 @@ export default function Certifications() {
         <div className="certs-grid">
           {certs.map((cert, idx) => (
             <div key={idx} className="cert-card animate-fade slide-up" style={{ transitionDelay: `${idx * 0.1}s` }}>
-              <div className="cert-image-wrapper">
-                <img 
-                  src={cert.src} 
-                  alt={cert.title} 
-                  onError={(e) => { e.target.onerror = null; e.target.src = cert.backup || cert.src; }}
-                  className="c-img" 
-                />
-              </div>
+              {cert.isPdf ? (
+                <div className="cert-doc-card">
+                  <div className="cert-doc-icon-wrapper">
+                    <svg className="cert-doc-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <rect x="8" y="2" width="38" height="50" rx="4" fill="#e8f0fe" stroke="#1a73e8" strokeWidth="2"/>
+                      <rect x="16" y="54" width="38" height="8" rx="2" fill="#1a73e8" opacity="0.15"/>
+                      <path d="M34 2v14h14" stroke="#1a73e8" strokeWidth="2" fill="none"/>
+                      <rect x="14" y="22" width="22" height="2.5" rx="1.25" fill="#1a73e8" opacity="0.5"/>
+                      <rect x="14" y="29" width="28" height="2.5" rx="1.25" fill="#1a73e8" opacity="0.4"/>
+                      <rect x="14" y="36" width="18" height="2.5" rx="1.25" fill="#1a73e8" opacity="0.3"/>
+                      <circle cx="49" cy="49" r="13" fill="#1a73e8"/>
+                      <path d="M44 49l3.5 3.5L54 44" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div className="cert-doc-body">
+                    <p className="cert-doc-issuer">{cert.issuer}</p>
+                    <p className="cert-doc-subtitle">{cert.subtitle}</p>
+                    <div className="cert-doc-meta">
+                      {cert.licenceNo && <span className="cert-meta-tag">Licence: {cert.licenceNo}</span>}
+                      <span className="cert-meta-tag">Issued: {cert.date}</span>
+                      <span className="cert-meta-tag">Valid upto: {cert.validUpto}</span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="cert-image-wrapper">
+                  <img
+                    src={cert.src}
+                    alt={cert.title}
+                    onError={(e) => { e.target.onerror = null; e.target.src = cert.backup || cert.src; }}
+                    className="c-img"
+                  />
+                </div>
+              )}
               <div className="cert-title">
                 <h3>{cert.title}</h3>
               </div>
@@ -311,6 +354,77 @@ export default function Certifications() {
           .lab-section {
             grid-template-columns: 1fr;
           }
+        }
+
+        /* --- DOCUMENT CERT CARD --- */
+        .cert-doc-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+          height: 350px;
+          justify-content: center;
+          padding: 10px 0;
+        }
+
+        .cert-doc-icon-wrapper {
+          flex-shrink: 0;
+        }
+
+        .cert-doc-icon {
+          width: 90px;
+          height: 90px;
+          filter: drop-shadow(0 4px 12px rgba(26, 115, 232, 0.25));
+          transition: transform 0.4s ease;
+        }
+
+        .cert-card:hover .cert-doc-icon {
+          transform: scale(1.08);
+        }
+
+        .cert-doc-body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          text-align: center;
+        }
+
+        .cert-doc-issuer {
+          font-size: 0.85rem;
+          color: #888;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin: 0;
+        }
+
+        .cert-doc-subtitle {
+          font-size: 1rem;
+          color: #333;
+          font-weight: 600;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .cert-doc-meta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          justify-content: center;
+          margin-top: 6px;
+        }
+
+        .cert-meta-tag {
+          background: rgba(26, 115, 232, 0.08);
+          color: var(--primary-blue, #1a73e8);
+          font-size: 0.78rem;
+          font-weight: 600;
+          padding: 4px 12px;
+          border-radius: 20px;
+          border: 1px solid rgba(26, 115, 232, 0.2);
+          white-space: nowrap;
         }
 
         /* --- ANIMATIONS --- */
