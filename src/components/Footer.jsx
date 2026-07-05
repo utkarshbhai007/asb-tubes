@@ -26,9 +26,12 @@ export default function Footer() {
           
           {/* Column 1: Brand & Info */}
           <div className="footer-col brand-col">
-            <div className="nav-logo mb-3">
-              <span className="logo-blue">ASB</span><span className="logo-white">TUBES</span>
-              <span className="logo-tagline d-block text-white" style={{ fontSize: "10px", marginTop: "5px", letterSpacing: '2px' }}>PRIVATE LIMITED</span>
+            <div className="nav-logo mb-3" style={{ alignItems: 'flex-start' }}>
+              <img 
+                src="/images/ASB Tube Logo White.png" 
+                alt="ASB Tubes Logo" 
+                style={{ height: '55px', width: 'auto', objectFit: 'contain' }} 
+              />
             </div>
             <p className="footer-desc">
               ASB Tubes is an ISO 9001:2015 certified company, manufacturing premium high-quality Stainless Steel Pipes, Tubes, Coils, and Sheets for diverse global industries.

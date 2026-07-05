@@ -72,34 +72,65 @@ export default function Navbar() {
           display: none;
           position: absolute;
           top: 100%;
-          left: 0;
-          background-color: #ffffff;
-          min-width: 200px;
+          left: 50%;
+          transform: translateX(-50%);
+          margin-top: 10px;
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          min-width: 180px;
           list-style: none;
-          padding: 10px 0;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+          padding: 8px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
           z-index: 1000;
-          border: 1px solid #e2e8f0;
-          border-radius: 8px;
+          border: 1px solid rgba(255, 255, 255, 0.6);
+          border-radius: 12px;
+        }
+        /* Invisible bridge so the mouse doesn't leave the hover area */
+        .dropdown-menu::before {
+          content: '';
+          position: absolute;
+          top: -10px;
+          left: 0;
+          width: 100%;
+          height: 10px;
         }
         .dropdown-menu li {
           padding: 0;
+          margin-bottom: 2px;
+        }
+        .dropdown-menu li:last-child {
+          margin-bottom: 0;
         }
         .dropdown-menu li a {
           color: var(--dark-bg) !important;
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           font-weight: 700;
           letter-spacing: 1px;
           text-transform: uppercase;
           display: block;
-          padding: 10px 20px;
+          padding: 10px 15px;
+          border-radius: 8px;
+          transition: all 0.2s ease;
         }
         .dropdown-menu li a:hover {
           color: var(--primary-blue) !important;
-          background-color: #f8fafc;
+          background-color: rgba(0, 73, 133, 0.08); /* light blue hover */
+          transform: translateX(4px);
         }
         .dropdown:hover .dropdown-menu {
           display: block;
+          animation: dropdownFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes dropdownFade {
+          from {
+            opacity: 0;
+            transform: translate(-50%, 10px);
+          }
+          to {
+            opacity: 1;
+            transform: translate(-50%, 0);
+          }
         }
 
         @media (min-width: 1025px) {

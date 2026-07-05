@@ -1,27 +1,9 @@
 'use client';
 import React from 'react';
 import BrochureDownloadButton from './BrochureDownloadButton';
-import GradientBlinds from './GradientBlinds';
-
 export default function BrochureSection() {
   return (
     <section className="brochure-cta-section">
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-        <GradientBlinds
-          gradientColors={['#004985', '#e2e8f0', '#94a3b8']}
-          angle={20}
-          noise={0.5}
-          blindCount={16}
-          blindMinWidth={60}
-          spotlightRadius={0.5}
-          spotlightSoftness={1}
-          spotlightOpacity={1}
-          mouseDampening={0.15}
-          distortAmount={0}
-          shineDirection="left"
-          mixBlendMode="normal"
-        />
-      </div>
 
       <div className="container text-center" style={{ position: 'relative', zIndex: 10 }}>
         <h2 className="brochure-title">Ready to Learn More?</h2>
