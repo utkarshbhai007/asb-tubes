@@ -39,7 +39,11 @@ export default function EventsInsight() {
     <section className="events-section">
       <div className="container">
         <div className="events-header">
-          <h4 className="events-subtitle">Update @ASB Tubes</h4>
+          <div className="section-label-container justify-content-center" style={{ justifyContent: 'center' }}>
+            <span className="label-line"></span>
+            <h4 className="events-subtitle" style={{ marginBottom: 0 }}>Update @ASB Tubes</h4>
+            <span className="label-line"></span>
+          </div>
           <h2 className="events-title">EVENTS & INSIGHT</h2>
         </div>
 

@@ -23,7 +23,6 @@ export default function Certifications() {
   }, []);
 
   const certs = [
-    { title: "ISO 9001:2015", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso9001.jpg" },
     { title: "ISO 45001:2018", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso45001.jpg" },
     { title: "ISO 14001:2015", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso14001.jpg" },
     { title: "AD-2000-W0", src: "https://asbtubes.com/wp-content/uploads/2024/06/AD-2000-W0.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" },
@@ -117,8 +116,9 @@ export default function Certifications() {
 
         {/* Laboratory Section */}
         <div className="lab-section animate-fade slide-up">
-          <div className="lab-image-col">
-            <img src="https://asbtubes.com/wp-content/uploads/2024/01/ASB-TUBES-MOU-23-24.jpg" alt="In-house testing laboratory" className="lab-img" />
+          <div className="lab-image-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img src="/images/ASB-Tubes-Pvt-Ltd-Iso9001.jpg" alt="ISO 9001:2015 Certificate" className="lab-img" />
+            <h3 style={{ marginTop: '20px', fontFamily: 'var(--font-oswald)', fontSize: '1.5rem', color: '#222', letterSpacing: '1px', textTransform: 'uppercase', textAlign: 'center' }}>ISO 9001:2015</h3>
           </div>
           <div className="lab-text-col glass-card">
             <p className="lab-text">

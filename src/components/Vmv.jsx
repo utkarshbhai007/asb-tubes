@@ -34,14 +34,14 @@ export default function Vmv() {
   return (
     <section id="vmv" className="vmv-section" ref={sectionRef}>
       <div className="container vmv-content">
-        
+
         <div className="vmv-grid">
           {/* Left Column: Image */}
           <div className="vmv-image-col animate-on-scroll slide-right">
             <div className="image-wrapper">
-              <img 
-                src="/images/manufacturing_process.jpg" 
-                alt="Manufacturing Process" 
+              <img
+                src="/images/manufacturing_process.jpg"
+                alt="Manufacturing Process"
                 className="vmv-img"
               />
             </div>
@@ -49,7 +49,7 @@ export default function Vmv() {
 
           {/* Right Column: Content */}
           <div className="vmv-text-col">
-            
+
             <div className="vmv-text-block animate-on-scroll slide-left" style={{ transitionDelay: '0.1s' }}>
               <h2 className="vmv-heading-text">VISION</h2>
               <div className="vmv-divider"></div>

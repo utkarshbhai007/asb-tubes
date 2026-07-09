@@ -24,17 +24,16 @@ export default function Process() {
 
   return (
     <section id="process" className="process-section" ref={sectionRef}>
-      
-      {/* Top Section: Image + Manufacturing Process text */}
-      <div className="container manufacturing-intro animate-fade slide-up">
-        <div className="manufacturing-img-col">
-          <img src="https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" alt="Manufacturing Process" className="mfg-img" />
-        </div>
-        <div className="manufacturing-text-col glass-card">
-          <h2 className="section-title">MANUFACTURING PROCESS</h2>
-          <p className="process-text">
-            <strong>ASB Tubes</strong> manufacturing of stainless steel welded tubes is carried out on custom-designed, sophisticated tube mills where stainless steel strips, slit to precise widths, are continuously formed into a tubular shape and welded by Tungsten – Inert – Gas (TIG) welding. The welding is highly precise and completely automated. The edges of the strips are heated and fused together under a protective atmosphere of argon through a non-consumable electrode without the addition of any filler metal. The integrity of the weld is continuously controlled by sophisticated electronic devices that maintain perfect, arc stability, and direction in a magnetic field.
-          </p>
+
+      {/* Top Section: Title and Full Width Production Flow Chart Image */}
+      <div className="container section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
+        <h2 className="section-title">PRODUCTION FLOW CHART</h2>
+        <div className="title-underline-center" style={{ margin: '0 auto 20px', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
+      </div>
+
+      <div className="container flowchart-full-container animate-fade slide-up" style={{ marginBottom: '60px' }}>
+        <div className="flowchart-wrapper" style={{ width: '100%', background: '#fff', borderRadius: '20px', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid rgba(0,0,0,0.03)', display: 'flex', justifyContent: 'center' }}>
+          <img src="/Flow-Chart.png" alt="Production Flow Chart" style={{ width: '100%', height: 'auto', display: 'block' }} />
         </div>
       </div>
 
@@ -42,21 +41,21 @@ export default function Process() {
       <div className="container videos-container">
         <div className="video-card glass-card animate-fade slide-up">
           <div className="video-wrapper">
-            <iframe 
-              src="https://www.youtube.com/embed/Nm47XqwEKe4" 
-              title="COIL SLITTING MANUFACTURING PROCESS" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <iframe
+              src="https://www.youtube.com/embed/Nm47XqwEKe4"
+              title="COIL SLITTING MANUFACTURING PROCESS"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
         </div>
-        
+
         <div className="video-card glass-card animate-fade slide-up" style={{ transitionDelay: '0.2s' }}>
           <div className="video-wrapper">
-            <iframe 
-              src="https://www.youtube.com/embed/yIjjrThZEPw" 
-              title="PIPES & TUBES MANUFACTURING PROCESS" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <iframe
+              src="https://www.youtube.com/embed/yIjjrThZEPw"
+              title="PIPES & TUBES MANUFACTURING PROCESS"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
@@ -65,19 +64,17 @@ export default function Process() {
 
       {/* Our Process - Alternating Layout */}
       <div className="container our-process-section animate-fade slide-up">
-        
+
         <div className="process-alternating-rows">
-          
+
           {/* Step 1 */}
           <div className="process-row">
             <div className="process-img-col">
-              <img src="/Flow-Chart.png" alt="Our Process Flow Chart" className="step-full-img flowchart-step-img" />
+              <img src="https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" alt="Manufacturing Process" className="step-full-img" />
             </div>
             <div className="process-text-col glass-card-blue">
-              <h3>OUR PROCESS</h3>
-              <p>ASB Tubes manufacturing of stainless steel welded tubes is carried out on custom designed sophisticated tube mills where stainless steel strips, slit to precise widths, are continuously formed into a tubular shape and welded by Tungsten-Inert Gas (TIG) welding.</p>
-              <br/>
-              <p>The welding is highly precise and completely automated. The edges of the strips are heated and fused together under protective atmosphere of argon through a non-consumable electrode without the addition of any filler metal.</p>
+              <h3>MANUFACTURING PROCESS</h3>
+              <p>ASB Tubes manufacturing of stainless steel welded tubes is carried out on custom-designed, sophisticated tube mills where stainless steel strips, slit to precise widths, are continuously formed into a tubular shape and welded by Tungsten – Inert – Gas (TIG) welding. The welding is highly precise and completely automated. The edges of the strips are heated and fused together under a protective atmosphere of argon through a non-consumable electrode without the addition of any filler metal. The integrity of the weld is continuously controlled by sophisticated electronic devices that maintain perfect, arc stability, and direction in a magnetic field.</p>
             </div>
           </div>
 
@@ -107,6 +104,7 @@ export default function Process() {
           <div className="process-row reverse">
             <div className="process-text-col glass-card-light-blue">
               <h3>POLISHING (INSIDE & OUTSIDE)</h3>
+              <p>Polishing is a critical surface-finishing process that improves both the aesthetic appeal and performance of stainless steel pipes. We offer both internal (ID) and external (OD) polishing using advanced abrasive belts and polishing heads. Polishing the inner surface ensures a smooth, crevice-free path that prevents bacterial growth and material accumulation—critical for pharmaceutical, dairy, and food processing applications. External polishing provides a high-quality, reflective mirror or satin finish, enhancing corrosion resistance and aesthetic appeal for architectural and industrial uses.</p>
             </div>
             <div className="process-img-col">
               <img src="https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_11-4-2024_21430_.jpeg" alt="Polishing" className="step-full-img" />

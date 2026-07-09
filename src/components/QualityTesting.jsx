@@ -31,7 +31,6 @@ export default function QualityTesting() {
     { title: "EDDY CURRENT TEST", src: "/Testing%20Images/Eddy-Current-Test.png" },
     { title: "PMI TEST", src: "/Testing%20Images/PMI-Text.png" },
     { title: "ROUGHNESS TEST", src: "/Testing%20Images/roughness-Text.png" },
-    { title: "REFERENCE IMAGE", src: "/Testing%20Images/Refence Image.png" },
   ];
 
   return (
@@ -156,10 +155,11 @@ export default function QualityTesting() {
 
         .testing-info h4 {
           color: #222;
-          font-family: var(--font-oswald);
-          font-size: 1.15rem;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 600;
+          font-size: 1.05rem;
           margin: 0;
-          letter-spacing: 1px;
+          letter-spacing: 0.5px;
         }
 
         /* --- ANIMATIONS --- */

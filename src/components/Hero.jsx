@@ -27,21 +27,21 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home">
-      <video 
+      <video
         ref={videoRef}
-        autoPlay 
-        loop 
-        muted={isMuted} 
-        playsInline 
-        className="hero-video" 
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        className="hero-video"
         preload="auto"
       >
         <source src="/ASB Tubes 1.mp4" type="video/mp4" />
       </video>
       <div className="hero-overlay"></div>
       <div className="hero-content container">
-        <span className="hero-tagline">Leading Stainless Steel Manufacturer In India</span>
-        <h1 className="hero-title">WELCOME TO ASB TUBES</h1>
+        <span className="hero-tagline">Leading manufacturer of Stainless steel pipes & tubes in india</span>
+        <h1 className="hero-title">WELCOME TO ASB</h1>
         <p className="hero-desc">
           Revolutionising the stainless steel industry for over 30 years, ASB Tubes is a leading manufacturer of premium pipes and tubes in India.
           <br /><br />
@@ -52,7 +52,7 @@ export default function Hero() {
           <Link href="/product-range" className="btn-outline-blue btn-large">OUR PRODUCTS</Link>
         </div>
       </div>
-      
+
       {/* Video Controls */}
       <div className="video-controls">
         <button onClick={togglePlay} className="control-btn" aria-label={isPlaying ? "Pause Video" : "Play Video"}>

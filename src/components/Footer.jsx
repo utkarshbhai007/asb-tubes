@@ -26,11 +26,11 @@ export default function Footer() {
           
           {/* Column 1: Brand & Info */}
           <div className="footer-col brand-col">
-            <div className="nav-logo mb-3" style={{ alignItems: 'flex-start' }}>
+            <div className="nav-logo" style={{ alignItems: 'flex-start', marginBottom: '20px' }}>
               <img 
                 src="/images/ASB Tube Logo White.png" 
                 alt="ASB Tubes Logo" 
-                style={{ height: '55px', width: 'auto', objectFit: 'contain' }} 
+                style={{ height: '38px', width: 'auto', objectFit: 'contain' }} 
               />
             </div>
             <p className="footer-desc">

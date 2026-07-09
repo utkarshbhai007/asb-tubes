@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function QualityPage() {
   return (
-    <div style={{ paddingTop: '80px', minHeight: '100vh', background: '#000' }}>
+    <div style={{ paddingTop: '80px', minHeight: '100vh' }}>
       <Certifications />
       <Process />
       <QualityTesting />
