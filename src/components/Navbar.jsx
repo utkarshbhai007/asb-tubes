@@ -28,7 +28,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav id="navbar" className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+    <nav id="navbar" className={`navbar ${isScrolled ? "scrolled" : ""} ${isOpen ? "mobile-menu-active" : ""}`}>
       <div className="nav-container">
         <Link href="/" className="nav-logo">
           <img
@@ -43,8 +43,8 @@ export default function Navbar() {
           <li><Link href="/quality" onClick={() => setIsOpen(false)}>QUALITY</Link></li>
           <li><Link href="/applications" onClick={() => setIsOpen(false)}>APPLICATIONS</Link></li>
           <li><Link href="/blog" onClick={() => setIsOpen(false)}>BLOG</Link></li>
-          <li className="dropdown" style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{cursor: "pointer", color: "var(--dark-bg)", fontSize: "0.95rem", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase"}}>RESOURCES <span style={{fontSize: "0.7rem"}}>▼</span></span>
+          <li className="dropdown">
+            <span className="dropdown-label">RESOURCES <span className="arrow-icon">▼</span></span>
             <ul className="dropdown-menu">
               <li><Link href="/events" onClick={() => setIsOpen(false)}>EVENTS</Link></li>
               <li><Link href="/gallery" onClick={() => setIsOpen(false)}>GALLERY</Link></li>
@@ -65,8 +65,35 @@ export default function Navbar() {
         </button>
       </div>
       <style jsx>{`
+        .navbar.mobile-menu-active {
+          border-radius: 20px 20px 0 0 !important;
+          border-bottom: none !important;
+          background: #ffffff !important;
+        }
+        .dropdown-label {
+          cursor: pointer;
+          color: var(--dark-bg);
+          font-size: 0.95rem;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          transition: color 0.3s;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+        .arrow-icon {
+          font-size: 0.7rem;
+          transition: transform 0.3s ease;
+          display: inline-block;
+        }
+        .dropdown:hover .arrow-icon {
+          transform: rotate(180deg);
+        }
         .dropdown {
           position: relative;
+          display: flex;
+          align-items: center;
         }
         .dropdown-menu {
           display: none;
@@ -153,28 +180,46 @@ export default function Navbar() {
             top: 100%;
             left: 0;
             width: 100%;
-            background: rgba(40, 45, 53, 0.95);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            padding: 20px 0;
+            background: #ffffff; /* Solid white background to hide content below */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            border-left: 1px solid rgba(0, 0, 0, 0.08);
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            padding: 25px 0;
             text-align: center;
-            border-radius: 20px;
-            margin-top: 10px;
+            border-radius: 0 0 20px 20px; /* Align flush with navbar */
+            margin-top: 0px;
+            z-index: 99999;
           }
           .nav-links.mobile-open li {
-            margin: 15px 0;
+            margin: 12px 0;
           }
-          .nav-links.mobile-open a {
-            color: var(--white);
-            font-size: 1.1rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+          .nav-links.mobile-open :global(a) {
+            color: var(--dark-bg) !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 1px;
+            text-shadow: none;
+          }
+          .nav-links.mobile-open :global(a):hover {
+            color: var(--primary-blue) !important;
+          }
+          .nav-links.mobile-open .dropdown-label {
+            color: var(--dark-bg) !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            justify-content: center;
           }
           .nav-links.mobile-open .btn-solid-blue {
             margin-left: 0;
             display: inline-block;
-            color: var(--white);
+            color: var(--white) !important;
+          }
+          .dropdown {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100%;
           }
           .dropdown-menu {
             position: static;
@@ -182,7 +227,16 @@ export default function Navbar() {
             background-color: transparent;
             box-shadow: none;
             border: none;
-            padding-left: 20px;
+            padding-left: 0;
+          }
+          .nav-links.mobile-open .dropdown-menu li a {
+            color: var(--text-light) !important;
+            font-size: 0.95rem !important;
+            padding: 8px 15px;
+          }
+          .nav-links.mobile-open .dropdown-menu li a:hover {
+            color: var(--primary-blue) !important;
+            background-color: rgba(0, 73, 133, 0.05);
           }
           .dropdown:hover .dropdown-menu {
             display: block;

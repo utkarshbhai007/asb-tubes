@@ -7,10 +7,10 @@ export default function EventsPage() {
     <div className="events-page">
       {/* Hero Section */}
       <section className="events-hero">
-        <div className="container text-center">
-          <span className="section-label">RESOURCES</span>
-          <h1 className="hero-title">Events & Exhibitions</h1>
-          <p className="hero-desc">
+        <div className="hero-overlay"></div>
+        <div className="container hero-content text-center">
+          <h1 className="hero-title animate-pop visible">Events & Exhibitions</h1>
+          <p className="hero-subtitle animate-pop visible" style={{ transitionDelay: '0.2s' }}>
             Stay connected with ASB Tubes. Discover where we will be exhibiting next and review our past milestones and industry events.
           </p>
         </div>
@@ -19,7 +19,10 @@ export default function EventsPage() {
       {/* Upcoming Events */}
       <section className="upcoming-events pattern-bg">
         <div className="container">
-          <h2 className="section-title">Upcoming Events</h2>
+          <div className="section-header text-center" style={{ marginBottom: '40px' }}>
+            <h2 className="section-title" style={{ margin: '0 0 15px 0' }}>Upcoming Events</h2>
+            <div className="title-underline-center" style={{ margin: '0 auto', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
+          </div>
           <div className="event-card featured">
             <div className="event-img-wrapper">
               <img src="/images/event_demo.png" alt="Stainless Steel World Expo" className="event-img" />
@@ -49,7 +52,10 @@ export default function EventsPage() {
       {/* Past Events */}
       <section className="past-events">
         <div className="container">
-          <h2 className="section-title">Past Highlights</h2>
+          <div className="section-header text-center" style={{ marginBottom: '40px' }}>
+            <h2 className="section-title" style={{ margin: '0 0 15px 0' }}>Past Highlights</h2>
+            <div className="title-underline-center" style={{ margin: '0 auto', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
+          </div>
           <div className="events-grid">
             
             <div className="past-event-card">
@@ -106,33 +112,54 @@ export default function EventsPage() {
         }
 
         .events-hero {
-          padding: 160px 0 80px;
-          background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
-          border-bottom: 1px solid #e2e8f0;
+          position: relative;
+          height: 45vh;
+          min-height: 350px;
+          background: linear-gradient(135deg, rgba(23, 63, 97, 0.85) 0%, rgba(10, 88, 202, 0.85) 100%), url('/images/event_demo.png') center/cover no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 80px;
         }
 
-        .section-label {
-          color: var(--primary-blue);
+        .events-hero .hero-overlay {
+          display: none;
+        }
+
+        .events-hero .hero-content {
+          position: relative;
+          z-index: 2;
+          color: white;
+          padding: 0 20px;
+        }
+
+        .events-hero .hero-title {
+          font-family: var(--font-oswald);
+          font-size: 4rem;
           font-weight: 700;
           letter-spacing: 2px;
-          font-size: 0.9rem;
-          display: block;
-          margin-bottom: 15px;
+          margin-bottom: 20px;
+          color: #ffffff;
         }
 
-        .hero-title {
-          font-size: 3.5rem;
-          color: #0f172a;
-          margin-bottom: 25px;
-          font-family: var(--font-oswald);
-        }
-
-        .hero-desc {
-          font-size: 1.2rem;
-          color: #64748b;
+        .events-hero .hero-subtitle {
+          font-size: 1.25rem;
           max-width: 700px;
           margin: 0 auto;
           line-height: 1.6;
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 300;
+        }
+
+        .events-hero .animate-pop {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .events-hero .animate-pop.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .upcoming-events {
@@ -141,9 +168,10 @@ export default function EventsPage() {
         }
 
         .section-title {
+          font-family: var(--font-oswald);
           font-size: 2.5rem;
-          color: #0f172a;
-          margin-bottom: 40px;
+          color: var(--primary-blue);
+          margin-bottom: 0;
           text-align: center;
         }
 
@@ -354,7 +382,16 @@ export default function EventsPage() {
         }
 
         @media (max-width: 768px) {
-          .hero-title { font-size: 2.5rem; }
+          .events-hero .hero-title {
+            font-size: 2.8rem;
+          }
+          .events-hero .hero-subtitle {
+            font-size: 1.1rem;
+          }
+          .events-hero {
+            height: 35vh;
+            min-height: 280px;
+          }
           .events-grid { grid-template-columns: 1fr; }
           .event-content { padding: 30px; }
         }

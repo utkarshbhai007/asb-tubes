@@ -20,11 +20,11 @@ export default function GalleryPage() {
     <div className="gallery-page">
       {/* Hero Section */}
       <section className="gallery-hero">
-        <div className="container text-center">
-          <span className="section-label">RESOURCES</span>
-          <h1 className="hero-title">Inside ASB Tubes</h1>
-          <p className="hero-desc">
-            Take a visual tour through our world-class manufacturing facilities, explore our premium product range, and meet the people driving our innovation.
+        <div className="hero-overlay"></div>
+        <div className="container hero-content text-center">
+          <h1 className="hero-title animate-pop visible">Inside ASB Tubes</h1>
+          <p className="hero-subtitle animate-pop visible" style={{ transitionDelay: '0.2s' }}>
+            Take a visual tour through our world-class manufacturing facilities, explore our premium product range, and meet the team driving our innovation.
           </p>
         </div>
       </section>
@@ -71,33 +71,54 @@ export default function GalleryPage() {
         }
 
         .gallery-hero {
-          padding: 160px 0 60px;
-          background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
-          border-bottom: 1px solid #e2e8f0;
+          position: relative;
+          height: 45vh;
+          min-height: 350px;
+          background: linear-gradient(135deg, rgba(23, 63, 97, 0.85) 0%, rgba(10, 88, 202, 0.85) 100%), url('/images/gallery_facility.png') center/cover no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 80px;
         }
 
-        .section-label {
-          color: var(--primary-blue);
+        .gallery-hero .hero-overlay {
+          display: none;
+        }
+
+        .gallery-hero .hero-content {
+          position: relative;
+          z-index: 2;
+          color: white;
+          padding: 0 20px;
+        }
+
+        .gallery-hero .hero-title {
+          font-family: var(--font-oswald);
+          font-size: 4rem;
           font-weight: 700;
           letter-spacing: 2px;
-          font-size: 0.9rem;
-          display: block;
-          margin-bottom: 15px;
+          margin-bottom: 20px;
+          color: #ffffff;
         }
 
-        .hero-title {
-          font-size: 3.5rem;
-          color: #0f172a;
-          margin-bottom: 25px;
-          font-family: var(--font-oswald);
-        }
-
-        .hero-desc {
-          font-size: 1.2rem;
-          color: #64748b;
+        .gallery-hero .hero-subtitle {
+          font-size: 1.25rem;
           max-width: 700px;
           margin: 0 auto;
           line-height: 1.6;
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 300;
+        }
+
+        .gallery-hero .animate-pop {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-hero .animate-pop.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .gallery-section {
@@ -135,7 +156,7 @@ export default function GalleryPage() {
           background: var(--primary-blue);
           border-color: var(--primary-blue);
           color: white;
-          box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+          box-shadow: 0 4px 15px rgba(0, 73, 133, 0.3);
         }
 
         .gallery-grid {
@@ -150,6 +171,12 @@ export default function GalleryPage() {
           background: #ffffff;
           border: 1px solid #e2e8f0;
           box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-item:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 20px 40px rgba(0, 73, 133, 0.08);
         }
 
         .img-wrapper {
@@ -228,7 +255,16 @@ export default function GalleryPage() {
         }
 
         @media (max-width: 768px) {
-          .hero-title { font-size: 2.5rem; }
+          .gallery-hero .hero-title {
+            font-size: 2.8rem;
+          }
+          .gallery-hero .hero-subtitle {
+            font-size: 1.1rem;
+          }
+          .gallery-hero {
+            height: 35vh;
+            min-height: 280px;
+          }
           .gallery-grid { grid-template-columns: 1fr; }
           .img-wrapper { height: 280px; }
           .gallery-filters {

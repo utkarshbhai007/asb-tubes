@@ -38,7 +38,7 @@ export default function QualityTesting() {
       <div className="container">
         
         <div className="section-header">
-          <h2 className="section-title">
+          <h2 className="section-title" style={{ color: 'var(--primary-blue)' }}>
             Testing & Inspection Facilities
           </h2>
           <div className="title-underline"></div>
@@ -155,7 +155,7 @@ export default function QualityTesting() {
 
         .testing-info h4 {
           color: #222;
-          font-family: 'Poppins', sans-serif;
+          font-family: var(--font-poppins);
           font-weight: 600;
           font-size: 1.05rem;
           margin: 0;

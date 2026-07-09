@@ -52,7 +52,7 @@ export default function Certifications() {
         
         <div className="quality-intro-wrapper animate-fade slide-up">
           <div className="quality-intro-text-col">
-            <h2 className="section-title text-left">
+            <h2 className="section-title text-left" style={{ color: 'var(--primary-blue)' }}>
               QUALITY
             </h2>
             <div className="title-underline-left"></div>
@@ -68,6 +68,11 @@ export default function Certifications() {
               <li><span className="text-white">»</span> Quality Services at all Times</li>
             </ul>
           </div>
+        </div>
+
+        <div className="section-header text-center animate-fade slide-up" style={{ marginBottom: '40px', marginTop: '60px' }}>
+          <h2 className="section-title" style={{ color: 'var(--primary-blue)', marginBottom: '15px' }}>CERTIFICATIONS</h2>
+          <div className="title-underline-center" style={{ margin: '0 auto', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
         </div>
 
         <div className="certs-grid">

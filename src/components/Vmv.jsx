@@ -40,8 +40,8 @@ export default function Vmv() {
           <div className="vmv-image-col animate-on-scroll slide-right">
             <div className="image-wrapper">
               <img
-                src="/images/manufacturing_process.jpg"
-                alt="Manufacturing Process"
+                src="/images/op1.png"
+                alt="ASB Tubes Vision & Mission"
                 className="vmv-img"
               />
             </div>

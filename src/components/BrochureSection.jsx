@@ -9,7 +9,7 @@ export default function BrochureSection() {
         <h2 className="brochure-title">Ready to Learn More?</h2>
         <p className="brochure-subtitle">Download our comprehensive brochure to explore our full range of stainless steel pipes, tubes, and manufacturing capabilities.</p>
         
-        <BrochureDownloadButton pdfUrl="/asb_brochure.pdf" className="btn-download-wrapper">
+        <BrochureDownloadButton pdfUrl="https://asbtubes.com/pdf/Asbtubes-Brochure.pdf" className="btn-download-wrapper">
           <div className="btn-download-premium">
             <span className="btn-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

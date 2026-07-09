@@ -14,6 +14,8 @@
   --font-heading: 'Oswald', sans-serif;
   --font-oswald: 'Oswald', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 * {
@@ -65,6 +67,10 @@ ul {
 
 .text-gray {
   color: #aaaaaa;
+}
+
+.text-blue {
+  color: var(--primary-blue);
 }
 
 .mb-4 {
@@ -1560,6 +1566,75 @@ h6 {
 
   .applications-hero {
     height: 35vh;
+  }
+}
+
+/* ==========================================================================
+     QUALITY PAGE HERO
+     ========================================================================== */
+.quality-hero {
+  position: relative;
+  height: 45vh;
+  min-height: 350px;
+  background: linear-gradient(135deg, rgba(23, 63, 97, 0.85) 0%, rgba(10, 88, 202, 0.85) 100%), url('/images/gallery_production.png') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.quality-hero .hero-overlay {
+  display: none;
+}
+
+.quality-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 0 20px;
+}
+
+.quality-hero .hero-title {
+  font-family: var(--font-oswald);
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.quality-hero .hero-subtitle {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+.quality-hero .animate-pop {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quality-hero .animate-pop.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .quality-hero .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .quality-hero .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .quality-hero {
+    height: 35vh;
+    min-height: 280px;
   }
 }
 

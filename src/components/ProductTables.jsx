@@ -129,7 +129,7 @@ export default function ProductTables() {
           border-collapse: separate;
           border-spacing: 0;
           color: #444;
-          font-family: var(--font-roboto);
+          font-family: var(--font-body);
           min-width: 800px;
         }
 
