@@ -228,9 +228,11 @@ export default function EventsPage() {
         }
 
         .event-content h3 {
+          font-family: var(--font-poppins);
           font-size: 2rem;
           color: #0f172a;
           margin-bottom: 15px;
+          text-align: left;
         }
 
         .location {
@@ -239,7 +241,13 @@ export default function EventsPage() {
           margin-bottom: 20px;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
+          text-align: left;
+        }
+
+        .location .icon {
+          margin-left: -2px; /* Correct visual misalignment of emoji glyph */
+          display: inline-block;
         }
 
         .event-content .desc {
