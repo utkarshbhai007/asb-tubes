@@ -45,7 +45,7 @@ export default function Hero() {
         <p className="hero-desc">
           Revolutionising the stainless steel industry for over 30 years, ASB Tubes is a leading manufacturer of premium pipes and tubes in India.
           <br /><br />
-          Established with a vision for technological advancement, ASB Tubes is equipped with a state-of-the-art 48,000MT+ annual capacity, proudly serving clients across the globe.
+          Established with a vision for technological advancement, ASB Tubes is equipped with a state-of-the-art 72,000MT+ annual capacity, proudly serving clients across the globe.
         </p>
         <div className="hero-actions">
           <Link href="/contact-us" className="btn-solid-blue btn-large">CONTACT US</Link>

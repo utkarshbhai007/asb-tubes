@@ -25,7 +25,19 @@ export default function Process() {
   return (
     <section id="process" className="process-section" ref={sectionRef}>
 
-      {/* Top Section: Title and Full Width Production Flow Chart Image */}
+      {/* Top Section: TPI Approvals */}
+      <div className="container section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
+        <h2 className="section-title">TPI APPROVALS</h2>
+        <div className="title-underline-center" style={{ margin: '0 auto 20px', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
+      </div>
+
+      <div className="container flowchart-full-container animate-fade slide-up" style={{ marginBottom: '70px' }}>
+        <div className="flowchart-wrapper" style={{ width: '100%', background: '#fff', borderRadius: '20px', padding: '40px', boxShadow: '0 10px 40px rgba(0,0,0,0.06)', border: '1px solid rgba(0,0,0,0.03)', display: 'flex', justifyContent: 'center' }}>
+          <img src="/images/TPI-Approvals (1).png" alt="TPI Approvals" style={{ width: '100%', height: 'auto', display: 'block', maxWidth: '1000px' }} />
+        </div>
+      </div>
+
+      {/* Production Flow Chart Section */}
       <div className="container section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
         <h2 className="section-title">PRODUCTION FLOW CHART</h2>
         <div className="title-underline-center" style={{ margin: '0 auto 20px', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>

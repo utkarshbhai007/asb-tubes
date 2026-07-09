@@ -6,7 +6,7 @@ export default function GalleryPage() {
   const [filter, setFilter] = useState('all');
 
   const galleryItems = [
-    { id: 1, category: 'facility', src: '/images/gallery_facility.png', title: 'State-of-the-Art Plant', desc: 'Our massive 48,000 MT capacity manufacturing unit.' },
+    { id: 1, category: 'facility', src: '/images/gallery_facility.png', title: 'State-of-the-Art Plant', desc: 'Our massive 72,000 MT capacity manufacturing unit.' },
     { id: 2, category: 'production', src: '/images/gallery_production.png', title: 'Automated Tube Mills', desc: 'Precision TIG welding and continuous forming processes.' },
     { id: 3, category: 'team', src: '/images/gallery_team.png', title: 'Expert Engineering', desc: 'Our dedicated team ensuring the highest quality standards.' },
     { id: 4, category: 'products', src: '/images/gallery_product_1.png', title: 'Premium Coils', desc: 'High-grade stainless steel coils ready for processing.' },
@@ -32,7 +32,7 @@ export default function GalleryPage() {
       {/* Gallery Section */}
       <section className="gallery-section">
         <div className="container">
-          
+
           {/* Filters */}
           <div className="gallery-filters">
             <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>All</button>

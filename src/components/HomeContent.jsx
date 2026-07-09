@@ -129,12 +129,12 @@ export default function HomeContent() {
             {/* Stat Card 2 */}
             <div className="stat-card-modern animate-on-scroll slide-up" style={{ transitionDelay: "0.1s" }}>
               <div className="stat-card-header">
-                <h3 className="stat-number-modern text-blue"><AnimatedNumber value={48000} suffix="+" duration={2500} /></h3>
+                <h3 className="stat-number-modern text-blue"><AnimatedNumber value={72000} suffix="+" duration={2500} /></h3>
                 <span className="stat-label-modern">MT</span>
               </div>
               <div className="stat-card-body">
                 <h4 className="stat-title-modern">Our Production</h4>
-                <p>A state-of art 48,000MT+ Annually Installed Production Capacity helps us produce put together more than 200+ variants of product categories of – Stainless Steel Pipes / Tubes / Sheets & Coils. The manufacturing facility is well equipped with the latest on-line tube finishing equipment as per international standards and industrial requirements.</p>
+                <p>A state-of art 72,000MT+ Annually Installed Production Capacity helps us produce put together more than 200+ variants of product categories of – Stainless Steel Pipes / Tubes / Sheets & Coils. The manufacturing facility is well equipped with the latest on-line tube finishing equipment as per international standards and industrial requirements.</p>
               </div>
             </div>
 
@@ -169,10 +169,10 @@ export default function HomeContent() {
         <div className="global-presence-map-container">
           <img src="/images/global_presence_map.png" alt="Global Presence Map" className="world-map-img" />
 
-          <svg 
-            className="map-connections" 
-            viewBox="0 0 100 100" 
-            preserveAspectRatio="none" 
+          <svg
+            className="map-connections"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
             style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 5, pointerEvents: 'none' }}
           >
             <defs>
@@ -206,7 +206,7 @@ export default function HomeContent() {
             <div className="pin-dot"></div>
             <div className="pin-label">INDIA (HQ)</div>
           </div>
-          
+
           {/* East Asia */}
           <div className="map-pin" style={{ top: '39%', left: '80%' }}>
             <div className="pin-dot"></div>
@@ -216,19 +216,19 @@ export default function HomeContent() {
             <div className="pin-dot"></div>
             <div className="pin-label">TOKYO</div>
           </div>
-          
+
           {/* SE Asia */}
           <div className="map-pin" style={{ top: '63%', left: '78%' }}>
             <div className="pin-dot"></div>
             <div className="pin-label">SINGAPORE</div>
           </div>
-          
+
           {/* Middle East */}
           <div className="map-pin" style={{ top: '50%', left: '64%' }}>
             <div className="pin-dot"></div>
             <div className="pin-label">DUBAI</div>
           </div>
-          
+
           {/* Europe */}
           <div className="map-pin" style={{ top: '35%', left: '52%' }}>
             <div className="pin-dot"></div>
@@ -238,7 +238,7 @@ export default function HomeContent() {
             <div className="pin-dot"></div>
             <div className="pin-label">LONDON</div>
           </div>
-          
+
           {/* North America */}
           <div className="map-pin" style={{ top: '43%', left: '29%' }}>
             <div className="pin-dot"></div>
@@ -248,7 +248,7 @@ export default function HomeContent() {
             <div className="pin-dot"></div>
             <div className="pin-label">WASHINGTON D.C.</div>
           </div>
-          
+
           {/* Africa */}
           <div className="map-pin" style={{ top: '75%', left: '55%' }}>
             <div className="pin-dot"></div>
