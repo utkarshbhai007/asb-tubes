@@ -309,6 +309,8 @@ export default function Certifications() {
 
         .lab-img {
           width: 100%;
+          max-width: 380px;
+          height: auto;
           border-radius: 12px;
           box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
