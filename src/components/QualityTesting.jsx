@@ -34,7 +34,7 @@ export default function QualityTesting() {
   ];
 
   return (
-    <section className="testing-section" ref={sectionRef}>
+    <section id="testing-inspection" className="testing-section" ref={sectionRef}>
       <div className="container">
         
         <div className="section-header">

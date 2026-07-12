@@ -204,55 +204,45 @@ export default function HomeContent() {
           {/* Center / India */}
           <div className="map-pin" style={{ top: '53%', left: '70%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">INDIA (HQ)</div>
           </div>
 
           {/* East Asia */}
           <div className="map-pin" style={{ top: '39%', left: '80%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">CHINA</div>
           </div>
           <div className="map-pin" style={{ top: '42%', left: '88%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">TOKYO</div>
           </div>
 
           {/* SE Asia */}
           <div className="map-pin" style={{ top: '63%', left: '78%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">SINGAPORE</div>
           </div>
 
           {/* Middle East */}
           <div className="map-pin" style={{ top: '50%', left: '64%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">DUBAI</div>
           </div>
 
           {/* Europe */}
           <div className="map-pin" style={{ top: '35%', left: '52%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">FRANKFURT</div>
           </div>
           <div className="map-pin" style={{ top: '31%', left: '48%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">LONDON</div>
           </div>
 
           {/* North America */}
           <div className="map-pin" style={{ top: '43%', left: '29%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">NEW YORK</div>
           </div>
           <div className="map-pin" style={{ top: '47%', left: '25%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">WASHINGTON D.C.</div>
           </div>
 
           {/* Africa */}
           <div className="map-pin" style={{ top: '75%', left: '55%' }}>
             <div className="pin-dot"></div>
-            <div className="pin-label">SOUTH AFRICA</div>
           </div>
         </div>
       </section>

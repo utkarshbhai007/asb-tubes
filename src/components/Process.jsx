@@ -26,7 +26,7 @@ export default function Process() {
     <section id="process" className="process-section" ref={sectionRef}>
 
       {/* Top Section: TPI Approvals */}
-      <div className="container section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
+      <div id="tpi-approvals" className="container section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
         <h2 className="section-title" style={{ color: 'var(--primary-blue)' }}>TPI APPROVALS</h2>
         <div className="title-underline-center" style={{ margin: '0 auto 20px', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
       </div>
@@ -38,7 +38,7 @@ export default function Process() {
       </div>
 
       {/* Production Flow Chart Section */}
-      <div className="container section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
+      <div id="flow-chart" className="container section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
         <h2 className="section-title" style={{ color: 'var(--primary-blue)' }}>PRODUCTION FLOW CHART</h2>
         <div className="title-underline-center" style={{ margin: '0 auto 20px', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
       </div>

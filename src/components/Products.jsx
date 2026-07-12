@@ -29,7 +29,7 @@ export default function Products() {
       specs: [
         "Grade: 200 – J1 / J2 / J3 / J4, 300 & 400 Series",
         "Thickness: 0.2mm to 10 mm",
-        "Size: 8mm to 323.85 mm",
+        "Size: 6mm to 406mm",
         "Surface Finish: 2B / Hairline / Mirror",
         "Standards: ASTM A554, A249, A269, A270, A312 and other company specifications.",
         "Process: Annealing / Pickling / I&O Polishing"
@@ -70,7 +70,7 @@ export default function Products() {
       title: "SS COILS & STRIPS",
       specs: [
         "Grade: 200 & 300 Series.",
-        "Thickness: 0.24 to 4.0 mm",
+        "Thickness: 0.2 to 10 mm",
         "Finish: 2B / Hairline / Mirror",
         "Slitting: As per Requirement"
       ],

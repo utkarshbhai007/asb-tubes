@@ -4,7 +4,7 @@ import QualityTesting from "../../components/QualityTesting";
 
 export const metadata = {
   title: "Quality | ASB Tubes",
-  description: "ASB Tubes strives for total customer satisfaction by consistently supplying quality stainless steel pipes and tubes.",
+  description: "Learn about the quality standards, certifications, and manufacturing processes of ASB Tubes.",
 };
 
 export default function QualityPage() {

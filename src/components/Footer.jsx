@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="tech-divider-container">
         <div className="tech-divider">
           <div className="tech-tag">
-             <span>ASB TUBES</span>
+            <span>ASB TUBES</span>
           </div>
           <div className="tech-line-main"></div>
           <div className="tech-dots">
@@ -23,14 +23,14 @@ export default function Footer() {
 
       <div className="container">
         <div className="footer-grid">
-          
+
           {/* Column 1: Brand & Info */}
           <div className="footer-col brand-col">
             <div className="nav-logo" style={{ alignItems: 'flex-start', marginBottom: '20px' }}>
-              <img 
-                src="/images/ASB Tube Logo White.png" 
-                alt="ASB Tubes Logo" 
-                style={{ height: '38px', width: 'auto', objectFit: 'contain' }} 
+              <img
+                src="/images/ASB Tube Logo White.png"
+                alt="ASB Tubes Logo"
+                style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
               />
             </div>
             <p className="footer-desc">
@@ -67,7 +67,7 @@ export default function Footer() {
               <span className="icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </span>
-              <p>+91 079 - 40059030<br />WhatsApp: +91 913 - 7482742</p>
+              <p>+91 76003 84545<br />WhatsApp: +91 91374 82742</p>
             </div>
             <div className="contact-detail">
               <span className="icon">
@@ -84,7 +84,7 @@ export default function Footer() {
               <span className="icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
               </span>
-              <p>Survey No. 65, Opp. Honest Hotel Sedhavi Road Vadpura, Taluka: Kadi, Dist. Mehsana – 382705, Gujarat, INDIA.</p>
+              <p>Survey No. 65, Sedhavi Road Vadpura, Taluka: Kadi, Dist. Mehsana – 382705, Gujarat, INDIA.</p>
             </div>
             <div className="contact-detail">
               <span className="icon">

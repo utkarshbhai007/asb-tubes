@@ -47,30 +47,10 @@ export default function Certifications() {
   ];
 
   return (
-    <section className="certifications-section" ref={sectionRef}>
+    <section id="certificates" className="certifications-section" ref={sectionRef}>
       <div className="container">
         
-        <div className="quality-intro-wrapper animate-fade slide-up">
-          <div className="quality-intro-text-col">
-            <h2 className="section-title text-left" style={{ color: 'var(--primary-blue)' }}>
-              QUALITY
-            </h2>
-            <div className="title-underline-left"></div>
-            <p className="quality-desc">ASB Tubes strives for total customer satisfaction by consistently supplying quality stainless steel pipes and tubes conforming to mutually agreed product specifications & delivery schedule.</p>
-            <p className="quality-desc">We are committed to involve all employees for the continuous improvement of our product in quality & customer satisfaction & achieve leadership in the global market.</p>
-          </div>
-          
-          <div className="quality-intro-list-col quality-card-blue">
-            <h3 className="quality-list-title">We provide services with:</h3>
-            <ul className="quality-services-list">
-              <li><span className="text-white">»</span> Stated Quality</li>
-              <li><span className="text-white">»</span> Timely Delivery</li>
-              <li><span className="text-white">»</span> Quality Services at all Times</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="section-header text-center animate-fade slide-up" style={{ marginBottom: '40px', marginTop: '60px' }}>
+        <div className="section-header text-center animate-fade slide-up" style={{ marginBottom: '40px' }}>
           <h2 className="section-title" style={{ color: 'var(--primary-blue)', marginBottom: '15px' }}>CERTIFICATIONS</h2>
           <div className="title-underline-center" style={{ margin: '0 auto', width: '80px', height: '4px', background: 'var(--primary-blue)', borderRadius: '2px' }}></div>
         </div>

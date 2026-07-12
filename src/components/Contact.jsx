@@ -26,7 +26,7 @@ export default function Contact() {
             </div>
             <div>
               <h4>Factory Add.</h4>
-              <p>Survey No. 65, Opp. Honest Hotel Sedhavi Road Vadpura,<br />Taluka : Kadi, Dist. Mehsana – 382705 (Gujarat) INDIA</p>
+              <p>Survey No. 65, Sedhavi Road Vadpura,<br />Taluka : Kadi, Dist. Mehsana – 382705 (Gujarat) INDIA</p>
             </div>
           </div>
           <div className="info-item">
@@ -35,7 +35,7 @@ export default function Contact() {
             </div>
             <div>
               <h4>Phone</h4>
-              <p>Phone: +91 079 - 40059030<br />WhatsApp: +91 913 - 7482742</p>
+              <p>Phone: +91 76003 84545<br />WhatsApp: +91 91374 82742</p>
             </div>
           </div>
           <div className="info-item">
