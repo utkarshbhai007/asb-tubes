@@ -1,6 +1,600 @@
-
 "use client";
 import React, { useEffect, useRef } from "react";
+
+// Reusable rendering function for availability checkmark
+const renderAvailability = (available) => {
+  if (available) {
+    return (
+      <span className="availability-badge available">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </span>
+    );
+  }
+  return <span className="availability-placeholder"></span>;
+};
+
+// Reusable component for the premium specs grid
+function SpecCardsGrid({ cards }) {
+  return (
+    <div className="premium-cards-grid">
+      {cards.map((card, idx) => (
+        <div key={idx} className="spec-card-item">
+          <div className="spec-card-icon">{card.icon}</div>
+          <div className="spec-card-content">
+            <span className="spec-card-label">{card.label}</span>
+            <span className="spec-card-val">{card.value}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// 1. STAINLESS STEEL PIPES DIMENSION CHART
+function StainlessSteelPipesDimensionChart() {
+  const specCards = [
+    { icon: "📏", label: "Size Range", value: "13.72 mm – 406.40 mm" },
+    { icon: "📐", label: "Thickness Range", value: "1 mm – 13 mm" },
+    { icon: "🧱", label: "Grade", value: "300 & 400 Series" },
+    { icon: "📄", label: "Standard", value: "ASTM A312 / A268 / EN 10217-7" }
+  ];
+
+  const sizes = [
+    { inch: '1/4"', mm: '13.72' },
+    { inch: '3/8"', mm: '17.15' },
+    { inch: '1/2"', mm: '21.34' },
+    { inch: '3/4"', mm: '26.67' },
+    { inch: '1"', mm: '33.40' },
+    { inch: '1¼"', mm: '42.16' },
+    { inch: '1½"', mm: '48.26' },
+    { inch: '2"', mm: '60.33' },
+    { inch: '2½"', mm: '73.03' },
+    { inch: '3"', mm: '88.90' },
+    { inch: '3½"', mm: '101.60' },
+    { inch: '4"', mm: '114.30' },
+    { inch: '5"', mm: '141.30' },
+    { inch: '6"', mm: '168.28' },
+    { inch: '8"', mm: '219.08' },
+    { inch: '10"', mm: '273.05' },
+    { inch: '12"', mm: '323.85' },
+    { inch: '14"', mm: '355.60' },
+    { inch: '16"', mm: '406.40' }
+  ];
+
+  const t1Thicknesses = [1.20, 1.60, 2.00, 2.11, 2.50, 2.60, 2.77, 3.05, 3.40, 3.75, 3.90, 4.19, 4.50, 5.00];
+  const t2Thicknesses = [5.49, 5.74, 6.00, 6.50, 7.00, 8.00, 8.80, 9.00, 9.50, 11.13, 12.70];
+
+  const isT1Available = (mmSize, thk) => {
+    const size = parseFloat(mmSize);
+    if (size === 13.72) return thk <= 2.00;
+    if (size === 17.15) return thk <= 2.11;
+    if (size === 21.34) return thk <= 2.60;
+    if (size === 26.67) return thk <= 2.77;
+    if (size === 33.40) return thk <= 3.40;
+    if (size === 42.16) return thk <= 3.40;
+    if (size === 48.26) return thk <= 3.90;
+    if (size === 60.33) return thk >= 1.60 && thk <= 3.90;
+    if (size === 73.03) return thk >= 2.00;
+    if (size === 88.90) return thk >= 2.00;
+    if (size === 101.60) return thk >= 2.00;
+    if (size === 114.30) return thk >= 2.00;
+    if (size === 141.30) return thk >= 2.50;
+    if (size === 168.28) return thk >= 2.50;
+    if (size === 219.08) return thk >= 2.77;
+    if (size === 273.05) return thk >= 3.05;
+    if (size === 323.85) return thk >= 3.75;
+    if (size === 355.60) return thk >= 3.75;
+    if (size === 406.40) return thk >= 3.90;
+    return false;
+  };
+
+  const isT2Available = (mmSize, thk) => {
+    const size = parseFloat(mmSize);
+    if (size >= 88.90) return true;
+    return false;
+  };
+
+  return (
+    <div className="premium-spec-wrapper blueprint-bg">
+      <div className="catalog-header">
+        <h3 className="catalog-title">STAINLESS STEEL PIPE DIMENSION CHART</h3>
+        <p className="catalog-subtitle">Available Outside Diameter & Wall Thickness Range</p>
+      </div>
+
+      <SpecCardsGrid cards={specCards} />
+
+      <div className="finish-row">
+        <span className="finish-label">✨ Surface Finish:</span>
+        <span className="finish-val">Bright & Black Annealing</span>
+      </div>
+
+      {/* Table 1 */}
+      <div className="table-container-card">
+        <div className="table-header-bar">
+          <h4>Thickness Range: 1.20 mm to 5.00 mm</h4>
+        </div>
+        <div className="table-scroll-wrapper">
+          <table className="dimension-table">
+            <thead>
+              <tr>
+                <th className="sticky-col first-header" colSpan="2">Pipe Size</th>
+                {t1Thicknesses.map(t => (
+                  <th key={t}>{t.toFixed(2)}</th>
+                ))}
+              </tr>
+              <tr className="sub-header-row">
+                <th className="sticky-col sub-header">NPS (Inch)</th>
+                <th className="sticky-col sub-header border-right-th">O.D. (mm)</th>
+                {t1Thicknesses.map(t => (
+                  <th key={t}>mm</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sizes.map((sz, sIdx) => (
+                <tr key={sIdx}>
+                  <td className="sticky-col size-inch">{sz.inch}</td>
+                  <td className="sticky-col size-mm border-right-td">{sz.mm}</td>
+                  {t1Thicknesses.map(t => (
+                    <td key={t} className={isT1Available(sz.mm, t) ? "cell-available" : "cell-unavailable"}>
+                      {renderAvailability(isT1Available(sz.mm, t))}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Table 2 */}
+      <div className="table-container-card" style={{ marginTop: "40px" }}>
+        <div className="table-header-bar">
+          <h4>Thickness Range: 5.49 mm to 12.70 mm</h4>
+        </div>
+        <div className="table-scroll-wrapper">
+          <table className="dimension-table">
+            <thead>
+              <tr>
+                <th className="sticky-col first-header" colSpan="2">Pipe Size</th>
+                {t2Thicknesses.map(t => (
+                  <th key={t}>{t.toFixed(2)}</th>
+                ))}
+              </tr>
+              <tr className="sub-header-row">
+                <th className="sticky-col sub-header">NPS (Inch)</th>
+                <th className="sticky-col sub-header border-right-th">O.D. (mm)</th>
+                {t2Thicknesses.map(t => (
+                  <th key={t}>mm</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sizes.map((sz, sIdx) => (
+                <tr key={sIdx}>
+                  <td className="sticky-col size-inch">{sz.inch}</td>
+                  <td className="sticky-col size-mm border-right-td">{sz.mm}</td>
+                  {t2Thicknesses.map(t => (
+                    <td key={t} className={isT2Available(sz.mm, t) ? "cell-available" : "cell-unavailable"}>
+                      {renderAvailability(isT2Available(sz.mm, t))}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 2. STAINLESS STEEL ROUND TUBES
+function StainlessSteelRoundTubesChart() {
+  const specCards = [
+    { icon: "📏", label: "Size Range", value: "6.00 mm – 324.00 mm" },
+    { icon: "📐", label: "Thickness Range", value: "0.80 mm – 6.00 mm" },
+    { icon: "🧱", label: "Grade", value: "300 & 400 Series" },
+    { icon: "📄", label: "Standard", value: "ASTM A554 / A249 / A269 / A270 / EN 10357 / EN 1035T" }
+  ];
+
+  const thicknesses = [0.80, 0.90, 1.00, 1.20, 1.50, 1.65, 2.00, 2.50, 3.00, 4.00, 5.00, 6.00];
+
+  const sizes = [
+    { inch: '-', mm: '6.00' },
+    { inch: '-', mm: '8.00' },
+    { inch: '3/8"', mm: '9.50' },
+    { inch: '-', mm: '10.00' },
+    { inch: '-', mm: '12.00' },
+    { inch: '1/2"', mm: '12.70' },
+    { inch: '5/8"', mm: '15.88' },
+    { inch: '-', mm: '18.00' },
+    { inch: '3/4"', mm: '19.05' },
+    { inch: '-', mm: '20.50' },
+    { inch: '7/8"', mm: '22.23' },
+    { inch: '1"', mm: '25.40' },
+    { inch: '1 1/8"', mm: '28.58' },
+    { inch: '1 1/4"', mm: '31.75' },
+    { inch: '1 3/8"', mm: '34.93' },
+    { inch: '1 1/2"', mm: '38.10' },
+    { inch: '1 3/4"', mm: '44.45' },
+    { inch: '2"', mm: '50.80' },
+    { inch: '2 1/2"', mm: '63.50' },
+    { inch: '3"', mm: '76.20' },
+    { inch: '3 1/2"', mm: '88.90' },
+    { inch: '4"', mm: '101.60' },
+    { inch: '5"', mm: '127.00' }
+  ];
+
+  const isAvailable = (mmSize, thk) => {
+    const size = parseFloat(mmSize);
+    if (size <= 10.00) return thk <= 1.50;
+    if (size === 12.00) return thk <= 1.50;
+    if (size >= 12.70 && size <= 22.23) return thk <= 2.00;
+    if (size >= 25.40 && size <= 44.45) return thk <= 3.00;
+    if (size === 50.80) return thk <= 5.00;
+    if (size === 63.50 || size === 76.20) return thk >= 1.00 && thk <= 5.00;
+    if (size === 88.90) return thk >= 1.00 && thk <= 6.00;
+    if (size === 101.60 || size === 127.00) return thk >= 1.20 && thk <= 6.00;
+    return false;
+  };
+
+  return (
+    <div className="premium-spec-wrapper blueprint-bg">
+      <div className="catalog-header">
+        <h3 className="catalog-title">STAINLESS STEEL ROUND TUBES</h3>
+        <p className="catalog-subtitle">Available Outside Diameter & Wall Thickness Range</p>
+      </div>
+
+      <SpecCardsGrid cards={specCards} />
+
+      <div className="finish-row">
+        <span className="finish-label">✨ Surface Finish:</span>
+        <span className="finish-val">Mirror, Hairline, Matte, ID/OD Polish</span>
+      </div>
+
+      <div className="table-container-card">
+        <div className="table-header-bar">
+          <h4>Thickness Range: 0.80 mm to 6.00 mm</h4>
+        </div>
+        <div className="table-scroll-wrapper">
+          <table className="dimension-table">
+            <thead>
+              <tr>
+                <th className="sticky-col first-header" colSpan="2">Tube Size</th>
+                {thicknesses.map(t => (
+                  <th key={t}>{t.toFixed(2)}</th>
+                ))}
+              </tr>
+              <tr className="sub-header-row">
+                <th className="sticky-col sub-header">OD (Inch)</th>
+                <th className="sticky-col sub-header border-right-th">OD (mm)</th>
+                {thicknesses.map(t => (
+                  <th key={t}>mm</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sizes.map((sz, sIdx) => (
+                <tr key={sIdx}>
+                  <td className="sticky-col size-inch">{sz.inch}</td>
+                  <td className="sticky-col size-mm border-right-td">{sz.mm}</td>
+                  {thicknesses.map(t => (
+                    <td key={t} className={isAvailable(sz.mm, t) ? "cell-available" : "cell-unavailable"}>
+                      {renderAvailability(isAvailable(sz.mm, t))}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 3. STAINLESS STEEL SQUARE TUBES
+function StainlessSteelSquareTubesChart() {
+  const specCards = [
+    { icon: "📏", label: "Size Range", value: "10x10 mm – 150x150 mm" },
+    { icon: "📐", label: "Thickness Range", value: "0.80 mm – 6.00 mm" },
+    { icon: "🧱", label: "Grade", value: "300 & 400 Series" },
+    { icon: "📄", label: "Standard", value: "ASTM A554 / EN 10357 / EN 1035T" }
+  ];
+
+  const thicknesses = [0.80, 0.90, 1.00, 1.20, 1.50, 1.65, 2.00, 2.50, 3.00, 4.00, 5.00, 6.00];
+
+  const sizes = [
+    "10.00x10.00",
+    "12.70x12.70",
+    "15.88x15.88",
+    "20.00x20.00",
+    "25.40x25.40",
+    "30.00x30.00",
+    "40.00x40.00",
+    "50.00x50.00",
+    "60.00x60.00",
+    "75.00x75.00",
+    "80.00x80.00",
+    "100.00x100.00",
+    "125.00x125.00",
+    "150.00x150.00"
+  ];
+
+  const isAvailable = (sizeStr, thk) => {
+    const width = parseFloat(sizeStr.split('x')[0]);
+    if (width === 10.00) return thk <= 1.50;
+    if (width >= 12.70 && width <= 20.00) return thk <= 2.00;
+    if (width >= 25.40 && width <= 40.00) return thk <= 3.00;
+    if (width === 50.00 || width === 60.00) return thk <= 5.00;
+    if (width === 75.00 || width === 80.00) return thk >= 1.00 && thk <= 6.00;
+    if (width >= 100.00) return thk >= 1.20 && thk <= 6.00;
+    return false;
+  };
+
+  return (
+    <div className="premium-spec-wrapper blueprint-bg">
+      <div className="catalog-header">
+        <h3 className="catalog-title">STAINLESS STEEL SQUARE TUBES</h3>
+        <p className="catalog-subtitle">Available Section Size & Wall Thickness Range</p>
+      </div>
+
+      <SpecCardsGrid cards={specCards} />
+
+      <div className="finish-row">
+        <span className="finish-label">✨ Surface Finish:</span>
+        <span className="finish-val">Mirror, Hairline, Matte</span>
+      </div>
+
+      <div className="table-container-card">
+        <div className="table-header-bar">
+          <h4>Thickness Range: 0.80 mm to 6.00 mm</h4>
+        </div>
+        <div className="table-scroll-wrapper">
+          <table className="dimension-table single-sticky">
+            <thead>
+              <tr>
+                <th className="sticky-col first-header border-right-th">Square Tube Size (mm)</th>
+                {thicknesses.map(t => (
+                  <th key={t}>{t.toFixed(2)}</th>
+                ))}
+              </tr>
+              <tr className="sub-header-row">
+                <th className="sticky-col sub-header border-right-th">Size (A x B)</th>
+                {thicknesses.map(t => (
+                  <th key={t}>mm</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sizes.map((sz, sIdx) => (
+                <tr key={sIdx}>
+                  <td className="sticky-col size-inch border-right-td">{sz}</td>
+                  {thicknesses.map(t => (
+                    <td key={t} className={isAvailable(sz, t) ? "cell-available" : "cell-unavailable"}>
+                      {renderAvailability(isAvailable(sz, t))}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 4. STAINLESS STEEL RECTANGULAR TUBES
+function StainlessSteelRectangularTubesChart() {
+  const specCards = [
+    { icon: "📏", label: "Size Range", value: "10x20 mm – 50x150 mm" },
+    { icon: "📐", label: "Thickness Range", value: "0.80 mm – 6.00 mm" },
+    { icon: "🧱", label: "Grade", value: "300 & 400 Series" },
+    { icon: "📄", label: "Standard", value: "ASTM A554 / EN 10357 / EN 1035T" }
+  ];
+
+  const thicknesses = [0.80, 0.90, 1.00, 1.20, 1.50, 1.65, 2.00, 2.50, 3.00, 4.00, 5.00, 6.00];
+
+  const sizes = [
+    "10.00x20.00",
+    "10.00x30.00",
+    "10.00x40.00",
+    "10.00x50.00",
+    "10.00x60.00",
+    "10.00x70.00",
+    "15.00x25.00",
+    "15.00x30.00",
+    "15.00x40.00",
+    "20.00x30.00",
+    "20.00x40.00",
+    "20.00x50.00",
+    "20.00x60.00",
+    "20.00x80.00",
+    "25.00x50.00",
+    "25.00x75.00",
+    "25.00x100.00",
+    "30.00x50.00",
+    "30.00x60.00",
+    "30.00x70.00",
+    "40.00x60.00",
+    "40.00x80.00",
+    "40.00x100.00",
+    "50.00x100.00",
+    "50.00x150.00"
+  ];
+
+  const isAvailable = (sizeStr, thk) => {
+    const parts = sizeStr.split('x');
+    const w = parseFloat(parts[0]);
+    const h = parseFloat(parts[1]);
+    const sum = w + h;
+    if (sizeStr === "10.00x20.00") return thk <= 1.50;
+    if (sizeStr === "25.00x50.00") return thk <= 3.00;
+    if (sum <= 40) return thk <= 2.00;
+    if (sum < 50) return thk <= 2.00;
+    if (sum >= 50 && sum <= 80) return thk <= 2.00;
+    if (sizeStr === "20.00x80.00") return thk >= 1.00 && thk <= 3.00;
+    if (sum > 80 && sum <= 100) return thk >= 1.00 && thk <= 3.00;
+    if (sizeStr === "40.00x80.00" || sizeStr === "40.00x100.00") return thk >= 1.00 && thk <= 5.00;
+    if (sizeStr === "50.00x100.00" || sizeStr === "50.00x150.00") return thk >= 1.20 && thk <= 6.00;
+    return false;
+  };
+
+  return (
+    <div className="premium-spec-wrapper blueprint-bg">
+      <div className="catalog-header">
+        <h3 className="catalog-title">STAINLESS STEEL RECTANGULAR TUBES</h3>
+        <p className="catalog-subtitle">Available Section Size & Wall Thickness Range</p>
+      </div>
+
+      <SpecCardsGrid cards={specCards} />
+
+      <div className="finish-row">
+        <span className="finish-label">✨ Surface Finish:</span>
+        <span className="finish-val">Mirror, Hairline, Matte</span>
+      </div>
+
+      <div className="table-container-card">
+        <div className="table-header-bar">
+          <h4>Thickness Range: 0.80 mm to 6.00 mm</h4>
+        </div>
+        <div className="table-scroll-wrapper">
+          <table className="dimension-table single-sticky">
+            <thead>
+              <tr>
+                <th className="sticky-col first-header border-right-th">Rectangular Tube Size (mm)</th>
+                {thicknesses.map(t => (
+                  <th key={t}>{t.toFixed(2)}</th>
+                ))}
+              </tr>
+              <tr className="sub-header-row">
+                <th className="sticky-col sub-header border-right-th">Size (A x B)</th>
+                {thicknesses.map(t => (
+                  <th key={t}>mm</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sizes.map((sz, sIdx) => (
+                <tr key={sIdx}>
+                  <td className="sticky-col size-inch border-right-td">{sz}</td>
+                  {thicknesses.map(t => (
+                    <td key={t} className={isAvailable(sz, t) ? "cell-available" : "cell-unavailable"}>
+                      {renderAvailability(isAvailable(sz, t))}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 5. LIGHT GAUGE STAINLESS STEEL TUBES
+function LightGaugeStainlessSteelTubesChart() {
+  const specCards = [
+    { icon: "📏", label: "Size Range", value: "6.00 mm – 25x25 mm" },
+    { icon: "📐", label: "Thickness Range", value: "0.26 mm – 0.90 mm" },
+    { icon: "🧱", label: "Grade", value: "200, 300 & 400 Series" },
+    { icon: "📄", label: "Standard", value: "ASTM A554 / EN 10357 / EN 1035T" }
+  ];
+
+  const thicknesses = [0.26, 0.30, 0.40, 0.50, 0.55, 0.60, 0.70, 0.80, 0.90];
+
+  const sizes = [
+    "6",
+    "8",
+    "9",
+    "9.50",
+    "10",
+    "12",
+    "12.70",
+    "15.88",
+    "18",
+    "19.10",
+    "20",
+    "22.22",
+    "25",
+    "25.40",
+    "10x10",
+    "12x12",
+    "15x15",
+    "10x20",
+    "20x20",
+    "12x25",
+    "25x25"
+  ];
+
+  const isAvailable = (sizeStr, thk) => {
+    if (sizeStr === "6") return thk <= 0.60;
+    if (sizeStr === "8") return thk <= 0.70;
+    if (sizeStr === "9" || sizeStr === "9.50") return thk <= 0.80;
+    if (["10", "12", "12.70", "15.88", "18", "19.10", "20", "22.22", "25", "25.40"].includes(sizeStr)) return true;
+    if (sizeStr === "10x10") return thk >= 0.30 && thk <= 0.80;
+    if (["12x12", "15x15", "10x20"].includes(sizeStr)) return thk >= 0.30;
+    if (["20x20", "12x25", "25x25"].includes(sizeStr)) return thk >= 0.40;
+    return false;
+  };
+
+  return (
+    <div className="premium-spec-wrapper blueprint-bg">
+      <div className="catalog-header">
+        <h3 className="catalog-title">LIGHT GAUGE STAINLESS STEEL TUBES</h3>
+        <p className="catalog-subtitle">Available Section Size & Ultra-Thin Wall Thickness Range</p>
+      </div>
+
+      <SpecCardsGrid cards={specCards} />
+
+      <div className="finish-row">
+        <span className="finish-label">✨ Surface Finish:</span>
+        <span className="finish-val">Mirror, Hairline, Matte</span>
+      </div>
+
+      <div className="table-container-card">
+        <div className="table-header-bar">
+          <h4>Thickness Range: 0.26 mm to 0.90 mm</h4>
+        </div>
+        <div className="table-scroll-wrapper">
+          <table className="dimension-table single-sticky">
+            <thead>
+              <tr>
+                <th className="sticky-col first-header border-right-th">Light Gauge Size (mm / mm Section)</th>
+                {thicknesses.map(t => (
+                  <th key={t}>{t.toFixed(2)}</th>
+                ))}
+              </tr>
+              <tr className="sub-header-row">
+                <th className="sticky-col sub-header border-right-th">OD / Size</th>
+                {thicknesses.map(t => (
+                  <th key={t}>mm</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sizes.map((sz, sIdx) => (
+                <tr key={sIdx}>
+                  <td className="sticky-col size-inch border-right-td">{sz}</td>
+                  {thicknesses.map(t => (
+                    <td key={t} className={isAvailable(sz, t) ? "cell-available" : "cell-unavailable"}>
+                      {renderAvailability(isAvailable(sz, t))}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ProductTables() {
   const tablesRef = useRef([]);
@@ -24,7 +618,13 @@ export default function ProductTables() {
     return () => observer.disconnect();
   }, []);
 
-  const tablesData = [{"title": "SS WELDED ROUND PIPES AND TUBES (ASTM A-312) - WEIGHT = KG/6METRE", "html": "<table id=\"tablepress-4\" className=\"tablepress tablepress-id-4\">\n<thead>\n<tr className=\"row-1 odd\">\n\t<th className=\"column-1\">Size / Thickness (Inch)</th><th className=\"column-2\">Size / Thickness (mm)</th><th className=\"column-3\">0.6 mm</th><th className=\"column-4\">0.8 mm</th><th className=\"column-5\">0.9 mm</th><th className=\"column-6\">1 mm</th><th className=\"column-7\">1.2 mm</th><th className=\"column-8\">1.5 mm</th><th className=\"column-9\">2 mm</th><th className=\"column-10\">3 mm</th>\n</tr>\n</thead>\n<tbody>\n<tr className=\"row-2 even\">\n\t<td className=\"column-1\">3/8\u201d</td><td className=\"column-2\">9.52</td><td className=\"column-3\">0.8</td><td className=\"column-4\">1.04</td><td className=\"column-5\">1.15</td><td className=\"column-6\">1.27</td><td className=\"column-7\">1.49</td><td className=\"column-8\">1.79</td><td className=\"column-9\">-</td><td className=\"column-10\">2.91</td>\n</tr>\n<tr className=\"row-3 odd\">\n\t<td className=\"column-1\">1/2\u201d</td><td className=\"column-2\">12.7</td><td className=\"column-3\">1.08</td><td className=\"column-4\">1.42</td><td className=\"column-5\">1.58</td><td className=\"column-6\">1.74</td><td className=\"column-7\">2.05</td><td className=\"column-8\">2.5</td><td className=\"column-9\">-</td><td className=\"column-10\">4.33</td>\n</tr>\n<tr className=\"row-4 even\">\n\t<td className=\"column-1\">5/8\u201d</td><td className=\"column-2\">15.8</td><td className=\"column-3\">1.36</td><td className=\"column-4\">1.79</td><td className=\"column-5\">2</td><td className=\"column-6\">2.2</td><td className=\"column-7\">2.61</td><td className=\"column-8\">3.19</td><td className=\"column-9\">4.1</td><td className=\"column-10\">5.72</td>\n</tr>\n<tr className=\"row-5 odd\">\n\t<td className=\"column-1\">3/4\u201d</td><td className=\"column-2\">19.05</td><td className=\"column-3\">1.65</td><td className=\"column-4\">2.17</td><td className=\"column-5\">2.43</td><td className=\"column-6\">2.69</td><td className=\"column-7\">3.19</td><td className=\"column-8\">3.92</td><td className=\"column-9\">5.1</td><td className=\"column-10\">7.17</td>\n</tr>\n<tr className=\"row-6 even\">\n\t<td className=\"column-1\">7/8\u201d</td><td className=\"column-2\">22.2</td><td className=\"column-3\">1.93</td><td className=\"column-4\">2.55</td><td className=\"column-5\">2.85</td><td className=\"column-6\">3.16</td><td className=\"column-7\">3.75</td><td className=\"column-8\">4.62</td><td className=\"column-9\">6</td><td className=\"column-10\">8.57</td>\n</tr>\n<tr className=\"row-7 odd\">\n\t<td className=\"column-1\">1</td><td className=\"column-2\">25.4</td><td className=\"column-3\">2.21</td><td className=\"column-4\">2.93</td><td className=\"column-5\">3.28</td><td className=\"column-6\">3.63</td><td className=\"column-7\">4.32</td><td className=\"column-8\">5.34</td><td className=\"column-9\">7</td><td className=\"column-10\">10</td>\n</tr>\n<tr className=\"row-8 even\">\n\t<td className=\"column-1\">1 1/4\u201d</td><td className=\"column-2\">31.75</td><td className=\"column-3\">2.78</td><td className=\"column-4\">3.69</td><td className=\"column-5\">4.13</td><td className=\"column-6\">4.58</td><td className=\"column-7\">5.46</td><td className=\"column-8\">6.75</td><td className=\"column-9\">8.9</td><td className=\"column-10\">12.84</td>\n</tr>\n<tr className=\"row-9 odd\">\n\t<td className=\"column-1\">1 1/2\u201d</td><td className=\"column-2\">38.1</td><td className=\"column-3\">3.35</td><td className=\"column-4\">4.44</td><td className=\"column-5\">4.98</td><td className=\"column-6\">5.52</td><td className=\"column-7\">6.59</td><td className=\"column-8\">8.17</td><td className=\"column-9\">10.7</td><td className=\"column-10\">15.67</td>\n</tr>\n<tr className=\"row-10 even\">\n\t<td className=\"column-1\">2\u201d</td><td className=\"column-2\">50.8</td><td className=\"column-3\">4.48</td><td className=\"column-4\">5.95</td><td className=\"column-5\">6.69</td><td className=\"column-6\">7.41</td><td className=\"column-7\">8.86</td><td className=\"column-8\">11.01</td><td className=\"column-9\">14.5</td><td className=\"column-10\">21.35</td>\n</tr>\n<tr className=\"row-11 odd\">\n\t<td className=\"column-1\">2 1/2\u201d</td><td className=\"column-2\">63.5</td><td className=\"column-3\">5.62</td><td className=\"column-4\">7.47</td><td className=\"column-5\">8.39</td><td className=\"column-6\">9.3</td><td className=\"column-7\">11.13</td><td className=\"column-8\">13.84</td><td className=\"column-9\">18.3</td><td className=\"column-10\">27.02</td>\n</tr>\n<tr className=\"row-12 even\">\n\t<td className=\"column-1\">3\u201d</td><td className=\"column-2\">76.2</td><td className=\"column-3\">6.75</td><td className=\"column-4\">8.98</td><td className=\"column-5\">10.09</td><td className=\"column-6\">11.19</td><td className=\"column-7\">13.4</td><td className=\"column-8\">16.68</td><td className=\"column-9\">22.1</td><td className=\"column-10\">32.69</td>\n</tr>\n<tr className=\"row-13 odd\">\n\t<td className=\"column-1\">4\u201d</td><td className=\"column-2\">101.6</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">13.49</td><td className=\"column-6\">14.97</td><td className=\"column-7\">17.93</td><td className=\"column-8\">22.35</td><td className=\"column-9\">29.7</td><td className=\"column-10\">44.03</td>\n</tr>\n</tbody>\n</table>"}, {"title": "SS WELDED SQUARE PIPES AND TUBES (ASTM A-554) - WEIGHT = KG/6METRE", "html": "<table id=\"tablepress-14\" className=\"tablepress tablepress-id-14\">\n<thead>\n<tr className=\"row-1 odd\">\n\t<th className=\"column-1\">Size/Thickness inch/mm</th><th className=\"column-2\">0.5mm</th><th className=\"column-3\">0.6mm</th><th className=\"column-4\">0.8mm</th><th className=\"column-5\">0.9mm</th><th className=\"column-6\">1mm</th><th className=\"column-7\">1.2mm</th><th className=\"column-8\">1.5mm</th><th className=\"column-9\">2mm</th><th className=\"column-10\">3mm</th>\n</tr>\n</thead>\n<tbody>\n<tr className=\"row-2 even\">\n\t<td className=\"column-1\">10x10</td><td className=\"column-2\">0.91</td><td className=\"column-3\">1.08</td><td className=\"column-4\">1.42</td><td className=\"column-5\">1.58</td><td className=\"column-6\">1.74</td><td className=\"column-7\">-</td><td className=\"column-8\">-</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-3 odd\">\n\t<td className=\"column-1\">12x12</td><td className=\"column-2\">1.14</td><td className=\"column-3\">1.36</td><td className=\"column-4\">1.79</td><td className=\"column-5\">2</td><td className=\"column-6\">2.2</td><td className=\"column-7\">2.61</td><td className=\"column-8\">3.19</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-4 even\">\n\t<td className=\"column-1\">15x15</td><td className=\"column-2\">1.38</td><td className=\"column-3\">1.65</td><td className=\"column-4\">2.17</td><td className=\"column-5\">2.43</td><td className=\"column-6\">2.69</td><td className=\"column-7\">3.19</td><td className=\"column-8\">3.92</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-5 odd\">\n\t<td className=\"column-1\">20x20</td><td className=\"column-2\">1.85</td><td className=\"column-3\">2.21</td><td className=\"column-4\">2.93</td><td className=\"column-5\">3.28</td><td className=\"column-6\">3.63</td><td className=\"column-7\">4.32</td><td className=\"column-8\">5.34</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-6 even\">\n\t<td className=\"column-1\">25x25</td><td className=\"column-2\">2.33</td><td className=\"column-3\">2.78</td><td className=\"column-4\">3.69</td><td className=\"column-5\">4.13</td><td className=\"column-6\">4.58</td><td className=\"column-7\">5.46</td><td className=\"column-8\">6.75</td><td className=\"column-9\">8.86</td><td className=\"column-10\">12.84</td>\n</tr>\n<tr className=\"row-7 odd\">\n\t<td className=\"column-1\">30x30</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">4.44</td><td className=\"column-5\">4.98</td><td className=\"column-6\">5.52</td><td className=\"column-7\">6.59</td><td className=\"column-8\">8.17</td><td className=\"column-9\">10.75</td><td className=\"column-10\">15.67</td>\n</tr>\n<tr className=\"row-8 even\">\n\t<td className=\"column-1\">40x40</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">5.95</td><td className=\"column-5\">6.68</td><td className=\"column-6\">7.41</td><td className=\"column-7\">8.86</td><td className=\"column-8\">11.01</td><td className=\"column-9\">14.53</td><td className=\"column-10\">21.35</td>\n</tr>\n<tr className=\"row-9 odd\">\n\t<td className=\"column-1\">50x50</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">8.38</td><td className=\"column-6\">9.3</td><td className=\"column-7\">11.13</td><td className=\"column-8\">13.84</td><td className=\"column-9\">18.31</td><td className=\"column-10\">27.02</td>\n</tr>\n<tr className=\"row-10 even\">\n\t<td className=\"column-1\">60x60</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">100.08</td><td className=\"column-6\">11.19</td><td className=\"column-7\">13.4</td><td className=\"column-8\">16.68</td><td className=\"column-9\">22.09</td><td className=\"column-10\">32.69</td>\n</tr>\n<tr className=\"row-11 odd\">\n\t<td className=\"column-1\">80x80</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">13.48</td><td className=\"column-6\">14.97</td><td className=\"column-7\">17.93</td><td className=\"column-8\">22.35</td><td className=\"column-9\">29.65</td><td className=\"column-10\">44.03</td>\n</tr>\n<tr className=\"row-12 even\">\n\t<td className=\"column-1\">100x100</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">16.69</td><td className=\"column-6\">18.53</td><td className=\"column-7\">22.21</td><td className=\"column-8\">27.7</td><td className=\"column-9\">36.78</td><td className=\"column-10\">54.73</td>\n</tr>\n<tr className=\"row-13 odd\">\n\t<td className=\"column-1\">10X20</td><td className=\"column-2\">1.38</td><td className=\"column-3\">1.65</td><td className=\"column-4\">2.17</td><td className=\"column-5\">2.43</td><td className=\"column-6\">2.69</td><td className=\"column-7\">3.19</td><td className=\"column-8\">-</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-14 even\">\n\t<td className=\"column-1\">10X30</td><td className=\"column-2\">1.85</td><td className=\"column-3\">2.21</td><td className=\"column-4\">2.93</td><td className=\"column-5\">3.28</td><td className=\"column-6\">3.63</td><td className=\"column-7\">4.32</td><td className=\"column-8\">-</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-15 odd\">\n\t<td className=\"column-1\">10X40</td><td className=\"column-2\">2.33</td><td className=\"column-3\">2.78</td><td className=\"column-4\">3.69</td><td className=\"column-5\">4.13</td><td className=\"column-6\">4.58</td><td className=\"column-7\">5.46</td><td className=\"column-8\">-</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-16 even\">\n\t<td className=\"column-1\">10X50</td><td className=\"column-2\">2.8</td><td className=\"column-3\">3.35</td><td className=\"column-4\">4.44</td><td className=\"column-5\">4.98</td><td className=\"column-6\">5.52</td><td className=\"column-7\">6.59</td><td className=\"column-8\">8.17</td><td className=\"column-9\">-</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-17 odd\">\n\t<td className=\"column-1\">25x12</td><td className=\"column-2\">1.85</td><td className=\"column-3\">2.21</td><td className=\"column-4\">2.93</td><td className=\"column-5\">3.28</td><td className=\"column-6\">3.63</td><td className=\"column-7\">4.32</td><td className=\"column-8\">5.34</td><td className=\"column-9\">6.97</td><td className=\"column-10\">-</td>\n</tr>\n<tr className=\"row-18 even\">\n\t<td className=\"column-1\">40x20</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">4.44</td><td className=\"column-5\">4.98</td><td className=\"column-6\">5.52</td><td className=\"column-7\">6.59</td><td className=\"column-8\">8.17</td><td className=\"column-9\">10.75</td><td className=\"column-10\">15.67</td>\n</tr>\n<tr className=\"row-19 odd\">\n\t<td className=\"column-1\">50x25</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">6.19</td><td className=\"column-6\">6.86</td><td className=\"column-7\">8.2</td><td className=\"column-8\">10.19</td><td className=\"column-9\">13.44</td><td className=\"column-10\">19.71</td>\n</tr>\n<tr className=\"row-20 even\">\n\t<td className=\"column-1\">75x25</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">8.38</td><td className=\"column-6\">9.3</td><td className=\"column-7\">11.13</td><td className=\"column-8\">13.84</td><td className=\"column-9\">18.31</td><td className=\"column-10\">27.02</td>\n</tr>\n<tr className=\"row-21 odd\">\n\t<td className=\"column-1\">60x40</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">8.38</td><td className=\"column-6\">9.3</td><td className=\"column-7\">11.13</td><td className=\"column-8\">13.84</td><td className=\"column-9\">18.31</td><td className=\"column-10\">27.02</td>\n</tr>\n<tr className=\"row-22 even\">\n\t<td className=\"column-1\">80x40</td><td className=\"column-2\">-</td><td className=\"column-3\">-</td><td className=\"column-4\">-</td><td className=\"column-5\">10.08</td><td className=\"column-6\">11.19</td><td className=\"column-7\">13.4</td><td className=\"column-8\">16.68</td><td className=\"column-9\">22.09</td><td className=\"column-10\">32.69</td>\n</tr>\n</tbody>\n</table>"}, {"title": "SEAMLESS PIPES (ASTM A-312)", "html": "<table id=\"tablepress-9\" className=\"tablepress tablepress-id-9\">\n<thead>\n<tr className=\"row-1 odd\">\n\t<th className=\"column-1\"></th><th className=\"column-2\">OD / THK</th><th className=\"column-3\">0.90mm</th><th className=\"column-4\">1.20mm</th><th className=\"column-5\">1.50mm</th>\n</tr>\n</thead>\n<tbody>\n<tr className=\"row-2 even\">\n\t<td rowSpan=\"4\" className=\"column-1\">Slot (15x15)</td><td className=\"column-2\">50.8</td><td className=\"column-3\">7.9</td><td className=\"column-4\">10.45</td><td className=\"column-5\">12.97</td>\n</tr>\n<tr className=\"row-3 odd\">\n\t<td className=\"column-2\">40x40</td><td className=\"column-3\">7.9</td><td className=\"column-4\">10.45</td><td className=\"column-5\">12.97</td>\n</tr>\n<tr className=\"row-4 even\">\n\t<td className=\"column-2\">50x50</td><td className=\"column-3\">9.6</td><td className=\"column-4\">12.72</td><td className=\"column-5\">15.8</td>\n</tr>\n<tr className=\"row-5 odd\">\n\t<td className=\"column-2\">60x40</td><td className=\"column-3\">9.6</td><td className=\"column-4\">12.72</td><td className=\"column-5\">15.8</td>\n</tr>\n</tbody>\n</table>"}, {"title": "SEAMLESS TUBES (ASTM A-213, 269, 249, 268) - WEIGHT = KG/METRE", "html": "<table id=\"tablepress-12\" className=\"tablepress tablepress-id-12\">\n<thead>\n<tr className=\"row-1 odd\">\n\t<th className=\"column-1\">Normal Pipe Sizes</th><th className=\"column-2\"></th><th className=\"column-3\">Outside Diameter</th><th className=\"column-4\">Schedule 5S</th><th className=\"column-5\"></th><th className=\"column-6\">Schedule 10S</th><th className=\"column-7\"></th><th className=\"column-8\">Schedule 40S</th><th className=\"column-9\"></th>\n</tr>\n</thead>\n<tbody>\n<tr className=\"row-2 even\">\n\t<td className=\"column-1\"></td><td className=\"column-2\"></td><td className=\"column-3\"></td><td className=\"column-4\"></td><td className=\"column-5\">W.T</td><td className=\"column-6\"></td><td className=\"column-7\">W.T</td><td className=\"column-8\"></td><td className=\"column-9\">W.T</td>\n</tr>\n<tr className=\"row-3 odd\">\n\t<td className=\"column-1\">In Inch</td><td className=\"column-2\">In mm</td><td className=\"column-3\">In mm</td><td className=\"column-4\">mm</td><td className=\"column-5\">Kg/Meter</td><td className=\"column-6\">mm</td><td className=\"column-7\">Kg/Meter</td><td className=\"column-8\">mm</td><td className=\"column-9\">Kg/Meter</td>\n</tr>\n<tr className=\"row-4 even\">\n\t<td className=\"column-1\">3/8\"</td><td className=\"column-2\">10</td><td className=\"column-3\">17.1</td><td className=\"column-4\">1.24</td><td className=\"column-5\">0.49</td><td className=\"column-6\">1.65</td><td className=\"column-7\">0.63</td><td className=\"column-8\">2.31</td><td className=\"column-9\">0.84</td>\n</tr>\n<tr className=\"row-5 odd\">\n\t<td className=\"column-1\">1/2\"</td><td className=\"column-2\">15</td><td className=\"column-3\">21.34</td><td className=\"column-4\">1.65</td><td className=\"column-5\">0.8</td><td className=\"column-6\">2.11</td><td className=\"column-7\">1.01</td><td className=\"column-8\">2.77</td><td className=\"column-9\">1.28</td>\n</tr>\n<tr className=\"row-6 even\">\n\t<td className=\"column-1\">3/4\"</td><td className=\"column-2\">20</td><td className=\"column-3\">26.67</td><td className=\"column-4\">1.65</td><td className=\"column-5\">1.03</td><td className=\"column-6\">2.11</td><td className=\"column-7\">1.3</td><td className=\"column-8\">2.87</td><td className=\"column-9\">1.7</td>\n</tr>\n<tr className=\"row-7 odd\">\n\t<td className=\"column-1\">I\"</td><td className=\"column-2\">25</td><td className=\"column-3\">33.4</td><td className=\"column-4\">1.65</td><td className=\"column-5\">1.31</td><td className=\"column-6\">2.77</td><td className=\"column-7\">2.12</td><td className=\"column-8\">3.38</td><td className=\"column-9\">2.53</td>\n</tr>\n<tr className=\"row-8 even\">\n\t<td className=\"column-1\">11/4\"</td><td className=\"column-2\">32</td><td className=\"column-3\">42.16</td><td className=\"column-4\">1.65</td><td className=\"column-5\">1.67</td><td className=\"column-6\">2.77</td><td className=\"column-7\">2.72</td><td className=\"column-8\">3.56</td><td className=\"column-9\">3.43</td>\n</tr>\n<tr className=\"row-9 odd\">\n\t<td className=\"column-1\">1 1/2\"</td><td className=\"column-2\">40</td><td className=\"column-3\">48.26</td><td className=\"column-4\">1.65</td><td className=\"column-5\">1.92</td><td className=\"column-6\">2.77</td><td className=\"column-7\">3.15</td><td className=\"column-8\">3.68</td><td className=\"column-9\">4.1</td>\n</tr>\n<tr className=\"row-10 even\">\n\t<td className=\"column-1\">2\"</td><td className=\"column-2\">50</td><td className=\"column-3\">60.33</td><td className=\"column-4\">1.65</td><td className=\"column-5\">2.42</td><td className=\"column-6\">2.77</td><td className=\"column-7\">3.98</td><td className=\"column-8\">3.91</td><td className=\"column-9\">5.51</td>\n</tr>\n<tr className=\"row-11 odd\">\n\t<td className=\"column-1\">2 1/2\"</td><td className=\"column-2\">65</td><td className=\"column-3\">73.03</td><td className=\"column-4\">2.11</td><td className=\"column-5\">3.74</td><td className=\"column-6\">3.05</td><td className=\"column-7\">5.03</td><td className=\"column-8\">5.16</td><td className=\"column-9\">8.75</td>\n</tr>\n<tr className=\"row-12 even\">\n\t<td className=\"column-1\">3\"</td><td className=\"column-2\">80</td><td className=\"column-3\">88.9</td><td className=\"column-4\">2.11</td><td className=\"column-5\">4.57</td><td className=\"column-6\">3.05</td><td className=\"column-7\">6.54</td><td className=\"column-8\">5.49</td><td className=\"column-9\">11.44</td>\n</tr>\n<tr className=\"row-13 odd\">\n\t<td className=\"column-1\">3 1/2\"</td><td className=\"column-2\">90</td><td className=\"column-3\">101.6</td><td className=\"column-4\">2.11</td><td className=\"column-5\">5.25</td><td className=\"column-6\">3.05</td><td className=\"column-7\">7.51</td><td className=\"column-8\">5.74</td><td className=\"column-9\">13.75</td>\n</tr>\n<tr className=\"row-14 even\">\n\t<td className=\"column-1\">4\"</td><td className=\"column-2\">100</td><td className=\"column-3\">14.3</td><td className=\"column-4\">2.11</td><td className=\"column-5\">5.95</td><td className=\"column-6\">3.05</td><td className=\"column-7\">8.48</td><td className=\"column-8\">6.02</td><td className=\"column-9\">16.29</td>\n</tr>\n<tr className=\"row-15 odd\">\n\t<td className=\"column-1\">5\"</td><td className=\"column-2\">125</td><td className=\"column-3\">141.3</td><td className=\"column-4\">2.77</td><td className=\"column-5\">9.59</td><td className=\"column-6\">3.4</td><td className=\"column-7\">11.72</td><td className=\"column-8\">6.55</td><td className=\"column-9\">22.06</td>\n</tr>\n<tr className=\"row-16 even\">\n\t<td className=\"column-1\">6\"</td><td className=\"column-2\">150</td><td className=\"column-3\">168.28</td><td className=\"column-4\">2.77</td><td className=\"column-5\">11.46</td><td className=\"column-6\">3.4</td><td className=\"column-7\">14.01</td><td className=\"column-8\">7.1</td><td className=\"column-9\">28.64</td>\n</tr>\n<tr className=\"row-17 odd\">\n\t<td className=\"column-1\">8\"</td><td className=\"column-2\">200</td><td className=\"column-3\">219.08</td><td className=\"column-4\">2.77</td><td className=\"column-5\">14.97</td><td className=\"column-6\">3.76</td><td className=\"column-7\">20.24</td><td className=\"column-8\">8.18</td><td className=\"column-9\">43.12</td>\n</tr>\n<tr className=\"row-18 even\">\n\t<td className=\"column-1\">10\"</td><td className=\"column-2\">250</td><td className=\"column-3\">273.05</td><td className=\"column-4\">3.4</td><td className=\"column-5\">22.61</td><td className=\"column-6\">4.19</td><td className=\"column-7\">27.8</td><td className=\"column-8\">9.27</td><td className=\"column-9\">60.31</td>\n</tr>\n<tr className=\"row-19 odd\">\n\t<td className=\"column-1\">12\"</td><td className=\"column-2\">300</td><td className=\"column-3\">323.85</td><td className=\"column-4\">3.96</td><td className=\"column-5\">31.25</td><td className=\"column-6\">4.57</td><td className=\"column-7\">36</td><td className=\"column-8\">9.53</td><td className=\"column-9\">73.84</td>\n</tr>\n</tbody>\n</table>"}, {"title": "TOLERANCES FOR SQUARE & RECTANGULAR TUBES", "html": "<table id=\"tablepress-15\" className=\"tablepress tablepress-id-15\">\n<thead>\n<tr className=\"row-1 odd\">\n\t<th className=\"column-1\">OD / Thickness (Inch)</th><th className=\"column-2\">OD / Thickness (mm)</th><th className=\"column-3\">0.26mm</th><th className=\"column-4\">0.30mm</th><th className=\"column-5\">0.40mm</th><th className=\"column-6\">0.50mm</th><th className=\"column-7\">0.55mm</th><th className=\"column-8\">0.60mm</th>\n</tr>\n</thead>\n<tbody>\n<tr className=\"row-2 even\">\n\t<td className=\"column-1\">2.5/8</td><td className=\"column-2\">8</td><td className=\"column-3\">0.19</td><td className=\"column-4\">0.21</td><td className=\"column-5\">0.26</td><td className=\"column-6\">0.34</td><td className=\"column-7\">0.37</td><td className=\"column-8\">0.39</td>\n</tr>\n<tr className=\"row-3 odd\">\n\t<td className=\"column-1\">3/8</td><td className=\"column-2\">9</td><td className=\"column-3\">0.21</td><td className=\"column-4\">0.24</td><td className=\"column-5\">0.3</td><td className=\"column-6\">0.39</td><td className=\"column-7\">0.42</td><td className=\"column-8\">0.44</td>\n</tr>\n<tr className=\"row-4 even\">\n\t<td className=\"column-1\"></td><td className=\"column-2\">9.52</td><td className=\"column-3\">0.23</td><td className=\"column-4\">0.25</td><td className=\"column-5\">0.32</td><td className=\"column-6\">0.41</td><td className=\"column-7\">0.45</td><td className=\"column-8\">0.47</td>\n</tr>\n<tr className=\"row-5 odd\">\n\t<td className=\"column-1\">1/2</td><td className=\"column-2\">12</td><td className=\"column-3\">0.29</td><td className=\"column-4\">0.32</td><td className=\"column-5\">0.4</td><td className=\"column-6\">0.52</td><td className=\"column-7\">0.57</td><td className=\"column-8\">0.6</td>\n</tr>\n<tr className=\"row-6 even\">\n\t<td className=\"column-1\"></td><td className=\"column-2\">12.7</td><td className=\"column-3\">0.3</td><td className=\"column-4\">0.34</td><td className=\"column-5\">0.42</td><td className=\"column-6\">0.55</td><td className=\"column-7\">0.61</td><td className=\"column-8\">0.64</td>\n</tr>\n<tr className=\"row-7 odd\">\n\t<td className=\"column-1\">5/8</td><td className=\"column-2\">15.88</td><td className=\"column-3\">0.38</td><td className=\"column-4\">0.42</td><td className=\"column-5\">0.53</td><td className=\"column-6\">0.7</td><td className=\"column-7\">0.76</td><td className=\"column-8\">0.8</td>\n</tr>\n<tr className=\"row-8 even\">\n\t<td className=\"column-1\">3/4</td><td className=\"column-2\">19</td><td className=\"column-3\">0.46</td><td className=\"column-4\">0.51</td><td className=\"column-5\">0.64</td><td className=\"column-6\">0.84</td><td className=\"column-7\">0.92</td><td className=\"column-8\">0.97</td>\n</tr>\n<tr className=\"row-9 odd\">\n\t<td className=\"column-1\">7/8</td><td className=\"column-2\">22</td><td className=\"column-3\">0.53</td><td className=\"column-4\">0.59</td><td className=\"column-5\">0.75</td><td className=\"column-6\">0.98</td><td className=\"column-7\">1.07</td><td className=\"column-8\">1.13</td>\n</tr>\n<tr className=\"row-10 even\">\n\t<td className=\"column-1\">1</td><td className=\"column-2\">25.4</td><td className=\"column-3\">0.62</td><td className=\"column-4\">0.68</td><td className=\"column-5\">0.86</td><td className=\"column-6\">1.13</td><td className=\"column-7\">1.24</td><td className=\"column-8\">1.31</td>\n</tr>\n<tr className=\"row-11 odd\">\n\t<td className=\"column-1\">10x10</td><td className=\"column-2\">-</td><td className=\"column-3\">0.3</td><td className=\"column-4\">0.34</td><td className=\"column-5\">0.42</td><td className=\"column-6\">0.55</td><td className=\"column-7\">0.61</td><td className=\"column-8\">0.64</td>\n</tr>\n<tr className=\"row-12 even\">\n\t<td className=\"column-1\">12x12</td><td className=\"column-2\">-</td><td className=\"column-3\">0.38</td><td className=\"column-4\">0.42</td><td className=\"column-5\">0.53</td><td className=\"column-6\">0.7</td><td className=\"column-7\">0.76</td><td className=\"column-8\">0.8</td>\n</tr>\n</tbody>\n</table>"}];
+  const componentsList = [
+    { comp: <StainlessSteelPipesDimensionChart />, title: "STAINLESS STEEL PIPES" },
+    { comp: <StainlessSteelRoundTubesChart />, title: "STAINLESS STEEL ROUND TUBES" },
+    { comp: <StainlessSteelSquareTubesChart />, title: "STAINLESS STEEL SQUARE TUBES" },
+    { comp: <StainlessSteelRectangularTubesChart />, title: "STAINLESS STEEL RECTANGULAR TUBES" },
+    { comp: <LightGaugeStainlessSteelTubesChart />, title: "LIGHT GAUGE STAINLESS STEEL TUBES" }
+  ];
 
   return (
     <section id="specifications" className="specifications-section">
@@ -35,19 +635,19 @@ export default function ProductTables() {
         </h2>
         <div className="title-underline"></div>
 
-        {tablesData.map((table, index) => (
-          <div 
-            key={index} 
+        {componentsList.map((item, index) => (
+          <div
+            key={index}
             className="table-wrapper animate-slide-up"
             ref={(el) => (tablesRef.current[index] = el)}
+            style={{ marginBottom: "60px" }}
           >
-            <h3 className="table-title">{table.title}</h3>
-            <div className="table-responsive" dangerouslySetInnerHTML={{ __html: table.html }} />
+            {item.comp}
           </div>
         ))}
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         .specifications-section {
           padding: 100px 10%;
           background: var(--white);
@@ -67,10 +667,6 @@ export default function ProductTables() {
           margin-bottom: 10px;
         }
 
-        .text-white {
-          color: var(--white);
-        }
-
         .text-blue {
           color: var(--primary-blue);
         }
@@ -84,12 +680,6 @@ export default function ProductTables() {
         }
 
         .table-wrapper {
-          background: var(--white);
-          border: 1px solid rgba(0, 0, 0, 0.05);
-          border-radius: 12px;
-          padding: 30px;
-          margin-bottom: 50px;
-          box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
           opacity: 0;
           transform: translateY(30px);
           transition: all 0.8s ease-out;
@@ -99,67 +689,290 @@ export default function ProductTables() {
           opacity: 1;
           transform: translateY(0);
         }
-        
-        .table-wrapper:hover {
-          border-color: rgba(30, 144, 255, 0.3);
-          box-shadow: 0 10px 30px rgba(30, 144, 255, 0.15);
-          transform: translateY(-5px);
+
+        /* Redesigned Premium Specs Chart styles */
+        .premium-spec-wrapper {
+          background-color: #ffffff;
+          border-radius: 20px;
+          padding: 40px;
+          border: 1px solid rgba(10, 61, 117, 0.08);
+          box-shadow: 0 10px 45px rgba(10, 61, 117, 0.04);
+          position: relative;
+          overflow: hidden;
         }
 
-        .table-title {
-          font-family: var(--font-oswald);
-          color: var(--black);
-          font-size: 1.8rem;
-          margin-bottom: 25px;
+        .blueprint-bg {
+          background-image: linear-gradient(rgba(10, 61, 117, 0.02) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(10, 61, 117, 0.02) 1px, transparent 1px);
+          background-size: 24px 24px;
+        }
+
+        .catalog-header {
           text-align: center;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          background: -webkit-linear-gradient(45deg, #111, #1e90ff);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+          margin-bottom: 40px;
         }
 
-        .table-responsive {
+        .catalog-badge {
+          display: inline-block;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #0A3D75;
+          background: rgba(10, 61, 117, 0.06);
+          padding: 6px 16px;
+          border-radius: 100px;
+          letter-spacing: 1.5px;
+          margin-bottom: 12px;
+        }
+
+        .catalog-title {
+          font-family: var(--font-heading), 'Manrope', 'Inter', sans-serif;
+          font-size: 2.2rem;
+          color: #0A3D75;
+          font-weight: 800;
+          letter-spacing: -0.5px;
+          margin: 0 0 8px 0;
+        }
+
+        .catalog-subtitle {
+          font-family: var(--font-body), 'Inter', sans-serif;
+          font-size: 1.05rem;
+          color: #5a6e85;
+          margin: 0;
+        }
+
+        .premium-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          margin-bottom: 25px;
+        }
+
+        .spec-card-item {
+          background: #ffffff;
+          border: 1px solid rgba(10, 61, 117, 0.06);
+          border-radius: 16px;
+          padding: 20px 24px;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .spec-card-item:hover {
+          transform: translateY(-3px);
+          border-color: rgba(10, 61, 117, 0.2);
+          box-shadow: 0 10px 25px rgba(10, 61, 117, 0.06);
+        }
+
+        .spec-card-icon {
+          font-size: 1.8rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .spec-card-content {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .spec-card-label {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #8a9eb5;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 4px;
+        }
+
+        .spec-card-val {
+          font-size: 1.05rem;
+          font-weight: 700;
+          color: #0A3D75;
+          white-space: pre-line;
+        }
+
+        .finish-row {
+          background: rgba(10, 61, 117, 0.03);
+          border-radius: 12px;
+          padding: 12px 24px;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.9rem;
+          margin-bottom: 40px;
+          border: 1px solid rgba(10, 61, 117, 0.04);
+        }
+
+        .finish-label {
+          font-weight: 600;
+          color: #5a6e85;
+        }
+
+        .finish-val {
+          font-weight: 700;
+          color: #0A3D75;
+        }
+
+        .table-container-card {
+          background: #ffffff;
+          border: 1px solid rgba(10, 61, 117, 0.08);
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+        }
+
+        .table-header-bar {
+          background: #0A3D75;
+          color: #ffffff;
+          padding: 16px 24px;
+        }
+
+        .table-header-bar h4 {
+          margin: 0;
+          font-size: 1.1rem;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+        }
+
+        .table-scroll-wrapper {
           overflow-x: auto;
           width: 100%;
         }
 
-        .table-responsive :global(table) {
+        .dimension-table {
           width: 100%;
           border-collapse: separate;
           border-spacing: 0;
-          color: #444;
-          font-family: var(--font-body);
-          min-width: 800px;
+          font-family: 'Inter', sans-serif;
         }
 
-        .table-responsive :global(th) {
-          background-color: rgba(30, 144, 255, 0.08);
-          color: var(--primary-blue);
+        .dimension-table th {
+          background: #f8fafc;
+          color: #0A3D75;
           font-weight: 700;
-          padding: 15px;
+          font-size: 0.85rem;
+          padding: 12px 14px;
+          border-bottom: 1px solid rgba(10, 61, 117, 0.08);
           text-align: center;
-          border-top: 1px solid rgba(0,0,0,0.05);
-          border-bottom: 1px solid rgba(0,0,0,0.05);
+          white-space: nowrap;
+        }
+
+        .dimension-table th.first-header {
           font-size: 0.95rem;
-          letter-spacing: 0.5px;
+          background: #f1f5f9;
         }
 
-        .table-responsive :global(td) {
-          padding: 12px 15px;
+        .dimension-table .sub-header-row th {
+          padding: 8px 14px;
+          font-size: 0.75rem;
+          color: #5a6e85;
+          text-transform: uppercase;
+          background: #f8fafc;
+          border-bottom: 2px solid rgba(10, 61, 117, 0.12);
+        }
+
+        .dimension-table td {
+          padding: 10px 14px;
           text-align: center;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-          font-size: 0.9rem;
-          transition: all 0.3s ease;
+          border-bottom: 1px solid #edf2f7;
+          font-size: 0.85rem;
+          transition: background-color 0.2s ease;
         }
 
-        .table-responsive :global(tr:hover td) {
-          background-color: rgba(30, 144, 255, 0.03);
-          color: var(--black);
+        .dimension-table tr:hover td {
+          background-color: rgba(10, 61, 117, 0.02);
         }
 
-        .table-responsive :global(tr:last-child td) {
-          border-bottom: none;
+        /* Sticky Columns for Size description */
+        .sticky-col {
+          position: sticky;
+          left: 0;
+          z-index: 2;
+          background: #ffffff;
+        }
+
+        th.sticky-col {
+          z-index: 3;
+          background: #f8fafc;
+        }
+
+        th.first-header.sticky-col {
+          background: #f1f5f9;
+        }
+
+        .dimension-table td.size-inch {
+          font-weight: 700;
+          color: #0A3D75;
+          left: 0;
+          width: 90px;
+          min-width: 90px;
+        }
+
+        .dimension-table.single-sticky td.size-inch,
+        .dimension-table.single-sticky th.sticky-col {
+          width: 140px;
+          min-width: 140px;
+          left: 0;
+        }
+
+        .dimension-table td.size-mm {
+          font-weight: 500;
+          color: #5a6e85;
+          left: 90px;
+          width: 95px;
+          min-width: 95px;
+        }
+
+        th.sticky-col:nth-child(2) {
+          left: 90px;
+        }
+
+        .border-right-th {
+          border-right: 2px solid rgba(10, 61, 117, 0.12) !important;
+        }
+
+        .border-right-td {
+          border-right: 2px solid rgba(10, 61, 117, 0.08) !important;
+        }
+
+        .cell-available {
+          background-color: rgba(10, 61, 117, 0.015);
+        }
+
+        .cell-unavailable {
+          background-color: #fafbfc;
+        }
+
+        .availability-badge {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 22px;
+          height: 22px;
+          border-radius: 6px;
+          color: #ffffff;
+          background-color: #0A3D75;
+          box-shadow: 0 2px 6px rgba(10, 61, 117, 0.2);
+          animation: scaleIn 0.3s ease;
+        }
+
+        .availability-placeholder {
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+        }
+
+        @keyframes scaleIn {
+          from { transform: scale(0.8); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+          .premium-cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
 
         @media (max-width: 768px) {
@@ -170,13 +983,27 @@ export default function ProductTables() {
           .section-title {
             font-size: 2.2rem;
           }
-          
-          .table-title {
-            font-size: 1.3rem;
-          }
 
-          .table-wrapper {
-            padding: 15px;
+          .premium-spec-wrapper {
+            padding: 24px 16px;
+          }
+          
+          .catalog-title {
+            font-size: 1.6rem;
+          }
+          
+          .catalog-subtitle {
+            font-size: 0.95rem;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .premium-cards-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          .spec-card-item {
+            padding: 16px;
           }
         }
       `}</style>
