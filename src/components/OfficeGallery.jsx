@@ -35,6 +35,7 @@ export default function OfficeGallery() {
                   src={pic.src}
                   alt={pic.alt}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="office-img"
                 />
               </div>

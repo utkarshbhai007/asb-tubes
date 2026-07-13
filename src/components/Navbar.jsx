@@ -246,6 +246,7 @@ export default function Navbar() {
             box-shadow: none;
             border: none;
             padding-left: 0;
+            transform: none;
           }
           .nav-links.mobile-open .dropdown-menu li a {
             color: var(--text-light) !important;
@@ -258,6 +259,7 @@ export default function Navbar() {
           }
           .dropdown:hover .dropdown-menu {
             display: block;
+            animation: none;
           }
         }
       `}</style>
