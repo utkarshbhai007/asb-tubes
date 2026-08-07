@@ -83,7 +83,12 @@ export default function Process() {
           <div className="process-card">
             <div className="process-img-col">
               <div className="img-zoom-wrapper">
-                <img src="https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" alt="Manufacturing Process" className="step-full-img" />
+                <img
+                  src="/images/manufacturing_process.jpg"
+                  alt="Manufacturing Process"
+                  onError={(e) => { e.target.onerror = null; e.target.src = "/images/Mill-1_new.jpg"; }}
+                  className="step-full-img"
+                />
               </div>
             </div>
             <div className="process-text-col">
@@ -98,7 +103,12 @@ export default function Process() {
           <div className="process-card reverse">
             <div className="process-img-col">
               <div className="img-zoom-wrapper">
-                <img src="/BRIGHT-ANNEALING-Image-(Quailty).png" alt="Bright Annealing" className="step-full-img" />
+                <img
+                  src="/images/BRIGHT-ANNEALING-Image-(Quailty).png"
+                  alt="Bright Annealing"
+                  onError={(e) => { e.target.onerror = null; e.target.src = "/BRIGHT-ANNEALING-Image-(Quailty).png"; }}
+                  className="step-full-img"
+                />
               </div>
             </div>
             <div className="process-text-col">
@@ -113,7 +123,12 @@ export default function Process() {
           <div className="process-card">
             <div className="process-img-col">
               <div className="img-zoom-wrapper">
-                <img src="https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_11-4-2024_21411_.jpeg" alt="Pickling" className="step-full-img" />
+                <img
+                  src="/images/Screenshot_9-4-2024_221035_.jpeg"
+                  alt="Pickling"
+                  onError={(e) => { e.target.onerror = null; e.target.src = "/images/op1.png"; }}
+                  className="step-full-img"
+                />
               </div>
             </div>
             <div className="process-text-col">
@@ -128,7 +143,12 @@ export default function Process() {
           <div className="process-card reverse">
             <div className="process-img-col">
               <div className="img-zoom-wrapper">
-                <img src="https://asbtubes.com/wp-content/uploads/2024/04/Screenshot_11-4-2024_21430_.jpeg" alt="Polishing" className="step-full-img" />
+                <img
+                  src="/images/Screenshot_9-4-2024_221212_.jpeg"
+                  alt="Polishing"
+                  onError={(e) => { e.target.onerror = null; e.target.src = "/images/tubes.png"; }}
+                  className="step-full-img"
+                />
               </div>
             </div>
             <div className="process-text-col">
