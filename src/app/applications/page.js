@@ -1,34 +1,8 @@
 import ApplicationsList from "../../components/ApplicationsList";
 
 export const metadata = {
-  title: "Industrial Applications | Stainless Steel Solutions | ASB Tubes",
-  description:
-    "ASB Tubes supplies precision stainless steel tubing and piping solutions for Automotive, Dairy, Pharmaceuticals, Heat Exchangers, Sugar Mills, and Chemical Processing industries.",
-  keywords: [
-    "ASB Tubes applications",
-    "dairy tubing stainless steel",
-    "pharmaceutical grade SS tubes",
-    "heat exchanger tubes manufacturer",
-    "automotive exhaust ss tubing",
-    "sugar mill stainless steel pipes",
-  ],
-  alternates: {
-    canonical: "/applications",
-  },
-  openGraph: {
-    title: "Industrial Applications | ASB Tubes",
-    description:
-      "Delivering precision-engineered stainless steel piping solutions across global industries.",
-    url: "https://www.asbtubes.com/applications",
-    images: [
-      {
-        url: "/images/heat-exchanger.jpg",
-        width: 1200,
-        height: 630,
-        alt: "ASB Tubes Heat Exchanger Applications",
-      },
-    ],
-  },
+  title: "Applications | ASB Tubes",
+  description: "ASB Tubes serves various industries including Automotive, Dairy, Pharmaceuticals, and Heat Exchanger Machinery.",
 };
 
 export default function ApplicationsPage() {

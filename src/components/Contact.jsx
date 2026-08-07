@@ -68,26 +68,25 @@ export default function Contact() {
           </div>
         </div>
         <div className="contact-form-container">
-          <form action="https://formsubmit.co/enquiry@asbtubes.com" method="POST" id="inquiry-form" className="contact-form">
-            <input type="hidden" name="_subject" value="New Website Inquiry - ASB Tubes" />
+          <form id="inquiry-form" className="contact-form">
             <div className="form-group">
-              <input type="text" name="name" placeholder="Name" required />
+              <input type="text" placeholder="Name" required />
             </div>
             <div className="form-group">
-              <input type="email" name="email" placeholder="Email Address" required />
+              <input type="email" placeholder="Email Address" required />
             </div>
             <div className="form-group">
-              <input type="tel" name="phone" placeholder="Phone Number" required />
+              <input type="tel" placeholder="Phone Number" required />
             </div>
             <div className="form-group">
-              <input type="text" name="subject" placeholder="Subject" />
+              <input type="text" placeholder="Subject" />
             </div>
             <div className="form-group">
-              <textarea name="message" placeholder="Message" rows={5} required></textarea>
+              <textarea placeholder="Message" rows={5} required></textarea>
             </div>
             <div className="form-group captcha-group" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
               <label style={{ fontWeight: '600' }}>13 + 7 =</label>
-              <input type="number" name="captcha" style={{ width: '80px', padding: '10px', borderRadius: '8px', border: '1px solid #ddd' }} required />
+              <input type="number" style={{ width: '80px', padding: '10px', borderRadius: '8px', border: '1px solid #ddd' }} required />
             </div>
             <button type="submit" className="btn-solid-blue w-100" style={{ width: "100%" }}>Send</button>
           </form>

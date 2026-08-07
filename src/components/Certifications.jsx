@@ -23,42 +23,10 @@ export default function Certifications() {
   }, []);
 
   const certs = [
-    {
-      title: "ISO 9001:2015",
-      src: "/images/ASB-Tubes-Pvt-Ltd-Iso9001.jpg",
-      backup: "/images/ASB-Tubes-Pvt-Ltd-Iso45001.jpg",
-      subtitle: "Quality Management System Certification",
-    },
-    {
-      title: "ISO 45001:2018",
-      src: "/images/ASB-Tubes-Pvt-Ltd-Iso45001.jpg",
-      backup: "/images/ASB-Tubes-Pvt-Ltd-Iso9001.jpg",
-      subtitle: "Occupational Health & Safety Management",
-    },
-    {
-      title: "ISO 14001:2015",
-      isPdf: true,
-      issuer: "International Organization for Standardization",
-      subtitle: "Environmental Management System for Sustainable Tube Manufacturing",
-      date: "Active",
-      validUpto: "Global Standard",
-    },
-    {
-      title: "AD-2000-W0 Certification",
-      isPdf: true,
-      issuer: "TÜV NORD Systems GmbH & Co. KG",
-      subtitle: "Technical Rules for Pressure Vessels & Equipment",
-      date: "Verified",
-      validUpto: "Certified Manufacturer",
-    },
-    {
-      title: "PED Certificate (2014/68/EU)",
-      isPdf: true,
-      issuer: "Pressure Equipment Directive",
-      subtitle: "Quality Assurance System according to Directive 2014/68/EU",
-      date: "Verified",
-      validUpto: "EU Compliant",
-    },
+    { title: "ISO 45001:2018", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso45001.jpg" },
+    { title: "ISO 14001:2015", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso14001.jpg" },
+    { title: "AD-2000-W0", src: "https://asbtubes.com/wp-content/uploads/2024/06/AD-2000-W0.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" },
+    { title: "PED Certificate", src: "https://asbtubes.com/wp-content/uploads/2024/06/PED-Certificate.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" },
     {
       title: "NFCSF – Approved Manufacturer",
       subtitle: "Stainless Steel Tubes for Sugar & Distillery Plant",
@@ -109,8 +77,8 @@ export default function Certifications() {
                     <p className="cert-doc-subtitle">{cert.subtitle}</p>
                     <div className="cert-doc-meta">
                       {cert.licenceNo && <span className="cert-meta-tag">Licence: {cert.licenceNo}</span>}
-                      {cert.date && <span className="cert-meta-tag">Issued: {cert.date}</span>}
-                      {cert.validUpto && <span className="cert-meta-tag">Valid: {cert.validUpto}</span>}
+                      <span className="cert-meta-tag">Issued: {cert.date}</span>
+                      <span className="cert-meta-tag">Valid upto: {cert.validUpto}</span>
                     </div>
                   </div>
                 </div>
@@ -119,14 +87,7 @@ export default function Certifications() {
                   <img
                     src={cert.src}
                     alt={cert.title}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      if (cert.backup) {
-                        e.target.src = cert.backup;
-                      } else {
-                        e.target.style.display = "none";
-                      }
-                    }}
+                    onError={(e) => { e.target.onerror = null; e.target.src = cert.backup || cert.src; }}
                     className="c-img"
                   />
                 </div>

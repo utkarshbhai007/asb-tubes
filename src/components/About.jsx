@@ -26,9 +26,8 @@ export default function About() {
         <div className="about-visuals">
           <div className="visuals-left" style={{ width: "100%" }}>
             <img
-              src="/images/Mill-1_new.jpg"
+              src="https://asbtubes.com/wp-content/uploads/2021/06/ABS-Tubes-W-ISO-1.png"
               alt="ASB Tubes Manufacturing Mill"
-              onError={(e) => { e.target.onerror = null; e.target.src = "/images/manufacturing_process.jpg"; }}
               className="img-main"
             />
           </div>

@@ -21,28 +21,9 @@ export default function BrochureDownloadButton({ pdfUrl, className, children }) 
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted: ", formData);
-
-    try {
-      await fetch("https://formsubmit.co/ajax/enquiry@asbtubes.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          _subject: "New Brochure Download Inquiry - ASB Tubes"
-        })
-      });
-    } catch (err) {
-      console.error("Form submission error:", err);
-    }
     
     // Trigger download
     const link = document.createElement('a');
