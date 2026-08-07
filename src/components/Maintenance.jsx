@@ -53,6 +53,15 @@ export default function Maintenance() {
       <div className="maintenance-bg-glow"></div>
 
       <div className="maintenance-card">
+        {/* Brand Logo */}
+        <div style={{ marginBottom: "20px" }}>
+          <img
+            src="/images/logo.png"
+            alt="ASB TUBES Private Limited"
+            style={{ maxHeight: "65px", width: "auto", objectFit: "contain" }}
+          />
+        </div>
+
         {/* Status Badge */}
         <div className="maintenance-brand-badge">
           <span className="status-dot"></span>
