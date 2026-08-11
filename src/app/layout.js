@@ -2,19 +2,10 @@ import "./globals.css";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Maintenance from "../components/Maintenance";
-
-// Set to true to show Website Under Maintenance across the entire site.
-// Set to false when maintenance is finished to restore the live website.
-const IS_MAINTENANCE_MODE = true;
 
 export const metadata = {
-  title: IS_MAINTENANCE_MODE
-    ? "Under Maintenance | ASB TUBES Private Limited"
-    : "ASB TUBES Private Limited",
-  description: IS_MAINTENANCE_MODE
-    ? "ASB TUBES Private Limited website is currently undergoing scheduled maintenance."
-    : "Leading Stainless Steel Pipes & Tubes Manufacturer.",
+  title: "ASB TUBES Private Limited",
+  description: "Leading Stainless Steel Pipes & Tubes Manufacturer.",
 };
 
 export default function RootLayout({ children }) {
@@ -29,15 +20,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {IS_MAINTENANCE_MODE ? (
-          <Maintenance />
-        ) : (
-          <>
-            <Navbar />
-            {children}
-            <Footer />
-          </>
-        )}
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

@@ -44,7 +44,7 @@ export default function EventsInsight() {
             <h4 className="events-subtitle" style={{ marginBottom: 0 }}>Update @ASB Tubes</h4>
             <span className="label-line"></span>
           </div>
-          <h2 className="events-title">EVENTS & INSIGHT</h2>
+          <h2 className="events-title">EVENTS & INSIGHTS</h2>
         </div>
 
         <div className="events-grid-wrapper">

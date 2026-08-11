@@ -29,7 +29,7 @@ export default function BrochureDownloadButton({ pdfUrl, className, children }) 
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.target = "_blank";
-    link.download = "ASB_Tubes_Brochure.pdf";
+    link.download = "ASB_TUBES_Final_Brochure.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

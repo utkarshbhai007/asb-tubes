@@ -167,83 +167,7 @@ export default function HomeContent() {
           </div>
         </div>
         <div className="global-presence-map-container">
-          <img src="/images/global_presence_map.png" alt="Global Presence Map" className="world-map-img" />
-
-          <svg
-            className="map-connections"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 5, pointerEvents: 'none' }}
-          >
-            <defs>
-              <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="var(--primary-blue)" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="var(--primary-blue)" stopOpacity="0.2" />
-              </linearGradient>
-            </defs>
-            {/* China */}
-            <path d="M 70 53 Q 75 35 80 39" className="connection-line" />
-            {/* Tokyo */}
-            <path d="M 70 53 Q 79 30 88 42" className="connection-line" />
-            {/* Singapore */}
-            <path d="M 70 53 Q 77 50 78 63" className="connection-line" />
-            {/* Dubai */}
-            <path d="M 70 53 Q 67 45 64 50" className="connection-line" />
-            {/* Frankfurt */}
-            <path d="M 70 53 Q 61 25 52 35" className="connection-line" />
-            {/* London */}
-            <path d="M 70 53 Q 59 20 48 31" className="connection-line" />
-            {/* New York */}
-            <path d="M 70 53 Q 49 15 29 43" className="connection-line" />
-            {/* Washington D.C. */}
-            <path d="M 70 53 Q 47 20 25 47" className="connection-line" />
-            {/* South Africa */}
-            <path d="M 70 53 Q 55 60 55 75" className="connection-line" />
-          </svg>
-
-          {/* Center / India */}
-          <div className="map-pin" style={{ top: '53%', left: '70%' }}>
-            <div className="pin-dot"></div>
-          </div>
-
-          {/* East Asia */}
-          <div className="map-pin" style={{ top: '39%', left: '80%' }}>
-            <div className="pin-dot"></div>
-          </div>
-          <div className="map-pin" style={{ top: '42%', left: '88%' }}>
-            <div className="pin-dot"></div>
-          </div>
-
-          {/* SE Asia */}
-          <div className="map-pin" style={{ top: '63%', left: '78%' }}>
-            <div className="pin-dot"></div>
-          </div>
-
-          {/* Middle East */}
-          <div className="map-pin" style={{ top: '50%', left: '64%' }}>
-            <div className="pin-dot"></div>
-          </div>
-
-          {/* Europe */}
-          <div className="map-pin" style={{ top: '35%', left: '52%' }}>
-            <div className="pin-dot"></div>
-          </div>
-          <div className="map-pin" style={{ top: '31%', left: '48%' }}>
-            <div className="pin-dot"></div>
-          </div>
-
-          {/* North America */}
-          <div className="map-pin" style={{ top: '43%', left: '29%' }}>
-            <div className="pin-dot"></div>
-          </div>
-          <div className="map-pin" style={{ top: '47%', left: '25%' }}>
-            <div className="pin-dot"></div>
-          </div>
-
-          {/* Africa */}
-          <div className="map-pin" style={{ top: '75%', left: '55%' }}>
-            <div className="pin-dot"></div>
-          </div>
+          <img src="/images/World-Map.jpg.jpeg" alt="Global Presence Map" className="world-map-img" />
         </div>
       </section>
 
@@ -577,7 +501,7 @@ export default function HomeContent() {
           font-size: 1.05rem;
           line-height: 1.6;
           color: #444;
-          margin-bottom: 60px;
+          margin-bottom: 40px;
           max-width: 1050px;
           margin-left: auto;
           margin-right: auto;

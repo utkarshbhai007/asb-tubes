@@ -43,7 +43,6 @@ export default function Navbar() {
           <li className="dropdown">
             <span className="dropdown-label">QUALITY <span className="arrow-icon">▼</span></span>
             <ul className="dropdown-menu">
-              <li><Link href="/quality" onClick={() => setIsOpen(false)}>OVERVIEW</Link></li>
               <li><Link href="/quality#certificates" onClick={() => setIsOpen(false)}>CERTIFICATES</Link></li>
               <li><Link href="/quality#tpi-approvals" onClick={() => setIsOpen(false)}>TPI APPROVALS</Link></li>
               <li><Link href="/quality#flow-chart" onClick={() => setIsOpen(false)}>FLOW CHART</Link></li>

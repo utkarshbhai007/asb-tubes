@@ -23,10 +23,10 @@ export default function Certifications() {
   }, []);
 
   const certs = [
-    { title: "ISO 45001:2018", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso45001.jpg" },
-    { title: "ISO 14001:2015", src: "https://asbtubes.com/wp-content/uploads/2024/01/ASB-Tubes-Pvt-Ltd-Iso14001.jpg" },
-    { title: "AD-2000-W0", src: "https://asbtubes.com/wp-content/uploads/2024/06/AD-2000-W0.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" },
-    { title: "PED Certificate", src: "https://asbtubes.com/wp-content/uploads/2024/06/PED-Certificate.jpg", backup: "https://asbtubes.com/wp-content/uploads/2020/09/manufacturing_process.jpg" },
+    { title: "ISO 45001:2018", src: "/images/ASB-Tubes-Pvt-Ltd-Iso45001.jpg" },
+    { title: "ISO 14001:2015", src: "/images/ASB-Tubes-Pvt-Ltd-Iso14001.jpg" },
+    { title: "AD-2000-W0", src: "/images/AD-2000-W0.jpg" },
+    { title: "PED Certificate", src: "/images/PED-Certificate.jpg" },
     {
       title: "NFCSF – Approved Manufacturer",
       subtitle: "Stainless Steel Tubes for Sugar & Distillery Plant",
