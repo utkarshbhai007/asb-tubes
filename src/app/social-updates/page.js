@@ -37,55 +37,55 @@ export default function SocialUpdatesPage() {
     {
       id: 1,
       type: "post",
-      image: "/images/manufacturing_process.jpg",
-      likes: "248",
-      comments: "18",
-      caption: "Precision manufacturing in action at our Kadi plant! Automated processes ensuring high-grade quality tubes. 🏭✨ #manufacturing #automation #industry #steel #asbtubes",
+      image: "/images/5k_followers.png",
+      likes: "1,280",
+      comments: "84",
+      caption: "Thank You! FOR YOUR TRUST & SUPPORT WE'VE REACHED 5K FOLLOWERS! Stronger together! Prime manufacturer of stainless steel pipes and tubes of various sizes and grades. 🏭🎉 #asbtubes #5k #followers #manufacturing #growth",
       url: "https://www.instagram.com/asbtubes",
     },
     {
       id: 2,
       type: "reel",
       image: "/images/Mill-1_new.jpg",
-      likes: "512",
-      comments: "42",
-      caption: "Take a virtual tour of our Automated Tube Mills! Continuous forming & precision TIG welding. 🎥🚀 #automation #reels #engineering #tubemill #stainlesssteel",
+      likes: "840",
+      comments: "62",
+      caption: "Inside ASB Tubes: Continuous high-speed TIG welding and automated tube forming on Mill 1 at our Kadi plant. 🎥⚡ #tubemill #tigwelding #automation #reels #asbtubes",
       url: "https://www.instagram.com/asbtubes",
     },
     {
       id: 3,
       type: "post",
-      image: "/images/Sectional.jpg",
-      likes: "189",
-      comments: "12",
-      caption: "Exploring our diverse range of ornamental pipes. Perfect finish, high durability. 📐🔩 #ornamental #stainlesssteel #architecture #design",
+      image: "/images/ASB-TUBES-MOU-23-24.jpg",
+      likes: "512",
+      comments: "39",
+      caption: "ASB Tubes signing strategic MOU for expanding production facilities to 72,000 MT per annum. Building tomorrow's industrial infrastructure. 📜🖋️ #mou #expansion #infrastructure #asbtubes",
       url: "https://www.instagram.com/asbtubes",
     },
     {
       id: 4,
       type: "post",
       image: "/images/tubes.png",
-      likes: "305",
-      comments: "25",
-      caption: "Quality you can trust! Premium SS tubes stacked and ready for dispatch to our global clients. 🚢📦 #qualityassurance #pipes #tubes #exports #business",
+      likes: "630",
+      comments: "41",
+      caption: "Quality you can trust! Premium SS tubes stacked, bundled, and ready for dispatch to our global clients. 🚢📦 #qualityassurance #pipes #tubes #exports #asbtubes",
       url: "https://www.instagram.com/asbtubes",
     },
     {
       id: 5,
       type: "reel",
       image: "/images/worker.png",
-      likes: "419",
-      comments: "31",
-      caption: "Meet the team! Our skilled engineers and operators are the backbone of our 72,000 MT annual production capacity. 👥💪 #teamwork #engineering #workplace #manufacturing #reels",
+      likes: "920",
+      comments: "73",
+      caption: "Meet our skilled engineers and operators on the factory floor! Precision engineering driven by human dedication. 👥💪 #teamwork #reels #engineering #asbtubes",
       url: "https://www.instagram.com/asbtubes",
     },
     {
       id: 6,
       type: "post",
       image: "/images/heat-exchanger.jpg",
-      likes: "220",
-      comments: "15",
-      caption: "Specially engineered heat-exchanger tubes undergoing strict eddy-current quality checks. 🔍🔬 #qualitycontrol #safetyfirst #heatexchanger #industrial",
+      likes: "445",
+      comments: "28",
+      caption: "Specially engineered heat-exchanger tubes undergoing 100% eddy-current quality testing before shipment. 🔍🔬 #qualitycontrol #heatexchanger #nondestructivetesting #asbtubes",
       url: "https://www.instagram.com/asbtubes",
     },
   ];
@@ -165,7 +165,7 @@ export default function SocialUpdatesPage() {
                     ) : (
                       <>
                         <span className="warning-dot"></span>
-                        <span>Showcase Mode (Feed Offline)</span>
+                        <span>Curated Showcase Feed</span>
                       </>
                     )}
                   </div>
@@ -211,39 +211,51 @@ export default function SocialUpdatesPage() {
                 </div>
               </div>
 
-              {/* Instagram Feed Grid */}
-              <div className="insta-grid">
-                {filteredPosts.map((post) => (
-                  <a href={post.url} target="_blank" rel="noopener noreferrer" key={post.id} className="insta-card-wrapper">
-                    <div className="insta-card">
-                      <div className="insta-card-image">
-                        <img src={post.image} alt={post.caption} className="insta-img" />
-                        {post.type === "reel" && (
-                          <div className="reel-badge" title="Instagram Reel">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-                          </div>
-                        )}
-                        <div className="insta-overlay">
-                          <div className="insta-overlay-metrics">
-                            <span className="metric">
-                              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                              {post.likes}
-                            </span>
-                            <span className="metric">
-                              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-                              {post.comments}
-                            </span>
+              {/* Instagram Feed Grid or Live Widget */}
+              {process.env.NEXT_PUBLIC_INSTAGRAM_WIDGET_URL ? (
+                <div className="insta-widget-container">
+                  <iframe
+                    src={process.env.NEXT_PUBLIC_INSTAGRAM_WIDGET_URL}
+                    className="insta-live-iframe"
+                    style={{ width: "100%", height: "800px", border: "none", borderRadius: "12px", overflow: "hidden" }}
+                    scrolling="no"
+                    allowTransparency={true}
+                  ></iframe>
+                </div>
+              ) : (
+                <div className="insta-grid">
+                  {filteredPosts.map((post) => (
+                    <a href={post.url} target="_blank" rel="noopener noreferrer" key={post.id} className="insta-card-wrapper">
+                      <div className="insta-card">
+                        <div className="insta-card-image">
+                          <img src={post.image} alt={post.caption} className="insta-img" />
+                          {post.type === "reel" && (
+                            <div className="reel-badge" title="Instagram Reel">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                            </div>
+                          )}
+                          <div className="insta-overlay">
+                            <div className="insta-overlay-metrics">
+                              <span className="metric">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                {post.likes}
+                              </span>
+                              <span className="metric">
+                                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                                {post.comments}
+                              </span>
+                            </div>
                           </div>
                         </div>
+                        <div className="insta-card-caption">
+                          <p className="caption-text">{post.caption}</p>
+                          <span className="view-link">View on Instagram &rarr;</span>
+                        </div>
                       </div>
-                      <div className="insta-card-caption">
-                        <p className="caption-text">{post.caption}</p>
-                        <span className="view-link">View on Instagram &rarr;</span>
-                      </div>
-                    </div>
-                  </a>
-                ))}
-              </div>
+                    </a>
+                  ))}
+                </div>
+              )}
 
               {/* View Profile CTA */}
               <div className="text-center mt-5">
