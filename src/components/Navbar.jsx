@@ -51,7 +51,6 @@ export default function Navbar() {
           </li>
           <li><Link href="/applications" onClick={() => setIsOpen(false)}>APPLICATIONS</Link></li>
           <li><Link href="/blog" onClick={() => setIsOpen(false)}>BLOG</Link></li>
-          <li><Link href="/social-updates" onClick={() => setIsOpen(false)}>SOCIAL UPDATES</Link></li>
           <li className="dropdown">
             <span className="dropdown-label">RESOURCES <span className="arrow-icon">▼</span></span>
             <ul className="dropdown-menu">
