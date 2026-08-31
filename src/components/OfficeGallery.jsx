@@ -3,12 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 
 const officePics = [
-  { id: 1, src: '/images/Screenshot_9-4-2024_221035_.jpeg', alt: 'Office Area 1' },
-  { id: 2, src: '/images/Screenshot_9-4-2024_221212_.jpeg', alt: 'Office Area 2' },
-  { id: 3, src: '/images/Screenshot_9-4-2024_221748_.jpeg', alt: 'Office Area 3' },
-  { id: 4, src: '/images/Screenshot_9-4-2024_221938_.jpeg', alt: 'Office Area 4' },
-  { id: 5, src: '/images/Screenshot_9-4-2024_222024_.jpeg', alt: 'Office Area 5' },
-  { id: 6, src: '/images/Screenshot_9-4-2024_222114_.jpeg', alt: 'Office Area 6' }
+  { id: 1, src: '/images/f1.JPG', alt: 'Office & Facility 1' },
+  { id: 2, src: '/images/f2.JPG', alt: 'Office & Facility 2' },
+  { id: 3, src: '/images/f3.JPG', alt: 'Office & Facility 3' },
+  { id: 4, src: '/images/f4.png', alt: 'Office & Facility 4' },
+  { id: 5, src: '/images/f5.png', alt: 'Office & Facility 5' },
+  { id: 6, src: '/images/f6.png', alt: 'Office & Facility 6' }
 ];
 
 export default function OfficeGallery() {
@@ -36,6 +36,7 @@ export default function OfficeGallery() {
                   alt={pic.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ objectFit: 'cover' }}
                   className="office-img"
                 />
               </div>

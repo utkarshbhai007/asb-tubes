@@ -80,6 +80,7 @@ export default function BlogPage() {
                     alt={post.title} 
                     fill 
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover' }}
                     className="blog-img"
                   />
                   <span className="blog-category">{post.category}</span>
