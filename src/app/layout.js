@@ -1,7 +1,10 @@
+import Script from "next/script";
 import "./globals.css";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-X988XS5RGV";
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://asbtubes.com"),
@@ -32,6 +35,18 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
         <Navbar />
         {children}
         <Footer />
