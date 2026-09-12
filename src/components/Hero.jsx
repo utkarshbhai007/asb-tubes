@@ -40,12 +40,12 @@ export default function Hero() {
       </video>
       <div className="hero-overlay"></div>
       <div className="hero-content container">
-        <span className="hero-tagline">Leading manufacturer of Stainless steel pipes & tubes in india</span>
-        <h1 className="hero-title">WELCOME TO ASB</h1>
+        <span className="hero-tagline">ASB Tubes — Stainless Steel Pipe Company in India</span>
+        <h1 className="hero-title">Stainless Steel Pipe Manufacturer</h1>
         <p className="hero-desc">
-          Revolutionising the stainless steel industry for over 30 years, ASB Tubes is a leading manufacturer of premium pipes and tubes in India.
+          Revolutionising the stainless steel industry for over 30 years, ASB Tubes manufactures premium stainless steel pipes and tubes for industrial and commercial use across India and worldwide.
           <br /><br />
-          Established with a vision for technological advancement, ASB Tubes is equipped with a state-of-the-art 72,000MT+ annual capacity, proudly serving clients across the globe.
+          Equipped with state-of-the-art mills and 72,000MT+ annual capacity, we deliver durable SS ERW pipes, round, square and sectional tubes engineered to global standards.
         </p>
         <div className="hero-actions">
           <Link href="/contact-us" className="btn-solid-blue btn-large">CONTACT US</Link>

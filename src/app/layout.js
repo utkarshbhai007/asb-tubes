@@ -4,8 +4,19 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export const metadata = {
-  title: "ASB TUBES Private Limited",
-  description: "Leading Stainless Steel Pipes & Tubes Manufacturer.",
+  title: {
+    default: "Stainless Steel Pipe Manufacturer in India | ASB Tubes",
+    template: "%s | ASB Tubes",
+  },
+  description:
+    "ASB Tubes is a leading stainless steel pipe and tube manufacturer in India, producing ERW pipes, round, square and sectional tubes with 72,000MT+ annual capacity.",
+  keywords: [
+    "stainless steel pipe",
+    "ss pipes and tubes",
+    "stainless steel tube manufacturers",
+    "ss erw pipes",
+    "stainless steel pipe company in india",
+  ],
 };
 
 export default function RootLayout({ children }) {

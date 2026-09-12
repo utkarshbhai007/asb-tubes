@@ -1,8 +1,9 @@
 import ApplicationsList from "../../components/ApplicationsList";
 
 export const metadata = {
-  title: "Applications | ASB Tubes",
-  description: "ASB Tubes serves various industries including Automotive, Dairy, Pharmaceuticals, and Heat Exchanger Machinery.",
+  title: "Stainless Steel Pipe Applications by Industry",
+  description:
+    "ASB Tubes stainless steel pipes and tubes for pharmaceutical, dairy, food, beverage, heat exchanger, automotive, water treatment and sugar mill machinery.",
 };
 
 export default function ApplicationsPage() {
@@ -12,7 +13,7 @@ export default function ApplicationsPage() {
       <div className="applications-hero">
         <div className="hero-overlay"></div>
         <div className="container hero-content text-center">
-          <h1 className="hero-title animate-pop visible">OUR APPLICATIONS</h1>
+          <h1 className="hero-title animate-pop visible">Stainless Steel Pipe & Tube Applications</h1>
           <p className="hero-subtitle animate-pop visible" style={{ transitionDelay: '0.2s' }}>
             Delivering high-quality, precision-engineered stainless steel solutions across diverse global industries.
           </p>

@@ -6,8 +6,11 @@ import BrochureSection from "../components/BrochureSection";
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
 
 export const metadata = {
-  title: "ASB TUBES Private Limited",
-  description: "ASB TUBES Private Limited is a premier manufacturer of high-quality stainless steel pipes and tubes.",
+  title: {
+    absolute: "Stainless Steel Pipe | Durable Industrial Piping | ASB Tubes",
+  },
+  description:
+    "Explore stainless steel pipe solutions from ASB Tubes — a trusted manufacturer of SS pipes and tubes in India with 72,000MT+ capacity, serving global industries.",
 };
 
 export default function Home() {

@@ -2,105 +2,53 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getAllPosts } from '../../data/blogPosts';
 
 export default function BlogPage() {
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'The Future of Stainless Steel Manufacturing',
-      excerpt: 'Explore how automation and AI are revolutionizing the production of high-quality stainless steel pipes and tubes.',
-      date: 'April 15, 2024',
-      category: 'Industry Trends',
-      image: '/images/manufacturing_process.jpg'
-    },
-    {
-      id: 2,
-      title: 'Understanding Different Grades of Stainless Steel',
-      excerpt: 'A comprehensive guide to 200, 300, and 400 series stainless steel and their best industrial applications.',
-      date: 'March 28, 2024',
-      category: 'Technical Guide',
-      image: '/images/Mill-1_new.jpg'
-    },
-    {
-      id: 3,
-      title: 'ASB Tubes at Stainless Steel World 2023',
-      excerpt: 'Highlights and key takeaways from our recent exhibition showcasing our latest product range and innovations.',
-      date: 'February 10, 2024',
-      category: 'Events',
-      image: '/images/Sectional.jpg'
-    },
-    {
-      id: 4,
-      title: 'Why Seamless Pipes are Preferred in High-Pressure Applications',
-      excerpt: 'An in-depth look at the structural integrity of seamless pipes compared to welded alternatives in extreme conditions.',
-      date: 'January 22, 2024',
-      category: 'Applications',
-      image: '/images/tubes.png'
-    },
-    {
-      id: 5,
-      title: 'Sustainability in the Steel Industry',
-      excerpt: 'How modern manufacturing facilities are reducing their carbon footprint through energy-efficient processes.',
-      date: 'December 05, 2023',
-      category: 'Sustainability',
-      image: '/images/worker.png'
-    },
-    {
-      id: 6,
-      title: 'Quality Testing Standards for ERW Pipes',
-      excerpt: 'A detailed breakdown of the rigorous ISO and PED certification tests every pipe undergoes before shipment.',
-      date: 'November 18, 2023',
-      category: 'Quality Control',
-      image: '/images/heat-exchanger.jpg'
-    }
-  ];
+  const blogPosts = getAllPosts();
 
   return (
     <main className="blog-page">
-      {/* Hero Section for Blog */}
       <section className="blog-hero">
         <div className="blog-hero-overlay"></div>
         <div className="container">
           <div className="blog-hero-content">
-            <h1 className="blog-title">Our Blog & Insights</h1>
-            <p className="blog-subtitle">Stay updated with the latest news, technical guides, and industry trends from ASB Tubes.</p>
+            <h1 className="blog-title">SS Pipes & Tubes Insights</h1>
+            <p className="blog-subtitle">Guides on stainless steel pipe manufacturing, ERW tubes, grades, and industry trends from ASB Tubes.</p>
           </div>
         </div>
       </section>
 
-      {/* Blog Grid Section */}
       <section className="blog-content-section">
         <div className="container">
           <div className="blog-grid">
             {blogPosts.map((post) => (
-              <article key={post.id} className="blog-card">
-                <div className="blog-card-img-wrapper">
-                  <Image 
-                    src={post.image} 
-                    alt={post.title} 
-                    fill 
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    style={{ objectFit: 'cover' }}
-                    className="blog-img"
-                  />
-                  <span className="blog-category">{post.category}</span>
-                </div>
+              <article key={post.slug} className="blog-card">
+                <Link href={`/blog/${post.slug}`} className="blog-card-link">
+                  <div className="blog-card-img-wrapper">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ objectFit: 'cover' }}
+                      className="blog-img"
+                    />
+                    <span className="blog-category">{post.category}</span>
+                  </div>
+                </Link>
                 <div className="blog-card-content">
                   <span className="blog-date">{post.date}</span>
                   <h3 className="blog-post-title">
-                    <Link href="#">{post.title}</Link>
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   <p className="blog-excerpt">{post.excerpt}</p>
-                  <Link href="#" className="read-more-link">
+                  <Link href={`/blog/${post.slug}`} className="read-more-link">
                     Read More <span>&rarr;</span>
                   </Link>
                 </div>
               </article>
             ))}
-          </div>
-          
-          <div className="text-center mt-5">
-            <button className="btn-solid-blue">Load More Posts</button>
           </div>
         </div>
       </section>
@@ -111,7 +59,6 @@ export default function BlogPage() {
           min-height: 100vh;
         }
 
-        /* Hero */
         .blog-hero {
           position: relative;
           height: 40vh;
@@ -138,7 +85,7 @@ export default function BlogPage() {
           position: relative;
           z-index: 2;
           color: white;
-          padding-top: 60px; /* offset for fixed navbar */
+          padding-top: 60px;
         }
 
         .blog-title {
@@ -157,7 +104,6 @@ export default function BlogPage() {
           color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Content Section */
         .blog-content-section {
           padding: 80px 0;
         }
@@ -182,6 +128,11 @@ export default function BlogPage() {
         .blog-card:hover {
           transform: translateY(-8px);
           box-shadow: 0 15px 35px rgba(0, 73, 133, 0.15);
+        }
+
+        .blog-card-link {
+          display: block;
+          text-decoration: none;
         }
 
         .blog-card-img-wrapper {
@@ -274,7 +225,6 @@ export default function BlogPage() {
           transform: translateX(5px);
         }
 
-        /* Responsive */
         @media (max-width: 992px) {
           .blog-grid {
             grid-template-columns: repeat(2, 1fr);

@@ -6,9 +6,9 @@ export default function Contact() {
       <div className="container contact-grid">
         <div className="contact-info">
           <span className="section-label">GET IN TOUCH</span>
-          <h2 className="section-title">Contact ASB Tubes</h2>
+          <h1 className="section-title">Stainless Steel Tube Suppliers — Contact ASB Tubes</h1>
           <p className="mb-4 text-gray" style={{ color: "var(--text-light)" }}>
-            We are always ready to assist you with your requirements. Reach out to us for inquiries, quotes, or support.
+            Looking for reliable stainless steel pipe and tube suppliers? Reach out for inquiries, quotes, or technical support — we are ready to assist with your requirements.
           </p>
 
           <div className="info-item">
