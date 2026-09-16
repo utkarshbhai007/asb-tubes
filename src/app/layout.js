@@ -1,8 +1,7 @@
 import Script from "next/script";
 import "./globals.css";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import SiteChrome from "../components/SiteChrome";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-X988XS5RGV";
 
@@ -21,6 +20,9 @@ export const metadata = {
     "ss erw pipes",
     "stainless steel pipe company in india",
   ],
+  verification: {
+    google: "VU6Vu-AZK1uWX-tP30y6beIOMWClmvY3qubLM4vNbgA",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -47,9 +49,7 @@ export default function RootLayout({ children }) {
             gtag('config', '${GA_ID}');
           `}
         </Script>
-        <Navbar />
-        {children}
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

@@ -4,43 +4,57 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function BlogPostView({ post, related }) {
+  const hasBody =
+    Boolean(post.bodyHtml && post.bodyHtml.replace(/<p><\/p>/g, "").trim()) ||
+    (Array.isArray(post.content) && post.content.length > 0);
+
   return (
     <main className="blog-post-page">
-      <section
-        className="post-hero"
-        style={{ backgroundImage: `url('${post.image}')` }}
-      >
-        <div className="post-hero-overlay" />
-        <div className="container post-hero-content">
-          <Link href="/blog" className="back-link">
-            ← Back to Blog
-          </Link>
-          <span className="post-category">{post.category}</span>
+      <section className="post-hero">
+        <div className="container">
+          <div className="post-hero-meta">
+            <span className="post-date">{post.date}</span>
+          </div>
           <h1 className="post-title">{post.title}</h1>
-          <p className="post-meta">{post.date}</p>
         </div>
       </section>
 
       <article className="post-body-section">
         <div className="container post-layout">
           <div className="post-main">
-            <div className="post-featured-img">
-              <Image
-                src={post.image}
-                alt={post.title}
-                fill
-                sizes="(max-width: 900px) 100vw, 760px"
-                style={{ objectFit: "cover" }}
-                priority
-              />
-            </div>
-            <p className="post-lead">{post.excerpt}</p>
-            {post.content.map((section) => (
-              <section key={section.heading} className="post-section">
-                <h2>{section.heading}</h2>
-                <p>{section.body}</p>
-              </section>
-            ))}
+            {post.image ? (
+              <div className="post-featured-img">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 760px"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              </div>
+            ) : null}
+
+            {hasBody ? (
+              post.bodyHtml ? (
+                <div
+                  className="article-prose"
+                  dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
+                />
+              ) : (
+                <div className="article-prose">
+                  {(post.content || []).map((section, index) => (
+                    <section key={`${section.heading}-${index}`}>
+                      {section.heading ? <h2>{section.heading}</h2> : null}
+                      {section.body ? <p>{section.body}</p> : null}
+                    </section>
+                  ))}
+                </div>
+              )
+            ) : (
+              <p className="post-empty">No article content yet.</p>
+            )}
+
             <div className="post-cta">
               <h3>Need SS pipes or tubes for your project?</h3>
               <p>
@@ -54,16 +68,21 @@ export default function BlogPostView({ post, related }) {
 
           <aside className="post-aside">
             <h3>Related articles</h3>
-            <ul>
-              {related.map((item) => (
-                <li key={item.slug}>
-                  <Link href={`/blog/${item.slug}`}>{item.title}</Link>
-                </li>
-              ))}
-            </ul>
+            {related?.length ? (
+              <ul className="related-list">
+                {related.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={`/blog/${item.slug}`}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="related-empty">More articles coming soon.</p>
+            )}
             <div className="aside-links">
               <Link href="/product-range">View product range →</Link>
               <Link href="/quality">Quality & certifications →</Link>
+              <Link href="/contact-us">Contact us →</Link>
             </div>
           </aside>
         </div>
@@ -71,126 +90,78 @@ export default function BlogPostView({ post, related }) {
 
       <style jsx>{`
         .blog-post-page {
-          background: var(--light-bg);
+          background: #f8fafc;
           min-height: 100vh;
         }
 
         .post-hero {
-          position: relative;
-          min-height: 320px;
-          display: flex;
-          align-items: flex-end;
-          background-size: cover;
-          background-position: center;
-          margin-top: 0;
-          padding: 100px 0 50px;
-        }
-
-        .post-hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to bottom,
-            rgba(15, 23, 42, 0.75),
-            rgba(0, 73, 133, 0.88)
-          );
-        }
-
-        .post-hero-content {
-          position: relative;
-          z-index: 2;
+          background: linear-gradient(135deg, #0f172a 0%, #004985 100%);
+          padding: 120px 0 40px;
           color: #fff;
-          max-width: 860px;
         }
 
-        .back-link {
-          display: inline-block;
-          color: rgba(255, 255, 255, 0.9);
-          text-decoration: none;
-          font-size: 0.95rem;
-          margin-bottom: 18px;
-        }
-
-        .back-link:hover {
-          text-decoration: underline;
-        }
-
-        .post-category {
-          display: inline-block;
-          background: rgba(255, 255, 255, 0.15);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          padding: 4px 12px;
-          border-radius: 4px;
-          font-size: 0.75rem;
-          letter-spacing: 1px;
-          text-transform: uppercase;
+        .post-hero-meta {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 10px;
           margin-bottom: 14px;
+        }
+
+        .post-date {
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.8);
         }
 
         .post-title {
           font-family: var(--font-heading);
-          font-size: clamp(1.8rem, 4vw, 3rem);
-          line-height: 1.2;
-          margin: 0 0 12px;
-          text-transform: none;
-        }
-
-        .post-meta {
+          font-size: clamp(2rem, 4.5vw, 3.2rem);
+          line-height: 1.15;
           margin: 0;
-          opacity: 0.9;
-          font-size: 0.95rem;
+          max-width: 820px;
+          text-transform: none;
+          color: #fff;
         }
 
         .post-body-section {
-          padding: 60px 0 90px;
+          padding: 40px 0 90px;
         }
 
         .post-layout {
           display: grid;
-          grid-template-columns: minmax(0, 1fr) 280px;
-          gap: 40px;
+          grid-template-columns: minmax(0, 1fr) 300px;
+          gap: 36px;
           align-items: start;
+        }
+
+        .post-main {
+          background: #fff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 28px;
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
         }
 
         .post-featured-img {
           position: relative;
           width: 100%;
-          height: 360px;
+          aspect-ratio: 16 / 9;
           border-radius: 12px;
           overflow: hidden;
-          margin-bottom: 28px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+          margin-bottom: 24px;
+          background: #e2e8f0;
         }
 
-        .post-lead {
-          font-size: 1.15rem;
-          line-height: 1.7;
-          color: #334155;
-          margin-bottom: 32px;
-        }
-
-        .post-section {
-          margin-bottom: 28px;
-        }
-
-        .post-section h2 {
-          font-family: var(--font-heading);
-          font-size: 1.45rem;
-          color: var(--primary-blue);
-          margin-bottom: 10px;
-        }
-
-        .post-section p {
-          color: #475569;
-          line-height: 1.75;
-          font-size: 1.02rem;
-          margin: 0;
+        .post-empty {
+          color: #94a3b8;
+          font-style: italic;
+          margin: 0 0 24px;
         }
 
         .post-cta {
-          margin-top: 40px;
-          padding: 28px;
-          background: #fff;
+          margin-top: 36px;
+          padding: 24px;
+          background: #f8fafc;
           border: 1px solid #e2e8f0;
           border-radius: 12px;
         }
@@ -202,62 +173,82 @@ export default function BlogPostView({ post, related }) {
         }
 
         .post-cta p {
-          margin: 0 0 18px;
+          margin: 0 0 16px;
           color: #64748b;
         }
 
         .post-aside {
           background: #fff;
           border: 1px solid #e2e8f0;
-          border-radius: 12px;
-          padding: 24px;
+          border-radius: 16px;
+          padding: 22px;
           position: sticky;
           top: 100px;
+          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
         }
 
         .post-aside h3 {
           margin: 0 0 14px;
-          font-size: 1.1rem;
+          font-size: 1rem;
           color: var(--primary-blue);
           font-family: var(--font-heading);
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
         }
 
-        .post-aside ul {
+        .related-list {
           list-style: none;
           padding: 0;
-          margin: 0 0 20px;
+          margin: 0 0 18px;
         }
 
-        .post-aside li {
-          margin-bottom: 12px;
-          padding-bottom: 12px;
+        .related-list li {
+          margin-bottom: 10px;
+          padding-bottom: 10px;
           border-bottom: 1px solid #f1f5f9;
         }
 
-        .post-aside a {
+        .related-list a {
           color: #0f172a;
           text-decoration: none;
           font-size: 0.95rem;
           line-height: 1.4;
+          font-weight: 600;
         }
 
-        .post-aside a:hover {
+        .related-list a:hover {
           color: var(--primary-blue);
+        }
+
+        .related-empty {
+          margin: 0 0 16px;
+          color: #94a3b8;
+          font-size: 0.9rem;
         }
 
         .aside-links {
           display: flex;
           flex-direction: column;
           gap: 10px;
+          padding-top: 4px;
         }
 
         .aside-links a {
           color: var(--primary-blue);
           font-weight: 600;
           font-size: 0.9rem;
+          text-decoration: none;
+        }
+
+        .aside-links a:hover {
+          text-decoration: underline;
         }
 
         @media (max-width: 900px) {
+          .post-hero {
+            padding: 100px 0 32px;
+          }
+
           .post-layout {
             grid-template-columns: 1fr;
           }
@@ -266,8 +257,8 @@ export default function BlogPostView({ post, related }) {
             position: static;
           }
 
-          .post-featured-img {
-            height: 240px;
+          .post-main {
+            padding: 20px;
           }
         }
       `}</style>

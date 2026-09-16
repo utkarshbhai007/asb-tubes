@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import BlogPostView from "../../../components/BlogPostView";
-import { getAllPosts, getPostBySlug } from "../../../data/blogPosts";
+import { getAllPosts, getPostBySlug } from "../../../lib/blogStore";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));

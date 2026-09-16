@@ -1,4 +1,4 @@
-import { getAllPosts } from "../data/blogPosts";
+import { getAllPosts } from "../lib/blogStore";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://asbtubes.com";
 
