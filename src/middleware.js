@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { ADMIN_COOKIE } from "./lib/adminCookie";
 
-export function middleware(request) {
+export function middleware(request) { 
   const { pathname } = request.nextUrl;
 
   if (!pathname.startsWith("/admin")) {
