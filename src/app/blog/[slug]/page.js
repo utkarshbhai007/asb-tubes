@@ -4,13 +4,14 @@ import { getAllPosts, getPostBySlug } from "../../../lib/blogStore";
 
 export const dynamic = "force-dynamic";
 
-export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) {
     return { title: "Article Not Found" };
   }
@@ -23,13 +24,14 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const related = getAllPosts()
+  const allPosts = await getAllPosts();
+  const related = allPosts
     .filter((p) => p.slug !== post.slug)
     .slice(0, 3);
 

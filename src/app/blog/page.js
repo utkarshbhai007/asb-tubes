@@ -3,7 +3,7 @@ import { getAllPosts } from "../../lib/blogStore";
 
 export const dynamic = "force-dynamic";
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
   return <BlogListing posts={posts} />;
 }

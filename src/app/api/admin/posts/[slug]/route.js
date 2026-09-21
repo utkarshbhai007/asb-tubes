@@ -13,7 +13,7 @@ export async function GET(_request, { params }) {
   }
 
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
@@ -28,7 +28,7 @@ export async function PUT(request, { params }) {
   try {
     const { slug } = await params;
     const body = await request.json();
-    const post = updatePost(slug, body);
+    const post = await updatePost(slug, body);
     revalidatePath("/blog");
     revalidatePath(`/blog/${slug}`);
     revalidatePath(`/blog/${post.slug}`);
@@ -50,7 +50,7 @@ export async function DELETE(_request, { params }) {
 
   try {
     const { slug } = await params;
-    deletePost(slug);
+    await deletePost(slug);
     revalidatePath("/blog");
     revalidatePath(`/blog/${slug}`);
     revalidatePath("/sitemap.xml");

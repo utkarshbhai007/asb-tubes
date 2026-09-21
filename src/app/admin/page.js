@@ -14,6 +14,6 @@ export default async function AdminPage() {
     redirect("/admin/login");
   }
 
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   return <AdminPostsTable posts={posts} />;
 }

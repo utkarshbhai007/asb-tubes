@@ -7,7 +7,8 @@ export async function GET() {
   if (!(await isAdminAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return NextResponse.json({ posts: getAllPosts() });
+  const posts = await getAllPosts();
+  return NextResponse.json({ posts });
 }
 
 export async function POST(request) {
@@ -17,7 +18,7 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const post = createPost(body);
+    const post = await createPost(body);
     revalidatePath("/blog");
     revalidatePath(`/blog/${post.slug}`);
     revalidatePath("/sitemap.xml");
