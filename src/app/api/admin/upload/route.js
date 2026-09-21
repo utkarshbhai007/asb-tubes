@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import fs from "fs";
 import path from "path";
+import { put } from "@vercel/blob";
 import { isAdminAuthenticated } from "../../../../lib/adminAuth";
 
 export const runtime = "nodejs";
@@ -52,6 +53,27 @@ export async function POST(request) {
             : "gif";
 
     const filename = `${Date.now()}-${randomUUID().slice(0, 8)}.${ext}`;
+
+    // 1. Use Vercel Blob if configured (native 100% free cloud storage on Vercel)
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const blob = await put(`blog/${filename}`, file, {
+        access: "public",
+      });
+      return NextResponse.json({ url: blob.url });
+    }
+
+    // 2. If running on Vercel and token is missing, warn the user clearly
+    if (process.env.VERCEL) {
+      return NextResponse.json(
+        {
+          error:
+            "Vercel Blob is not connected. Please enable Blob in your Vercel Dashboard (Storage -> Create Blob) to allow image uploads.",
+        },
+        { status: 500 }
+      );
+    }
+
+    // 3. Local development fallback (writes to public/uploads/blog)
     const uploadDir = path.join(process.cwd(), "public", "uploads", "blog");
     fs.mkdirSync(uploadDir, { recursive: true });
 
@@ -60,7 +82,11 @@ export async function POST(request) {
 
     const url = `/uploads/blog/${filename}`;
     return NextResponse.json({ url });
-  } catch {
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+  } catch (error) {
+    console.error("Upload error:", error);
+    return NextResponse.json(
+      { error: error?.message || "Upload failed" },
+      { status: 500 }
+    );
   }
 }

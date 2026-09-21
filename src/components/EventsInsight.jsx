@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const events = [
-  { id: 1, image: '/images/e1.jpeg', alt: 'ASB Tubes Exhibition 1' },
   { id: 2, image: '/images/e2.jpeg', alt: 'ASB Tubes Exhibition 2' },
   { id: 3, image: '/images/e3.jpeg', alt: 'ASB Tubes Exhibition 3' },
   { id: 4, image: '/images/e4.jpeg', alt: 'ASB Tubes Exhibition 4' },
