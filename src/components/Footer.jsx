@@ -48,6 +48,7 @@ export default function Footer() {
               <li><a href="/">Home</a></li>
               <li><a href="/#about">About Us</a></li>
               <li><a href="/product-range">Product Range</a></li>
+              <li><a href="/weight-calculator">Weight Calculator</a></li>
               <li><a href="/applications">Applications</a></li>
               <li><a href="/quality">Quality Testing</a></li>
               <li><a href="/contact-us">Contact Us</a></li>

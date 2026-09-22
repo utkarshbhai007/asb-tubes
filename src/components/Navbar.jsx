@@ -54,6 +54,7 @@ export default function Navbar() {
           <li className="dropdown">
             <span className="dropdown-label">RESOURCES <span className="arrow-icon">▼</span></span>
             <ul className="dropdown-menu">
+              <li><Link href="/weight-calculator" onClick={() => setIsOpen(false)}>WEIGHT CALCULATOR</Link></li>
               <li><Link href="/events" onClick={() => setIsOpen(false)}>EVENTS</Link></li>
               <li><Link href="/gallery" onClick={() => setIsOpen(false)}>GALLERY</Link></li>
             </ul>

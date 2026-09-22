@@ -6,6 +6,7 @@ export default async function sitemap() {
   const staticRoutes = [
     { path: "", changeFrequency: "weekly", priority: 1 },
     { path: "/product-range", changeFrequency: "weekly", priority: 0.9 },
+    { path: "/weight-calculator", changeFrequency: "monthly", priority: 0.7 },
     { path: "/applications", changeFrequency: "monthly", priority: 0.8 },
     { path: "/quality", changeFrequency: "monthly", priority: 0.8 },
     { path: "/contact-us", changeFrequency: "monthly", priority: 0.8 },
