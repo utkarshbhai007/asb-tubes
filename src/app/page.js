@@ -4,6 +4,7 @@ import OfficeGallery from "../components/OfficeGallery";
 import EventsInsight from "../components/EventsInsight";
 import BrochureSection from "../components/BrochureSection";
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
+import AnnouncementPopup from "../components/AnnouncementPopup";
 
 export const metadata = {
   title: {
@@ -22,6 +23,7 @@ export default function Home() {
       <EventsInsight />
       <BrochureSection />
       <FloatingWhatsApp />
+      <AnnouncementPopup />
     </>
   );
 }

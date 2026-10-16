@@ -25,23 +25,23 @@ export default function EventsPage() {
           </div>
           <div className="event-card featured">
             <div className="event-img-wrapper">
-              <img src="/images/event_demo.png" alt="Stainless Steel World Expo" className="event-img" />
+              <img src="/images/image.png" alt="PMEC India 2026" className="event-img" />
               <div className="event-date-badge">
-                <span className="day">15</span>
+                <span className="day">24</span>
                 <span className="month">NOV</span>
                 <span className="year">2026</span>
               </div>
             </div>
             <div className="event-content">
-              <h3>Stainless Steel World Expo 2026</h3>
-              <p className="location"><span className="icon">📍</span> Maastricht, Netherlands</p>
+              <h3>PMEC India 2026</h3>
+              <p className="location"><span className="icon">📍</span> India Expo Centre, Greater Noida, Delhi NCR</p>
               <p className="desc">
-                Join ASB Tubes at the premier international expo for stainless steel professionals. We will be showcasing our latest innovations in seamless and welded pipes, offering exclusive insights into our manufacturing capabilities and discussing future industry trends.
+                Visit ASB Tubes at PMEC India 2026 and explore our latest range of stainless steel pipes and tubes. Meet our team at Booth No. 1AB43 from 24–26 November 2026 to discuss manufacturing capabilities, product innovations, and partnership opportunities.
               </p>
               <ul className="event-highlights">
+                <li>Booth No. 1AB43</li>
                 <li>Live product demonstrations</li>
                 <li>One-on-one meetings with our technical team</li>
-                <li>Exclusive networking sessions</li>
               </ul>
               <button className="btn-solid-blue mt-4">Register Interest</button>
             </div>
@@ -205,8 +205,10 @@ export default function EventsPage() {
 
         .event-date-badge {
           position: absolute;
-          top: 20px;
-          left: 20px;
+          bottom: 20px;
+          right: 20px;
+          top: auto;
+          left: auto;
           background: var(--primary-blue);
           color: var(--white);
           padding: 10px 15px;
