@@ -1,13 +1,18 @@
 import fs from "fs";
 import path from "path";
-import { put, list } from "@vercel/blob";
+import clientPromise from "./mongodb.js";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_PATH = path.join(DATA_DIR, "blog-posts.json");
-const BLOB_POSTS_PATH = "data/blog-posts.json";
 
-// In-memory cache for fast access across function invocations
-let inMemoryPosts = null;
+async function getCollection() {
+  if (!process.env.MONGODB_URI) {
+    return null;
+  }
+  const client = await clientPromise;
+  const db = client.db("asbtubes");
+  return db.collection("posts");
+}
 
 function readLocalSeedPosts() {
   try {
@@ -23,61 +28,41 @@ function readLocalSeedPosts() {
 }
 
 export async function readPosts() {
-  // 1. Try reading from Vercel Blob if connected
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    try {
-      const { blobs } = await list({ prefix: BLOB_POSTS_PATH });
-      const blob = blobs.find((b) => b.pathname === BLOB_POSTS_PATH);
-      if (blob) {
-        const res = await fetch(`${blob.url}?t=${Date.now()}`, {
-          cache: "no-store",
-        });
-        if (res.ok) {
-          const parsed = await res.json();
-          if (Array.isArray(parsed)) {
-            inMemoryPosts = parsed;
-            return parsed;
-          }
-        }
-      }
-    } catch (err) {
-      console.warn("Could not fetch posts from Vercel Blob:", err?.message);
+  // 1. Try reading from MongoDB Atlas if configured
+  try {
+    const col = await getCollection();
+    if (col) {
+      const posts = await col
+        .find({}, { projection: { _id: 0 } })
+        .sort({ _id: -1 })
+        .toArray();
+      return posts;
     }
+  } catch (err) {
+    console.error("MongoDB readPosts error:", err);
   }
 
-  // 2. Return in-memory cached posts if available
-  if (inMemoryPosts !== null) {
-    return inMemoryPosts;
-  }
-
-  // 3. Fallback to bundled seed file
-  const local = readLocalSeedPosts();
-  inMemoryPosts = local;
-  return local;
+  // 2. Fallback to bundled seed file
+  return readLocalSeedPosts();
 }
 
 export async function writePosts(posts) {
-  inMemoryPosts = posts;
-
-  // 1. Write to Vercel Blob if connected
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    await put(BLOB_POSTS_PATH, JSON.stringify(posts, null, 2), {
-      access: "public",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: "application/json",
-    });
-    return;
+  // If MongoDB is configured, bulk replace or sync
+  try {
+    const col = await getCollection();
+    if (col) {
+      await col.deleteMany({});
+      if (posts.length > 0) {
+        await col.insertMany(posts.map((p) => ({ ...p })));
+      }
+      return;
+    }
+  } catch (err) {
+    console.error("MongoDB writePosts error:", err);
+    throw err;
   }
 
-  // 2. If running on Vercel without token
-  if (process.env.VERCEL) {
-    throw new Error(
-      "Vercel Blob is not connected. Please enable Blob in your Vercel Dashboard (Storage -> Create Blob)."
-    );
-  }
-
-  // 3. Local filesystem write fallback
+  // Local filesystem write fallback
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -94,11 +79,33 @@ export async function getAllPosts() {
 }
 
 export async function getPostBySlug(slug) {
+  try {
+    const col = await getCollection();
+    if (col) {
+      const post = await col.findOne({ slug }, { projection: { _id: 0 } });
+      return post || null;
+    }
+  } catch (err) {
+    console.error("MongoDB getPostBySlug error:", err);
+  }
+
   const posts = await readPosts();
   return posts.find((post) => post.slug === slug) || null;
 }
 
 export async function getPostSlugs() {
+  try {
+    const col = await getCollection();
+    if (col) {
+      const posts = await col
+        .find({}, { projection: { slug: 1, _id: 0 } })
+        .toArray();
+      return posts.map((p) => p.slug);
+    }
+  } catch (err) {
+    console.error("MongoDB getPostSlugs error:", err);
+  }
+
   const posts = await readPosts();
   return posts.map((post) => post.slug);
 }
@@ -206,6 +213,18 @@ export async function normalizePost(input, { existingSlug } = {}) {
 
 export async function createPost(input) {
   const post = await normalizePost(input);
+  try {
+    const col = await getCollection();
+    if (col) {
+      await col.insertOne({ ...post, createdAt: new Date() });
+      return post;
+    }
+  } catch (err) {
+    console.error("MongoDB createPost error:", err);
+    throw err;
+  }
+
+  // Local fallback
   const posts = await readPosts();
   posts.unshift(post);
   await writePosts(posts);
@@ -213,18 +232,51 @@ export async function createPost(input) {
 }
 
 export async function updatePost(currentSlug, input) {
+  const post = await normalizePost(input, { existingSlug: currentSlug });
+  try {
+    const col = await getCollection();
+    if (col) {
+      const result = await col.updateOne(
+        { slug: currentSlug },
+        { $set: { ...post, updatedAt: new Date() } }
+      );
+      if (result.matchedCount === 0) {
+        throw new Error("Post not found");
+      }
+      return post;
+    }
+  } catch (err) {
+    console.error("MongoDB updatePost error:", err);
+    throw err;
+  }
+
+  // Local fallback
   const posts = await readPosts();
   const index = posts.findIndex((p) => p.slug === currentSlug);
   if (index === -1) {
     throw new Error("Post not found");
   }
-  const post = await normalizePost(input, { existingSlug: currentSlug });
   posts[index] = post;
   await writePosts(posts);
   return post;
 }
 
 export async function deletePost(slug) {
+  try {
+    const col = await getCollection();
+    if (col) {
+      const result = await col.deleteOne({ slug });
+      if (result.deletedCount === 0) {
+        throw new Error("Post not found");
+      }
+      return true;
+    }
+  } catch (err) {
+    console.error("MongoDB deletePost error:", err);
+    throw err;
+  }
+
+  // Local fallback
   const posts = await readPosts();
   const next = posts.filter((p) => p.slug !== slug);
   if (next.length === posts.length) {

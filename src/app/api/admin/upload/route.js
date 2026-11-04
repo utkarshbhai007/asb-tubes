@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import fs from "fs";
 import path from "path";
+import { v2 as cloudinary } from "cloudinary";
 import { put } from "@vercel/blob";
 import { isAdminAuthenticated } from "../../../../lib/adminAuth";
 
@@ -15,6 +16,20 @@ const ALLOWED_TYPES = new Set([
 ]);
 
 const MAX_BYTES = 5 * 1024 * 1024; // 5MB
+
+// Configure Cloudinary if environment variables are provided
+if (
+  process.env.CLOUDINARY_CLOUD_NAME &&
+  process.env.CLOUDINARY_API_KEY &&
+  process.env.CLOUDINARY_API_SECRET
+) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+    secure: true,
+  });
+}
 
 export async function POST(request) {
   if (!(await isAdminAuthenticated())) {
@@ -43,6 +58,38 @@ export async function POST(request) {
       );
     }
 
+    const buffer = Buffer.from(await file.arrayBuffer());
+
+    // 1. Prioritize Cloudinary if configured (100% free, 25GB monthly bandwidth)
+    if (
+      process.env.CLOUDINARY_CLOUD_NAME &&
+      process.env.CLOUDINARY_API_KEY &&
+      process.env.CLOUDINARY_API_SECRET
+    ) {
+      cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+        secure: true,
+      });
+
+      const uploadResult = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "asb-blog",
+            resource_type: "image",
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          }
+        );
+        stream.end(buffer);
+      });
+
+      return NextResponse.json({ url: uploadResult.secure_url });
+    }
+
     const ext =
       file.type === "image/jpeg"
         ? "jpg"
@@ -54,7 +101,7 @@ export async function POST(request) {
 
     const filename = `${Date.now()}-${randomUUID().slice(0, 8)}.${ext}`;
 
-    // 1. Use Vercel Blob if configured (native 100% free cloud storage on Vercel)
+    // 2. Use Vercel Blob if configured
     if (process.env.BLOB_READ_WRITE_TOKEN) {
       const blob = await put(`blog/${filename}`, file, {
         access: "public",
@@ -62,22 +109,20 @@ export async function POST(request) {
       return NextResponse.json({ url: blob.url });
     }
 
-    // 2. If running on Vercel and token is missing, warn the user clearly
+    // 3. If running on Vercel and neither Cloudinary nor Blob is set
     if (process.env.VERCEL) {
       return NextResponse.json(
         {
           error:
-            "Vercel Blob is not connected. Please enable Blob in your Vercel Dashboard (Storage -> Create Blob) to allow image uploads.",
+            "No cloud storage configured. Please set Cloudinary or Vercel Blob credentials in your Vercel Environment Variables.",
         },
         { status: 500 }
       );
     }
 
-    // 3. Local development fallback (writes to public/uploads/blog)
+    // 4. Local development fallback (writes to public/uploads/blog)
     const uploadDir = path.join(process.cwd(), "public", "uploads", "blog");
     fs.mkdirSync(uploadDir, { recursive: true });
-
-    const buffer = Buffer.from(await file.arrayBuffer());
     fs.writeFileSync(path.join(uploadDir, filename), buffer);
 
     const url = `/uploads/blog/${filename}`;
