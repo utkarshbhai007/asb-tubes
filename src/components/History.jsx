@@ -44,7 +44,7 @@ export default function History() {
             </p>
             
             <BrochureDownloadButton 
-              pdfUrl="/pdf/ASB_TUBES_Final_Brochure.pdf" 
+              pdfUrl="/pdf/ASB-Tubes-brochure-2026.pdf" 
               className="btn-outline-glow mt-4"
             >
               <span>DOWNLOAD BROCHURE</span>
